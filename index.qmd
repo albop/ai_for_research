@@ -1,0 +1,38 @@
+---
+title: AI for Research
+listing:
+  id: sample-listings
+  contents: 
+    - session_*/*
+    # - session_1
+    # - session_2
+    # - session_3
+    # - session_4
+    # - session_5
+  sort: "date"
+  fields: [date, title]
+  type: table
+---
+
+
+
+[Full Syllabus](syllabus_2023.pdf)
+
+The objective of the course, will be to explore together through lectures and students
+contributions how GPT-4 in particular and Large Language Models (LLMs) in general can be used
+for producing research as a substitute to traditional natural language processing techniques
+(NLP).
+
+Also, as Large Language Models become more versatile and are being increasingly used to inform
+real world decisions, part of the course will be devoted to recent research approaches designed to
+experimentally evaluate and practically control the behavior of AI as approximated by an LLM .
+We’ll discuss both structural approaches (affecting the model building) and external approaches
+(taking AI as a black box and observing its behavior).
+
+
+## Schedule
+
+::: {#sample-listings}
+
+:::
+
