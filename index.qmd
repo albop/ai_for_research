@@ -3,15 +3,16 @@ title: AI for Research
 listing:
   id: sample-listings
   contents: 
-    - session_*/*
-    # - session_1
-    # - session_2
-    # - session_3
-    # - session_4
-    # - session_5
+    - session_1
+    - session_2
+    - session_3
+    - session_4
+    - session_5
   sort: "date"
   fields: [date, title]
   type: table
+  filter-ui: false
+  sort-ui: false
 ---
 
 

@@ -5,7 +5,140 @@ subtitle: AI for Research, ESCP, 2023-2024
 author: Pablo Winant
 format:
   revealjs:
-    navigation: grid
     width: 1920
     height: 1080
+listing:
+  id: sample-listings
+  contents: 
+    - ../session_1/index.qmd
+    - ../session_2/index.qmd
+    - ../session_3/index.qmd
+    - ../session_4/index.qmd
+    - ../session_5/index.qmd
+  sort: "date"
+  filter-ui: false
+  sort-ui: false
+  fields: [date, title]
+  type: table
 ---
+
+
+## Introduction
+
+
+Have you heard of [ChatGPT](https://openai.com/gpt-4) ?
+
+. . .
+
+<iframe src="https://share.descript.com/embed/hRYopxEmErc?transcript=false" width="1200" height="600" frameborder="0" allowfullscreen></iframe>
+
+## Questions?
+
+- What is the difference between GPT and ChatGPT?
+- How is it related to other AI fields
+  - like machine learning? more precisely Natural Language Processing (aka NLP)?
+  - What are some other applications of generative AI?
+- Can it be used for research? For which tasks?
+- What should you pay attention to?
+- How will it evolve?
+
+
+## Roadmap
+
+::: {#sample-listings}
+
+:::
+
+<!-- why to I get "No matching item ? -->
+
+## Coursework
+
+1. Homework
+    a) read papers for next session (if any)
+    b) do the pushups on Nuvolos, send to me
+
+2. Projects
+    a) replicate a text analysis paper using gpt
+    b) present a study about biases of AI (last session)
+
+. . .
+
+Grading?
+
+-  Fully discretionary
+
+## Practicalities
+
+- [Nuvolos](https://nuvolos.cloud/):
+  - online computational platform with full python stack
+  - full access during the course
+  - _login with your (escp) gmail account_
+  - send the homework through nuvolos
+
+- Afterwards:
+  - everything can be done on your laptop
+  - we can set it up during the course
+
+- OpenAI:
+  - you will need a paid subscription
+
+## Random Remarks
+
+::: {.incremental}
+
+How do Phd learn?
+
+- by reading
+- by doing
+- by sitting/listening to a course
+- by ~~pestering~~ asking ~~their PhD adviser~~ any professor
+
+We are here to *exchange*
+
+- you have a cool/useful application of AI?
+  - show and share
+- specific research ideas you would like to discuss?
+- speak up
+
+:::
+
+
+## Why Should you learn programming ?
+
+::: {.incremental}
+
+- Researchers (econometricians or data scientists) spend 80% of their time writing code.
+- Presentation (plots, interactive apps) is key and relies on
+
+    - ... programming
+
+-  Interaction with code becomes unavoidable in business environment
+
+    - fixing the website
+    - querying the database
+    - ...
+
+- Worth investing a  bit of time to learn it
+
+  - you can easily become an __expert__
+
+- Plus it's fun
+
+:::
+
+---
+
+## Programming resources
+
+Plenty of online resources to learn python/econometrics/machine learning
+
+- [learnpython](learnpython.org) sponsored by [datacamp](https://www.datacamp.com/)
+- [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/): by Jake Van der Plas, very complete. Online free version.
+- [Introduction to Econometrics with R](https://scpoecon.github.io/ScPoEconometrics/), in R but very clear (beginner and advanced versions)
+
+![](qe-logo-large.png)
+
+- __Quantecon__: free online [lectures](https://quantecon.org/lectures/) to learn python programming and (advanced) economics
+  - now with a section on [datascience](https://datascience.quantecon.org/)
+  - it is excellent!
+  - we will use some of it today

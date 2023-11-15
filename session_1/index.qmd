@@ -5,17 +5,19 @@ subtitle: AI for Research, ESCP, 2023-2024
 author: Pablo Winant
 format:
   revealjs:
-    navigation: grid
+    toc: true
+    toc-expand: 2
+    toc-depth: 1
     width: 1920
     height: 1080
+bibliography: references.bib
 ---
 
-# What can we do?
+# Some uses of text analysis
 
 ---
 
 ## How to deal with text?
-
 
 
 - Recall: big data contains *heterogenous* data
@@ -25,11 +27,12 @@ format:
 
 ## Example 1: FOMC meetings
 
-*Taking the Fed at its Word: A New Approach to Estimating Central Bank Objectives using Text Analysis* by Adam H. Shapiro and Daniel J. Wilson [link](https://www.frbsf.org/economic-research/files/wp2019-02.pdf)
+*Taking the Fed at its Word: A New Approach to Estimating Central Bank Objectives using Text Analysis*, @shapiro2022
 
-- Remember the Taylor rule? We tried to estimate it from the data.
+- Remember the Taylor rule for central banks?
 - Generalized version: $i_t = \alpha_\pi (\pi_t-\pi^{\star}) + \alpha_y (y_t-y)$
 - Is there a way to measure the preferences of the central bank? (coefficients and inflation target?)
+- Traditional way: look at CB decisions ex post + run a regression
 - Shapiro and Wilson: let's look at the FOMC [meeting transcripts](https://www.federalreserve.gov/monetarypolicy/fomc_historical.htm)
 - Excerpts (there are *tons* of them: 704,499)
 
@@ -70,7 +73,17 @@ Jan 2006 *Chicago Federal Reserve President Michael Moskow*
 
 ## Example 2
 
+::: columns
+
+:::: column
+
 ![](graphs/tweets.jpg)
+
+::::
+
+:::: column
+
+::::: {.incremental}
 
 - Suppose you work in the trading floor of a financial instutition
 - These kind of tweets have disturbing impact on the markets. You need to react quickly.
@@ -79,12 +92,17 @@ Jan 2006 *Chicago Federal Reserve President Michael Moskow*
 - How do you analyse the content of the tweets?
 - Comment: actually it's not only the content of the tweets, but who reads, who retweets: graph analysis
 
+:::::
+
+::::
+
+:::
 
 ## Text-mining: what can we extract from texts
 
 - The main branches of text analysis are:
-  - sentiment analysis
-    - associate positivity/negativity to a text
+  - sentiment analysis (*today*)
+    - associate positivity/negativity score to a text
     - precise meaning of "sentiment" is context dependent     
   - topic modeling
     - classify texts as belonging to known categories (supervised)
@@ -94,8 +112,7 @@ Jan 2006 *Chicago Federal Reserve President Michael Moskow*
     - example: [A Cross-verified Database of Notable People, 3500BC-2018AD](https://portal.cepr.org/discussion-paper/17941)
   - event-extraction
     - recognize mention of events
-  - plus everything that can be done with a language model like GPT-3...
-
+  - ...
 
 ## Clarification
 
@@ -413,4 +430,15 @@ $$ \underbrace{\text{the}}_{x_1} \underbrace{\text{ central}}_{x_2} \underbrace{
 - Improvement: TF-IDF 
   - stands for Term-Frequency*Inverse-Distribution-Frequency
   - replace word frequency $f(w)$ by $$\text{tf-idf} = f(w)\frac{\text{number of documents}}{\text{number of documents containing $w$}}$$
-    
+
+## Deep learning
+
+TODO
+
+
+# Homework
+
+- Read the research paper for [GPT-4](https://openai.com/research/gpt-4)?
+- Do *some* push-ups exercises on Nuvolos
+
+# Bibliography
