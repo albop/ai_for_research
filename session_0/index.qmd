@@ -7,6 +7,9 @@ format:
   revealjs:
     width: 1920
     height: 1080
+    menu:
+      side: left
+      width: normal
 listing:
   id: sample-listings
   contents: 

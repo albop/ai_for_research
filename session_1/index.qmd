@@ -10,10 +10,13 @@ format:
     toc-depth: 1
     width: 1920
     height: 1080
+    menu:
+      side: left
+      width: normal
 bibliography: references.bib
 ---
 
-# Some uses of text analysis
+# Examples of Text Analysis Applications
 
 ---
 
@@ -85,7 +88,7 @@ Jan 2006 *Chicago Federal Reserve President Michael Moskow*
 
 ::::: {.incremental}
 
-- Suppose you work in the trading floor of a financial instutition
+- Suppose you work in the trading floor of a financial institution
 - These kind of tweets have disturbing impact on the markets. You need to react quickly.
 - You need a machine to assess the risk in real time.
 - More generally, tweeter is a quite unique source of real-time data
@@ -427,18 +430,46 @@ $$ \underbrace{\text{the}}_{x_1} \underbrace{\text{ central}}_{x_2} \underbrace{
     - it requires a big training set with labels
     - it overweights long documents
     - there is noise due to the very frequent words that don't affect sentiment
+    - ordering of words / grammar plays no role
 - Improvement: TF-IDF 
   - stands for Term-Frequency*Inverse-Distribution-Frequency
   - replace word frequency $f(w)$ by $$\text{tf-idf} = f(w)\frac{\text{number of documents}}{\text{number of documents containing $w$}}$$
 
 ## Deep learning
 
-TODO
+::: columns
 
+:::: column
+
+![](graphs/neural_network.webp){width=70%}
+
+::::
+
+:::: column
+
+::::: {.incremental}
+
+- Neural networks have become very popular. 
+- A classification problem would look like:
+$$c = f(x_1, ..., x_n; 
+\theta)$$ where $f$ is a nonlinear function and $\theta$ is an unknown vector of parameters
+- Or even $$c = f(\text{full_text};\theta)$$
+  - which could potentially capture meaning embedded in syntax
+  - many possible versions of $f$ (network topologies)
+- Problem?
+  - deep parameters require a bigger dataset
+- Possible remedy: learn from a wider, more general dataset => transfer learning
+
+:::::
+
+::::
+
+:::
 
 # Homework
 
 - Read the research paper for [GPT-4](https://openai.com/research/gpt-4)?
 - Do *some* push-ups exercises on Nuvolos
+- Start to look for an interesting application of text analysis in your field
 
 # Bibliography

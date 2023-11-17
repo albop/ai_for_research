@@ -9,6 +9,10 @@ format:
     toc-depth: 1
     width: 1920
     height: 1080
+    menu:
+      side: left
+      width: normal
+
 ---
 
 ## Regressions
