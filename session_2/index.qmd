@@ -1,0 +1,14 @@
+---
+title: "…to Large Language Models"
+date: 2023/11/22
+subtitle: AI for Research, ESCP, 2023-2024
+author: Pablo Winant
+format:
+  revealjs:
+    navigation: grid
+    width: 1920
+    height: 1080
+    menu:
+      side: left
+      width: normal
+---
