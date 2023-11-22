@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>AI for Research</title>
+<title>AI for Research - Sentiment analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -67,40 +65,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-sample-listings .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-sample-listings'] = new List('listing-sample-listings', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked">
@@ -129,7 +96,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">AI for Research</a> 
+      <a href="../">AI for Research</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -141,37 +108,37 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./session_0/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../session_0/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./session_1/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../session_1/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">From Text Analysis…</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./session_2/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../session_2/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">…to Large Language Models</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./session_3/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../session_3/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What are Large Language Models made of?</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./session_4/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../session_4/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Behavior of Large Language Models</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./session_5/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../session_5/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Research Frontiers: What’s Next?</span></a>
   </div>
 </li>
@@ -185,7 +152,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#schedule" id="toc-schedule" class="nav-link active" data-scroll-target="#schedule">Schedule</a></li>
+  <li><a href="#ai-for-research-2023" id="toc-ai-for-research-2023" class="nav-link active" data-scroll-target="#ai-for-research-2023">AI for research, 2023</a></li>
+  <li><a href="#the-dataset" id="toc-the-dataset" class="nav-link" data-scroll-target="#the-dataset">The Dataset</a></li>
+  <li><a href="#text-mining" id="toc-text-mining" class="nav-link" data-scroll-target="#text-mining">Text Mining</a></li>
+  <li><a href="#sentiment-analysis-using-gpt-completion" id="toc-sentiment-analysis-using-gpt-completion" class="nav-link" data-scroll-target="#sentiment-analysis-using-gpt-completion">Sentiment Analysis using GPT completion</a></li>
+  <li><a href="#performance-shootout" id="toc-performance-shootout" class="nav-link" data-scroll-target="#performance-shootout">Performance shootout</a></li>
   </ul>
 </nav>
     </div>
@@ -194,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AI for Research</h1>
+<h1 class="title">Sentiment analysis</h1>
 </div>
 
 
@@ -211,87 +182,40 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><a href="syllabus_2023.pdf">Full Syllabus</a></p>
-<p>The objective of the course, will be to explore together through lectures and students contributions how GPT-4 in particular and Large Language Models (LLMs) in general can be used for producing research as a substitute to traditional natural language processing techniques (NLP).</p>
-<p>Also, as Large Language Models become more versatile and are being increasingly used to inform real world decisions, part of the course will be devoted to recent research approaches designed to experimentally evaluate and practically control the behavior of AI as approximated by an LLM . We’ll discuss both structural approaches (affecting the model building) and external approaches (taking AI as a black box and observing its behavior).</p>
-<section id="schedule" class="level2">
-<h2 class="anchored" data-anchor-id="schedule">Schedule</h2>
-<div id="listing-sample-listings" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Date
-</th>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-date-sort="1700002800000" data-listing-file-modified-sort="1700228242226" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1986" data-listing-title-sort="From Text Analysis…" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Nov 15, 2023</span>
-</td>
-<td>
-<a href="./session_1/index.html" class="title listing-title">From Text Analysis…</a>
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1700607600000" data-listing-file-modified-sort="1700655551282" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="…to Large Language Models" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Nov 22, 2023</span>
-</td>
-<td>
-<a href="./session_2/index.html" class="title listing-title">…to Large Language Models</a>
-</td>
-</tr>
-<tr data-index="2" data-listing-date-sort="1701126000000" data-listing-file-modified-sort="1700228242350" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="What are Large Language Models made of?" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Nov 28, 2023</span>
-</td>
-<td>
-<a href="./session_3/index.html" class="title listing-title">What are Large Language Models made of?</a>
-</td>
-</tr>
-<tr data-index="3" data-listing-date-sort="1701817200000" data-listing-file-modified-sort="1700228242350" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Behavior of Large Language Models" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Dec 6, 2023</span>
-</td>
-<td>
-<a href="./session_4/index.html" class="title listing-title">Behavior of Large Language Models</a>
-</td>
-</tr>
-<tr data-index="4" data-listing-date-sort="1702422000000" data-listing-file-modified-sort="1700228242350" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Research Frontiers: What’s Next?" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Dec 13, 2023</span>
-</td>
-<td>
-<a href="./session_5/index.html" class="title listing-title">Research Frontiers: What’s Next?</a>
-</td>
-</tr>
-<tr data-index="5" data-listing-file-modified-sort="1700654132643" data-listing-reading-time-sort="1" data-listing-word-count-sort="160" data-listing-title-sort="Sentiment analysis" data-listing-filename-sort="tutorial_2.ipynb">
-<td>
-<span class="listing-date">&nbsp;</span>
-</td>
-<td>
-<a href="./session_2/tutorial_2.html" class="title listing-title">Sentiment analysis</a>
-</td>
-</tr>
-<tr data-index="6" data-listing-file-modified-sort="1700641208027" data-listing-filename-sort="exercise.md">
-<td>
-<span class="listing-date">&nbsp;</span>
-</td>
-<td>
-<a href="./session_2/exercise.html" class="title listing-title">&nbsp;</a>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-
+<section id="ai-for-research-2023" class="level2">
+<h2 class="anchored" data-anchor-id="ai-for-research-2023">AI for research, 2023</h2>
+<p>The ultimate goal of this exercise consists performing the same exercise, namely sentiment analysis, using traditional NLP and GPT-3.5.</p>
+</section>
+<section id="the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="the-dataset">The Dataset</h2>
+<p>We use the <a href="https://www.kaggle.com/datasets/yasserh/twitter-tweets-sentiment-dataset">News Sentiment Dataset</a> from Kaggle.</p>
+<ol type="1">
+<li><p><strong>Import Dataset as a pandas dataframe</strong></p></li>
+<li><p><strong>Describe Dataset (text and graphs)</strong></p></li>
+<li><p><strong>Split Dataset into training, validation and test set. What is the purpose of the validation set?</strong></p></li>
+</ol>
+</section>
+<section id="text-mining" class="level2">
+<h2 class="anchored" data-anchor-id="text-mining">Text Mining</h2>
+<ol type="1">
+<li><p><strong>Extract features from the training dataset. What do you do with non-words / punctuation?</strong></p></li>
+<li><p><strong>Convert occurrencies to frequencies. Make another version with tf-idf.</strong></p></li>
+<li><p><strong>Choose a classifier to predict the sentiment on the <em>validation</em> set. Compute the confusion matrix.</strong></p></li>
+</ol>
+</section>
+<section id="sentiment-analysis-using-gpt-completion" class="level2">
+<h2 class="anchored" data-anchor-id="sentiment-analysis-using-gpt-completion">Sentiment Analysis using GPT completion</h2>
+<ol type="1">
+<li><p><strong>Setup an openai key. Explore openai <em>completion</em> API.</strong></p></li>
+<li><p><strong>Design a prompt to extract the sentiment from a tweet. Test it on very few tweets from the training dataset. Propose different versions.</strong></p></li>
+<li><p><strong>Write a function which takes in: the prompt template, the tweet text and returns the sentiment as an integer.</strong></p></li>
+</ol>
+</section>
+<section id="performance-shootout" class="level2">
+<h2 class="anchored" data-anchor-id="performance-shootout">Performance shootout</h2>
+<ol type="1">
+<li><strong>Compare the various methods on the test set.</strong></li>
+</ol>
 
 
 </section>

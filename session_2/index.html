@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.487">
 
   <meta name="author" content="Pablo Winant">
-  <meta name="dcterms.date" content="2023-11-22">
+  <meta name="dcterms.date" content="2023-11-15">
   <title>AI for Research - …to Large Language Models</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -30,6 +30,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -338,15 +403,503 @@ Pablo Winant
 </div>
 </div>
 
-  <p class="date">2023-11-22</p>
+  <p class="date">2023-11-15</p>
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#/what-does-gpt-do" id="/toc-what-does-gpt-do">What does GPT do?</a></li>
+<li><a href="#/what-is-a-language-model" id="/toc-what-is-a-language-model">What is a language model?</a></li>
+<li><a href="#/how-can-we-use-gpt" id="/toc-how-can-we-use-gpt">How can we use GPT</a></li>
+<li><a href="#/conclusion" id="/toc-conclusion">Conclusion</a></li>
+</ul>
+</nav>
 </section>
-<section class="slide level2">
+<section>
+<section id="what-does-gpt-do" class="title-slide slide level1 center">
+<h1>What does GPT do?</h1>
 
+</section>
+<section id="do-you-like-poetry" class="slide level2">
+<h2>Do you like poetry?</h2>
+<div class="fragment">
+<blockquote>
+<p>A rose is a rose is <span class="fragment">a rose</span></p>
+</blockquote>
+</div>
+<div class="fragment">
+<pre><code>Gertrude Stein</code></pre>
+</div>
+<div class="fragment">
+<blockquote>
+<p>Brexit means Brexit means <span class="fragment">Brexit</span></p>
+</blockquote>
+</div>
+<div class="fragment">
+<pre><code>John Crace</code></pre>
+</div>
+<div class="fragment">
+<blockquote>
+<p>Elementary my dear <span class="fragment">Watson</span></p>
+</blockquote>
+</div>
+<div class="fragment">
+<pre><code>P.G. Woodehouse</code></pre>
+</div>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<blockquote>
+<p>There is an easy way for the government to end the strike without withdrawing the pension reform,</p>
+</blockquote>
+</section>
+<section id="complete-text" class="slide level2">
+<h2>Complete Text</h2>
+<p>Generative language models perform <em>text completion</em></p>
+<p>They generate plausible<sup>1</sup> text following a prompt.</p>
+<p>The type of answer, will depend on the kind of prompt.</p>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>here, plausible, means that it is more likely to be a correct text written by a human, rather than otherwise</p></li></ol></aside></section>
+<section id="gpt-playground" class="slide level2">
+<h2>GPT Playground</h2>
+<p>To use GPT-3 profficiently, you have to experiment with the prompt.</p>
+<ul>
+<li>try the <a href="https://platform.openai.com/playground">Playground mode</a></li>
+</ul>
+<p>It is the same as learning how to do google queries</p>
+<ul>
+<li>altavista: <code>+noir +film -"pinot noir"</code></li>
+<li>nowadays: ???</li>
+</ul>
+<p>“Prompting” is becoming a discipline in itself… (or is it?)</p>
+</section>
+<section id="some-examples" class="slide level2">
+<h2>Some Examples</h2>
+<p>By providing enough <em>context</em>, it is possible to perform amazing tasks</p>
+<p><a href="https://gpt3demo.com/">Look at the demos</a></p>
+</section></section>
+<section>
+<section id="what-is-a-language-model" class="title-slide slide level1 center">
+<h1>What is a language model?</h1>
+
+</section>
+<section id="language-models-and-cryptography" class="slide level2">
+<h2>Language Models and Cryptography</h2>
+
+<img data-src="assets/code-secret.webp" class="r-stretch"><p>The Caesar code</p>
+</section>
+<section id="section-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+
+<img data-src="assets/zodiac_408.png" class="r-stretch quarto-figure-center"><p class="caption">Zodiac 408 Cipher</p></section>
+<section id="section-2" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div id="fig-elephants" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-elephants-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-figure quarto-figure-center quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<figure>
+<p><img data-src="assets/zodiac_408.png" style="width:20.0%"></p>
+<figcaption>Zodiac 408 Cipher</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<figure>
+<p><img data-src="assets/408_solution.jpg" style="width:40.0%"></p>
+<figcaption>Key for Zodiac 408</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-elephants-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Solved in a week by Bettye and Donald Harden using frequency tables.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<p>Later in 2001, in a prison, somewhere in California</p>
+
+<img data-src="assets/prison.png" class="r-stretch"><div class="fragment">
+<p>Solved by Stanford’s <a href="https://math.uchicago.edu/~shmuel/Network-course-readings/MCMCRev.pdf">Persi Diaconis</a> and his students using Monte Carlo Markov Chains</p>
+</div>
+</section>
+<section id="monte-carlo-markov-chains" class="slide level2">
+<h2>Monte Carlo Markov Chains</h2>
+<p>Take a letter <span class="math inline">\(x_n\)</span>, what is the probability of the next letter being <span class="math inline">\(x_{n+1}\)</span>?</p>
+<p><span class="math display">\[\pi_{X,Y} = P(x_{n+1}=Y, x_{n}=X)\]</span></p>
+<p>for <span class="math inline">\(X=\{a, b, .... , z\} , Y=\{a,b,c, ... z\}\)</span></p>
+<p>The language model can be trained using dataset of english language.</p>
+<p>And used to determine whether a given cipher-key is consistent with english language.</p>
+<p>It yields a very efficient algorithm to decode any caesar code (with very small sample)</p>
+</section>
+<section id="mcmc-to-generate-text" class="slide level2">
+<h2>MCMC to generate text</h2>
+<p>MCMCs can also be used to generate text:</p>
+<ul>
+<li>take initial prompt: <code>I think therefore I</code>
+<ul>
+<li>last letter is <code>I</code></li>
+<li>most plausible character afterwards is <code></code></li>
+<li>most plausible character afterwards is <code>I</code></li>
+</ul></li>
+<li>Result: <code>I think therefore I I I I I I</code></li>
+</ul>
+<p>Not good but promising (🤷)</p>
+</section>
+<section id="mcmc-to-generate-text-1" class="slide level2">
+<h2>MCMC to generate text</h2>
+<p>Going further</p>
+<ul>
+<li>augment memory
+<ul>
+<li><code>fore I</code>&gt; ???</li>
+</ul></li>
+<li>change basic unit (use phonems or words)</li>
+</ul>
+<p>An example using <a href="https://towardsdatascience.com/text-generation-with-markov-chains-an-introduction-to-using-markovify-742e6680dc33">MCMC</a></p>
+<ul>
+<li>using words and 3 states <code>He ha ‘s kill’d me Mother , Run away I pray you Oh this is Counter you false Danish Dogges .</code></li>
+</ul>
+</section>
+<section id="big-mcmc" class="slide level2">
+<h2>Big MCMC</h2>
+<p>Can we augment memory?</p>
+<ul>
+<li>if you want to compute the most frequent letter (among <code>26</code>) after <code>50</code> letters, you need to take into account <code>5.6061847e+70</code> combinations !
+<ul>
+<li>impossible to store, let alone do the training</li>
+</ul></li>
+<li>but some combinations are useless:
+<ul>
+<li><code>wjai dfni</code></li>
+<li><code>Despite the constant negative press covfefe</code> <span class="fragment">🤔</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="reccurrent-neural-networks" class="slide level2">
+<h2>Reccurrent Neural Networks</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><img data-src="assets/glowing_nn.png"></p>
+</div><div class="column" style="width:60%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/neural_networks.png"></p>
+<figcaption>Neural Network</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Neural networks make it possible to increase the state-space to represent</p>
+<p><span class="math display">\[\forall X, P(x_n=X| x_{n-1}, ..., x_{n-k})\]</span></p>
+<p>they reduce endogenously the dimensionality.</p>
+</section>
+<section id="recurrent-neural-networks" class="slide level2">
+<h2>Recurrent Neural Networks</h2>
+<div class="columns">
+<div class="column">
+<p>In 2015</p>
+<iframe width="780" height="500" src="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" title="The unreasonable Effectiveness of Recurrent Neural Networks">
+</iframe>
+</div><div class="column">
+<p><img data-src="assets/Recurrent_neural_network_unfold.svg.png"></p>
+<ul>
+<li><strong>Neural Network</strong> reduce dimensionality of data discovering structure</li>
+<li>hidden state encodes meaning of the model so far</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="long-short-term-memory" class="slide level2">
+<h2>Long Short Term Memory</h2>
+
+<img data-src="assets/Long_Short-Term_Memory.svg" class="r-stretch"><ul>
+<li>2000-&gt;2019 : Emergence of Long Short Term Memory models
+<ul>
+<li><p>speech recognition</p></li>
+<li><p>LSTM behind “Google Translate”, “Alexa”, …</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="the-latest-transformer" class="slide level2">
+<h2>The Latest: Transformer</h2>
+<p>As special kind of encode/decoder architecture.</p>
+<div class="columns">
+<div class="column">
+<p>Most successful models since 2017</p>
+<ol type="1">
+<li>Position Encodings
+<ul>
+<li>model is not sequential anymore</li>
+<li>tries to learn sequence</li>
+</ul></li>
+<li>Attention
+<ul>
+<li><a href="https://arxiv.org/abs/1706.03762">attention is all you need</a></li>
+</ul></li>
+<li>Self-Attention</li>
+</ol>
+</div><div class="column">
+<p><img data-src="assets/transformers.png" style="width:80.0%"></p>
+</div>
+</div>
+<p>Explanations <a href="https://towardsdatascience.com/transformers-141e32e69591">here</a> or <a href="https://blogs.nvidia.com/blog/2022/03/25/what-is-a-transformer-model/">here</a></p>
+</section>
+<section id="quick-summary" class="slide level2">
+<h2>Quick summary</h2>
+<ul>
+<li>Language models
+<ul>
+<li>frequency tables</li>
+<li>monte carlo markov chains</li>
+<li>long-short-term memory (&gt;2000)</li>
+<li>transformers (&gt;2018)</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Since 2010 main breakthrough came through the development of deep-learning techniques (software/hardware)</li>
+<li>Recently, <em>models</em>/algorithms have improved tremendously</li>
+</ul>
+</div>
+</section>
+<section id="gpt" class="slide level2 smaller">
+<h2>GPT</h2>
+<p>Generative Pre-trained Transformer</p>
+<ul>
+<li>GPT1 (1018)
+<ul>
+<li>0.1 billion parameters</li>
+<li>had to be fine-tuned to a particular problem</li>
+<li>transfer learning (few shots learning)</li>
+</ul></li>
+<li>GPT2:
+<ul>
+<li>multitask</li>
+<li>no mandatory fine tuning</li>
+</ul></li>
+<li>GPT3:
+<ul>
+<li>bigger: 175 billions parameters</li>
+</ul></li>
+<li><a href="https://openai.com/research/gpt-4">GPT4</a>:
+<ul>
+<li>even bigger: 1000 billions parameters</li>
+<li>on your harddrive: 1Tb</li>
+</ul></li>
+</ul>
+<p>But there are <em>many</em> other options.</p>
+</section>
+<section id="corpus" class="slide level2">
+<h2>Corpus</h2>
+<div class="columns">
+<div class="column">
+<p>GPT 3 was trained on</p>
+<ul>
+<li>CommonCrawl</li>
+<li>WebText</li>
+<li>Wikipedia</li>
+<li>many books</li>
+</ul>
+<p>45 TB of data</p>
+<ul>
+<li>cured into ???</li>
+</ul>
+<p>Dataset (mostly) ends in 2021.</p>
+</div><div class="column">
+<p><img data-src="assets/matrix.gif"></p>
+</div>
+</div>
+</section>
+<section id="chat-gpt" class="slide level2">
+<h2>Chat GPT</h2>
+<p>It is trivial to make a chatbot using GPT3.</p>
+<p><a href="https://openai.com/blog/chatgpt">ChatGPT</a> is an interface on top of GPT3.5 (now GPT4)</p>
+<ul>
+<li>it keeps the context</li>
+<li>has a consistent “personality”</li>
+</ul>
+</section>
+<section id="the-relation-between-gpt-3-and-chatgpt" class="slide level2">
+<h2>The Relation between GPT-3 and ChatGPT</h2>
+<p>Technical paper is not out, but we know the following:</p>
+<ul>
+<li>chatgpt uses a version of gpt that is <em>fine-tuned</em> by interacting with <a href="https://time.com/6247678/openai-chatgpt-kenya-workers/">humans</a></li>
+<li>the fine-tuning uses <em>reinforcement learning</em> to optimize learning</li>
+<li>now based on GPT4</li>
+</ul>
+<p>Improvement goals:</p>
+<ul>
+<li>better alignment</li>
+<li>less making up of facts</li>
+<li>more useful responses</li>
+</ul>
+</section></section>
+<section>
+<section id="how-can-we-use-gpt" class="title-slide slide level1 center">
+<h1>How can we use GPT</h1>
+
+</section>
+<section id="generate-text" class="slide level2">
+<h2>Generate Text</h2>
+<div class="columns">
+<div class="column">
+<p>Would you use GPT3 to:</p>
+<div>
+<ul>
+<li class="fragment">write a paper?</li>
+<li class="fragment">quickly respond to an email</li>
+<li class="fragment">write the boring details of a paper</li>
+<li class="fragment">get some ideas?</li>
+<li class="fragment">help you structure a talk?</li>
+</ul>
+</div>
+<p>There are several concerns…</p>
+</div><div class="column">
+<p><img data-src="assets/evil.jpg"></p>
+</div>
+</div>
+</section>
+<section id="the-quality-of-the-generated-text" class="slide level2">
+<h2>The quality of the generated text</h2>
+<div>
+<ul>
+<li class="fragment"><p>GPT-3 has the tendancy to <em>hallucinate</em> facts.</p>
+<ul>
+<li class="fragment">like kids who don’t distinguish facts and play</li>
+</ul></li>
+<li class="fragment"><p>Still a problem for research</p></li>
+<li class="fragment"><p>This is being worked on:</p>
+<ul>
+<li class="fragment">by improving the model:
+<ul>
+<li class="fragment">GPT4: <em>Can you teach old dogs new tricks?</em> <span class="fragment">yes 🐕</span></li>
+</ul></li>
+<li class="fragment">by mixing AI and traditional computing</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="ethical-concerns" class="slide level2">
+<h2>Ethical Concerns</h2>
+<p>We must avoid at all cost <em>plagiarism</em> and credit our sources.</p>
+<p>We need personal ethics:</p>
+<ul>
+<li>give sources</li>
+<li>mention use of GPT3 we we use it</li>
+</ul>
+</section>
+<section id="replace-many-nlp-algorithms" class="slide level2">
+<h2>Replace Many NLP Algorithms</h2>
+<p>Beyond generating text, most Natural Language Processing tasks can be now done with GPT-3:</p>
+<ul>
+<li>Named entity recognition</li>
+<li>Classification
+<ul>
+<li>sentiment analysis</li>
+<li>multimodel sentiment analysis</li>
+</ul></li>
+<li>Entity linking</li>
+<li>Summarization</li>
+<li>Many <a href="https://platform.openai.com/examples">more</a></li>
+</ul>
+</section>
+<section id="named-entity-recognition" class="slide level2">
+<h2>Named Entity recognition</h2>
+<p>Prompt:<sup>1</sup></p>
+<pre><code>[Text]: Helena Smith founded Core.ai 2 years ago. She is now the CEO and CTO of the company and is building a team of highly skilled developers in machine learning and natural language processing.
+[Position]: CEO and CTO
+###
+[Text]: Tech Robotics is a robot automation company specialized in AI driven robotization. Its Chief Technology Officer, Max Smith, says a new wave of improvements should be expected for next year.
+[Position]: Chief Technology Officer
+###
+[Text]: François is a Go developer. He mostly works as a freelancer but is open to any kind of job offering!
+[Position]: Go developer
+###
+[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.
+[Position]:</code></pre>
+<div class="fragment">
+<p><code>Response: Data Scientist</code></p>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>https://towardsdatascience.com/advanced-ner-with-gpt-3-and-gpt-j-ce43dc6cdb9c</p></li></ol></aside></section>
+<section id="fine-tuning-1" class="slide level2">
+<h2>Fine-tuning (1)</h2>
+<ul>
+<li>To get better result, or to proceed larger amounts of data, pretrain the model</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a><span class="in">```{python}</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="in">model.train("""</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="in">"[Text]: Helena Smith founded Core.ai 2 years ago. She is now the CEO and CTO of the company and is building a team of highly skilled developers in machine learning and natural language processing.</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="in">[Position]: CEO and CTO</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="in">""")</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="in">```{python}</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="in">model.train("""</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="in">[Text]: Tech Robotics is a robot automation company specialized in AI driven robotization. Its Chief Technology Officer, Max Smith, says a new wave of improvements should be expected for next year.</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="in">[Position]: Chief Technology Officer</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="in">""")</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="fine-tuning-2" class="slide level2">
+<h2>Fine-tuning (2)</h2>
+<ul>
+<li>Query the model:</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="in">model.eval("""</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="in">[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="in">[Position]:</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="in">""")</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>…</p>
+<pre><code>[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.
+[Position]: Data Scientist```</code></pre>
+</section>
+<section id="sentiment-analysis" class="slide level2">
+<h2>Sentiment Analysis</h2>
+<p>Zero-shot learning:</p>
+<pre><code>Decide whether a Tweet's sentiment is positive, neutral, or negative.
+
+Tweet: "I loved the new Batman movie!"
+Sentiment:</code></pre>
+<p>Output: <code>Positive</code></p>
+</section></section>
+<section>
+<section id="conclusion" class="title-slide slide level1 center">
+<h1>Conclusion</h1>
+
+</section>
+<section id="are-we-on-the-way-to-general-artificial-intelligence" class="slide level2">
+<h2>Are we on the way to General Artificial Intelligence?</h2>
+
+<img data-src="assets/benevolent_ai.jpg" class="r-stretch quarto-figure-center"><p class="caption">A Benevolent General Purpose Artificial Intelligence. Dall-E-2</p><div class="fragment">
+<p>My two cents:</p>
+</div>
+<div class="fragment">
+<ul>
+<li>artificial intelligence is already there (we are fooling ourselves…)</li>
+<li>are we ready for artificial humanity?</li>
+</ul>
+</div>
+</section>
+<section id="homework-for-next-time" class="slide level2">
+<h2>Homework for next time</h2>
+<ul>
+<li>finish tutorial / pushups</li>
+<li>choose text analysis paper</li>
+<li>search for alternatives to GPT
+<ul>
+<li>fill the collaborative doc</li>
+</ul></li>
+</ul>
 
 <div class="footer footer-default">
 
 </div>
-</section>
+</section></section>
+
     </div>
   </div>
 

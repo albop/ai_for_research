@@ -572,6 +572,368 @@
     ]
   },
   {
+    "objectID": "session_2/tutorial_2.html",
+    "href": "session_2/tutorial_2.html",
+    "title": "Sentiment analysis",
+    "section": "",
+    "text": "The ultimate goal of this exercise consists performing the same exercise, namely sentiment analysis, using traditional NLP and GPT-3.5."
+  },
+  {
+    "objectID": "session_2/tutorial_2.html#ai-for-research-2023",
+    "href": "session_2/tutorial_2.html#ai-for-research-2023",
+    "title": "Sentiment analysis",
+    "section": "",
+    "text": "The ultimate goal of this exercise consists performing the same exercise, namely sentiment analysis, using traditional NLP and GPT-3.5."
+  },
+  {
+    "objectID": "session_2/tutorial_2.html#the-dataset",
+    "href": "session_2/tutorial_2.html#the-dataset",
+    "title": "Sentiment analysis",
+    "section": "The Dataset",
+    "text": "The Dataset\nWe use the News Sentiment Dataset from Kaggle.\n\nImport Dataset as a pandas dataframe\nDescribe Dataset (text and graphs)\nSplit Dataset into training, validation and test set. What is the purpose of the validation set?"
+  },
+  {
+    "objectID": "session_2/tutorial_2.html#text-mining",
+    "href": "session_2/tutorial_2.html#text-mining",
+    "title": "Sentiment analysis",
+    "section": "Text Mining",
+    "text": "Text Mining\n\nExtract features from the training dataset. What do you do with non-words / punctuation?\nConvert occurrencies to frequencies. Make another version with tf-idf.\nChoose a classifier to predict the sentiment on the validation set. Compute the confusion matrix."
+  },
+  {
+    "objectID": "session_2/tutorial_2.html#sentiment-analysis-using-gpt-completion",
+    "href": "session_2/tutorial_2.html#sentiment-analysis-using-gpt-completion",
+    "title": "Sentiment analysis",
+    "section": "Sentiment Analysis using GPT completion",
+    "text": "Sentiment Analysis using GPT completion\n\nSetup an openai key. Explore openai completion API.\nDesign a prompt to extract the sentiment from a tweet. Test it on very few tweets from the training dataset. Propose different versions.\nWrite a function which takes in: the prompt template, the tweet text and returns the sentiment as an integer."
+  },
+  {
+    "objectID": "session_2/tutorial_2.html#performance-shootout",
+    "href": "session_2/tutorial_2.html#performance-shootout",
+    "title": "Sentiment analysis",
+    "section": "Performance shootout",
+    "text": "Performance shootout\n\nCompare the various methods on the test set."
+  },
+  {
+    "objectID": "session_2/index.html#do-you-like-poetry",
+    "href": "session_2/index.html#do-you-like-poetry",
+    "title": "…to Large Language Models",
+    "section": "Do you like poetry?",
+    "text": "Do you like poetry?\n\n\nA rose is a rose is a rose\n\n\n\nGertrude Stein\n\n\n\nBrexit means Brexit means Brexit\n\n\n\nJohn Crace\n\n\n\nElementary my dear Watson\n\n\n\nP.G. Woodehouse",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#section",
+    "href": "session_2/index.html#section",
+    "title": "…to Large Language Models",
+    "section": "",
+    "text": "There is an easy way for the government to end the strike without withdrawing the pension reform,",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#complete-text",
+    "href": "session_2/index.html#complete-text",
+    "title": "…to Large Language Models",
+    "section": "Complete Text",
+    "text": "Complete Text\nGenerative language models perform text completion\nThey generate plausible1 text following a prompt.\nThe type of answer, will depend on the kind of prompt.\nhere, plausible, means that it is more likely to be a correct text written by a human, rather than otherwise",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#gpt-playground",
+    "href": "session_2/index.html#gpt-playground",
+    "title": "…to Large Language Models",
+    "section": "GPT Playground",
+    "text": "GPT Playground\nTo use GPT-3 profficiently, you have to experiment with the prompt.\n\ntry the Playground mode\n\nIt is the same as learning how to do google queries\n\naltavista: +noir +film -\"pinot noir\"\nnowadays: ???\n\n“Prompting” is becoming a discipline in itself… (or is it?)",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#some-examples",
+    "href": "session_2/index.html#some-examples",
+    "title": "…to Large Language Models",
+    "section": "Some Examples",
+    "text": "Some Examples\nBy providing enough context, it is possible to perform amazing tasks\nLook at the demos",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#language-models-and-cryptography",
+    "href": "session_2/index.html#language-models-and-cryptography",
+    "title": "…to Large Language Models",
+    "section": "Language Models and Cryptography",
+    "text": "Language Models and Cryptography\n\nThe Caesar code",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#section-1",
+    "href": "session_2/index.html#section-1",
+    "title": "…to Large Language Models",
+    "section": "",
+    "text": "Zodiac 408 Cipher",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#section-2",
+    "href": "session_2/index.html#section-2",
+    "title": "…to Large Language Models",
+    "section": "",
+    "text": "Zodiac 408 Cipher\n\n\n\n\n\nKey for Zodiac 408\n\n\n\n\n\nFigure 1: Solved in a week by Bettye and Donald Harden using frequency tables.",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#section-3",
+    "href": "session_2/index.html#section-3",
+    "title": "…to Large Language Models",
+    "section": "",
+    "text": "Later in 2001, in a prison, somewhere in California\n\n\nSolved by Stanford’s Persi Diaconis and his students using Monte Carlo Markov Chains",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#monte-carlo-markov-chains",
+    "href": "session_2/index.html#monte-carlo-markov-chains",
+    "title": "…to Large Language Models",
+    "section": "Monte Carlo Markov Chains",
+    "text": "Monte Carlo Markov Chains\nTake a letter \\(x_n\\), what is the probability of the next letter being \\(x_{n+1}\\)?\n\\[\\pi_{X,Y} = P(x_{n+1}=Y, x_{n}=X)\\]\nfor \\(X=\\{a, b, .... , z\\} , Y=\\{a,b,c, ... z\\}\\)\nThe language model can be trained using dataset of english language.\nAnd used to determine whether a given cipher-key is consistent with english language.\nIt yields a very efficient algorithm to decode any caesar code (with very small sample)",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#mcmc-to-generate-text",
+    "href": "session_2/index.html#mcmc-to-generate-text",
+    "title": "…to Large Language Models",
+    "section": "MCMC to generate text",
+    "text": "MCMC to generate text\nMCMCs can also be used to generate text:\n\ntake initial prompt: I think therefore I\n\nlast letter is I\nmost plausible character afterwards is \nmost plausible character afterwards is I\n\nResult: I think therefore I I I I I I\n\nNot good but promising (🤷)",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#mcmc-to-generate-text-1",
+    "href": "session_2/index.html#mcmc-to-generate-text-1",
+    "title": "…to Large Language Models",
+    "section": "MCMC to generate text",
+    "text": "MCMC to generate text\nGoing further\n\naugment memory\n\nfore I&gt; ???\n\nchange basic unit (use phonems or words)\n\nAn example using MCMC\n\nusing words and 3 states He ha ‘s kill’d me Mother , Run away I pray you Oh this is Counter you false Danish Dogges .",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#big-mcmc",
+    "href": "session_2/index.html#big-mcmc",
+    "title": "…to Large Language Models",
+    "section": "Big MCMC",
+    "text": "Big MCMC\nCan we augment memory?\n\nif you want to compute the most frequent letter (among 26) after 50 letters, you need to take into account 5.6061847e+70 combinations !\n\nimpossible to store, let alone do the training\n\nbut some combinations are useless:\n\nwjai dfni\nDespite the constant negative press covfefe 🤔",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#reccurrent-neural-networks",
+    "href": "session_2/index.html#reccurrent-neural-networks",
+    "title": "…to Large Language Models",
+    "section": "Reccurrent Neural Networks",
+    "text": "Reccurrent Neural Networks\n\n\n\n\n\n\n\nNeural Network\n\n\n\n\nNeural networks make it possible to increase the state-space to represent\n\\[\\forall X, P(x_n=X| x_{n-1}, ..., x_{n-k})\\]\nthey reduce endogenously the dimensionality.",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#recurrent-neural-networks",
+    "href": "session_2/index.html#recurrent-neural-networks",
+    "title": "…to Large Language Models",
+    "section": "Recurrent Neural Networks",
+    "text": "Recurrent Neural Networks\n\n\nIn 2015\n\n\n\n\n\nNeural Network reduce dimensionality of data discovering structure\nhidden state encodes meaning of the model so far",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#long-short-term-memory",
+    "href": "session_2/index.html#long-short-term-memory",
+    "title": "…to Large Language Models",
+    "section": "Long Short Term Memory",
+    "text": "Long Short Term Memory\n\n\n2000-&gt;2019 : Emergence of Long Short Term Memory models\n\nspeech recognition\nLSTM behind “Google Translate”, “Alexa”, …",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#the-latest-transformer",
+    "href": "session_2/index.html#the-latest-transformer",
+    "title": "…to Large Language Models",
+    "section": "The Latest: Transformer",
+    "text": "The Latest: Transformer\nAs special kind of encode/decoder architecture.\n\n\nMost successful models since 2017\n\nPosition Encodings\n\nmodel is not sequential anymore\ntries to learn sequence\n\nAttention\n\nattention is all you need\n\nSelf-Attention\n\n\n\n\n\nExplanations here or here",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#quick-summary",
+    "href": "session_2/index.html#quick-summary",
+    "title": "…to Large Language Models",
+    "section": "Quick summary",
+    "text": "Quick summary\n\nLanguage models\n\nfrequency tables\nmonte carlo markov chains\nlong-short-term memory (&gt;2000)\ntransformers (&gt;2018)\n\n\n\n\nSince 2010 main breakthrough came through the development of deep-learning techniques (software/hardware)\nRecently, models/algorithms have improved tremendously",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#gpt",
+    "href": "session_2/index.html#gpt",
+    "title": "…to Large Language Models",
+    "section": "GPT",
+    "text": "GPT\nGenerative Pre-trained Transformer\n\nGPT1 (1018)\n\n0.1 billion parameters\nhad to be fine-tuned to a particular problem\ntransfer learning (few shots learning)\n\nGPT2:\n\nmultitask\nno mandatory fine tuning\n\nGPT3:\n\nbigger: 175 billions parameters\n\nGPT4:\n\neven bigger: 1000 billions parameters\non your harddrive: 1Tb\n\n\nBut there are many other options.",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#corpus",
+    "href": "session_2/index.html#corpus",
+    "title": "…to Large Language Models",
+    "section": "Corpus",
+    "text": "Corpus\n\n\nGPT 3 was trained on\n\nCommonCrawl\nWebText\nWikipedia\nmany books\n\n45 TB of data\n\ncured into ???\n\nDataset (mostly) ends in 2021.",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#chat-gpt",
+    "href": "session_2/index.html#chat-gpt",
+    "title": "…to Large Language Models",
+    "section": "Chat GPT",
+    "text": "Chat GPT\nIt is trivial to make a chatbot using GPT3.\nChatGPT is an interface on top of GPT3.5 (now GPT4)\n\nit keeps the context\nhas a consistent “personality”",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#the-relation-between-gpt-3-and-chatgpt",
+    "href": "session_2/index.html#the-relation-between-gpt-3-and-chatgpt",
+    "title": "…to Large Language Models",
+    "section": "The Relation between GPT-3 and ChatGPT",
+    "text": "The Relation between GPT-3 and ChatGPT\nTechnical paper is not out, but we know the following:\n\nchatgpt uses a version of gpt that is fine-tuned by interacting with humans\nthe fine-tuning uses reinforcement learning to optimize learning\nnow based on GPT4\n\nImprovement goals:\n\nbetter alignment\nless making up of facts\nmore useful responses",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#generate-text",
+    "href": "session_2/index.html#generate-text",
+    "title": "…to Large Language Models",
+    "section": "Generate Text",
+    "text": "Generate Text\n\n\nWould you use GPT3 to:\n\n\nwrite a paper?\nquickly respond to an email\nwrite the boring details of a paper\nget some ideas?\nhelp you structure a talk?\n\n\nThere are several concerns…",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#the-quality-of-the-generated-text",
+    "href": "session_2/index.html#the-quality-of-the-generated-text",
+    "title": "…to Large Language Models",
+    "section": "The quality of the generated text",
+    "text": "The quality of the generated text\n\n\nGPT-3 has the tendancy to hallucinate facts.\n\nlike kids who don’t distinguish facts and play\n\nStill a problem for research\nThis is being worked on:\n\nby improving the model:\n\nGPT4: Can you teach old dogs new tricks? yes 🐕\n\nby mixing AI and traditional computing",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#ethical-concerns",
+    "href": "session_2/index.html#ethical-concerns",
+    "title": "…to Large Language Models",
+    "section": "Ethical Concerns",
+    "text": "Ethical Concerns\nWe must avoid at all cost plagiarism and credit our sources.\nWe need personal ethics:\n\ngive sources\nmention use of GPT3 we we use it",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#replace-many-nlp-algorithms",
+    "href": "session_2/index.html#replace-many-nlp-algorithms",
+    "title": "…to Large Language Models",
+    "section": "Replace Many NLP Algorithms",
+    "text": "Replace Many NLP Algorithms\nBeyond generating text, most Natural Language Processing tasks can be now done with GPT-3:\n\nNamed entity recognition\nClassification\n\nsentiment analysis\nmultimodel sentiment analysis\n\nEntity linking\nSummarization\nMany more",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#named-entity-recognition",
+    "href": "session_2/index.html#named-entity-recognition",
+    "title": "…to Large Language Models",
+    "section": "Named Entity recognition",
+    "text": "Named Entity recognition\nPrompt:1\n[Text]: Helena Smith founded Core.ai 2 years ago. She is now the CEO and CTO of the company and is building a team of highly skilled developers in machine learning and natural language processing.\n[Position]: CEO and CTO\n###\n[Text]: Tech Robotics is a robot automation company specialized in AI driven robotization. Its Chief Technology Officer, Max Smith, says a new wave of improvements should be expected for next year.\n[Position]: Chief Technology Officer\n###\n[Text]: François is a Go developer. He mostly works as a freelancer but is open to any kind of job offering!\n[Position]: Go developer\n###\n[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.\n[Position]:\n\nResponse: Data Scientist\n\nhttps://towardsdatascience.com/advanced-ner-with-gpt-3-and-gpt-j-ce43dc6cdb9c",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#fine-tuning-1",
+    "href": "session_2/index.html#fine-tuning-1",
+    "title": "…to Large Language Models",
+    "section": "Fine-tuning (1)",
+    "text": "Fine-tuning (1)\n\nTo get better result, or to proceed larger amounts of data, pretrain the model\n\n```{python}\nmodel.train(\"\"\"\n\"[Text]: Helena Smith founded Core.ai 2 years ago. She is now the CEO and CTO of the company and is building a team of highly skilled developers in machine learning and natural language processing.\n[Position]: CEO and CTO\n\"\"\")\n```\n```{python}\nmodel.train(\"\"\"\n[Text]: Tech Robotics is a robot automation company specialized in AI driven robotization. Its Chief Technology Officer, Max Smith, says a new wave of improvements should be expected for next year.\n[Position]: Chief Technology Officer\n\"\"\")\n```",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#fine-tuning-2",
+    "href": "session_2/index.html#fine-tuning-2",
+    "title": "…to Large Language Models",
+    "section": "Fine-tuning (2)",
+    "text": "Fine-tuning (2)\n\nQuery the model:\n\n```{python}\nmodel.eval(\"\"\"\n[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.\n[Position]:\n\"\"\")\n```\n…\n[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.\n[Position]: Data Scientist```",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#sentiment-analysis",
+    "href": "session_2/index.html#sentiment-analysis",
+    "title": "…to Large Language Models",
+    "section": "Sentiment Analysis",
+    "text": "Sentiment Analysis\nZero-shot learning:\nDecide whether a Tweet's sentiment is positive, neutral, or negative.\n\nTweet: \"I loved the new Batman movie!\"\nSentiment:\nOutput: Positive",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#are-we-on-the-way-to-general-artificial-intelligence",
+    "href": "session_2/index.html#are-we-on-the-way-to-general-artificial-intelligence",
+    "title": "…to Large Language Models",
+    "section": "Are we on the way to General Artificial Intelligence?",
+    "text": "Are we on the way to General Artificial Intelligence?\n\nA Benevolent General Purpose Artificial Intelligence. Dall-E-2\nMy two cents:\n\n\n\nartificial intelligence is already there (we are fooling ourselves…)\nare we ready for artificial humanity?",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#homework-for-next-time",
+    "href": "session_2/index.html#homework-for-next-time",
+    "title": "…to Large Language Models",
+    "section": "Homework for next time",
+    "text": "Homework for next time\n\nfinish tutorial / pushups\nchoose text analysis paper\nsearch for alternatives to GPT\n\nfill the collaborative doc",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "AI for Research",
@@ -583,7 +945,7 @@
     "href": "index.html#schedule",
     "title": "AI for Research",
     "section": "Schedule",
-    "text": "Schedule\n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nNov 15, 2023\n\n\nFrom Text Analysis…\n\n\n\n\nNov 22, 2023\n\n\n…to Large Language Models\n\n\n\n\nNov 28, 2023\n\n\nWhat are Large Language Models made of?\n\n\n\n\nDec 6, 2023\n\n\nBehavior of Large Language Models\n\n\n\n\nDec 13, 2023\n\n\nResearch Frontiers: What’s Next?\n\n\n\n\n\nNo matching items"
+    "text": "Schedule\n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nNov 15, 2023\n\n\nFrom Text Analysis…\n\n\n\n\nNov 22, 2023\n\n\n…to Large Language Models\n\n\n\n\nNov 28, 2023\n\n\nWhat are Large Language Models made of?\n\n\n\n\nDec 6, 2023\n\n\nBehavior of Large Language Models\n\n\n\n\nDec 13, 2023\n\n\nResearch Frontiers: What’s Next?\n\n\n\n\n \n\n\nSentiment analysis\n\n\n\n\n \n\n\n \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "session_1_2/graphs/inference.html",
