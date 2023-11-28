@@ -12,7 +12,7 @@
 
   <meta name="author" content="Pablo Winant">
   <meta name="dcterms.date" content="2023-11-28">
-  <title>AI for Research - What are Large Language Models made of?</title>
+  <title>AI for Research - Large Language Models in the Wild</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -30,6 +30,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -327,7 +392,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">What are Large Language Models made of?</h1>
+  <h1 class="title">Large Language Models in the Wild</h1>
   <p class="subtitle">AI for Research, ESCP, 2023-2024</p>
 
 <div class="quarto-title-authors">
@@ -339,14 +404,351 @@ Pablo Winant
 </div>
 
   <p class="date">2023-11-28</p>
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#/some-tips-for-reproducible-research" id="/toc-some-tips-for-reproducible-research">Some tips for reproducible research</a></li>
+<li><a href="#/variants-of-gpt" id="/toc-variants-of-gpt">Variants of GPT</a></li>
+<li><a href="#/some-examples-of-applications" id="/toc-some-examples-of-applications">Some examples of applications</a></li>
+<li><a href="#/conclusion" id="/toc-conclusion">Conclusion</a></li>
+</ul>
+</nav>
 </section>
-<section class="slide level2">
+<section>
+<section id="some-tips-for-reproducible-research" class="title-slide slide level1 center">
+<h1>Some tips for reproducible research</h1>
 
+</section>
+<section id="what-went-wrong-last-time" class="slide level2">
+<h2>What went wrong last time?</h2>
+<ul>
+<li><p>Two bugs prevented flawless execution:</p>
+<ol type="1">
+<li>pandas datetime</li>
+<li>openai completion</li>
+</ol></li>
+<li><p>In both cases, the problem was a recent change in Application Programming Interface.</p></li>
+</ul>
+</section>
+<section id="what-is-an-api" class="slide level2">
+<h2>What is an API?</h2>
+<p>Definition of an API</p>
+<ul>
+<li>how you call a function from a library</li>
+<li>example: python function <code>pandas.to_datetime(df)</code></li>
+<li>example2: REST calls, info from a website (like <code>https://opentdb.com/api.php?amount=1&amp;category=18</code>)</li>
+</ul>
+<p>APIs are:</p>
+<ul>
+<li>documented online</li>
+<li>specific to a given version of the libary</li>
+</ul>
+<p>Example: where is the doc for the python API of OpenAI? for the REST API?</p>
+</section>
+<section id="advice-for-writing-code" class="slide level2">
+<h2>Advice for writing code</h2>
+<ol type="1">
+<li><p>Code Hygiene</p>
+<ul>
+<li>comments: in python anything after</li>
+<li>docstrings: specify the API of your own functions</li>
+<li>version your code (git, git, git, …) <sup>1</sup></li>
+</ul></li>
+<li><p>Replicability</p>
+<ul>
+<li><p>distribute and version data (<a href="https://data.sciencespo.fr/dataset.xhtml?persistentId=doi:10.21410/7E4/RDAG3O">example</a>)</p>
+<ul>
+<li>as raw as possible</li>
+</ul></li>
+<li><p>specify running environment</p>
+<ul>
+<li>lists the version of the system / all libraries</li>
+<li>conda: conda environment (<code>environment.yml</code>)</li>
+</ul></li>
+</ul></li>
+<li><p>(Bonus: provide a website with <a href="https://mybinder.org/">mybinder</a>/<a href="https://shiny.posit.co/py/">shinypython</a> )</p></li>
+</ol>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>this applies to all writing steps, especially latex documents</p></li></ol></aside></section></section>
+<section>
+<section id="variants-of-gpt" class="title-slide slide level1 center">
+<h1>Variants of GPT</h1>
+
+</section>
+<section id="gpt" class="slide level2 smaller">
+<h2>GPT</h2>
+<p>Last week we described some elements of a transformer architecture.</p>
+<div class="fragment">
+<p>Most famous engine developped by OpenAI: <strong>Generative Pre-trained Transformer</strong> (aka GPT)</p>
+</div>
+<div class="fragment">
+<div>
+<ul>
+<li class="fragment">GPT1 (1018)
+<ul>
+<li class="fragment">0.1 billion parameters</li>
+<li class="fragment">had to be fine-tuned to a particular problem</li>
+<li class="fragment">transfer learning (few shots learning)</li>
+</ul></li>
+<li class="fragment">GPT2:
+<ul>
+<li class="fragment">multitask</li>
+<li class="fragment">no mandatory fine tuning</li>
+</ul></li>
+<li class="fragment">GPT3:
+<ul>
+<li class="fragment">bigger: 175 billions parameters</li>
+</ul></li>
+<li class="fragment"><a href="https://openai.com/research/gpt-4">GPT4</a>:
+<ul>
+<li class="fragment">even bigger: 1000 billions parameters ???</li>
+<li class="fragment">on your harddrive: 1Tb</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="corpus" class="slide level2">
+<h2>Corpus</h2>
+<div class="columns">
+<div class="column">
+<p>GPT-3 was trained<sup>1</sup> on</p>
+<ul>
+<li><a href="https://commoncrawl.org/">CommonCrawl</a></li>
+<li>WebText (proprietary db, with opensource <a href="https://skylion007.github.io/OpenWebTextCorpus/">alternative</a> )</li>
+<li>Wikipedia</li>
+<li>many books</li>
+</ul>
+<p>⇒ 45 TB of data</p>
+<ul>
+<li>cured into a smaller datasets</li>
+</ul>
+<p>⇒ size ???</p>
+<p>Dataset (mostly) ends in 2021.</p>
+</div><div class="column">
+<p><img data-src="assets/matrix.gif"></p>
+</div>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>Detailed information about gpt-4 is harder to find.</p></li></ol></aside></section>
+<section id="how-is-the-model-trained" class="slide level2">
+<h2>How is the model trained?</h2>
+<p>Several concepts are relevant here:</p>
+<div>
+<ul>
+<li class="fragment"><p>unsupervised learning</p>
+<ul>
+<li class="fragment">autoencoding</li>
+<li class="fragment">⇒ build a representation of the text</li>
+</ul></li>
+<li class="fragment"><p>fine tuning</p></li>
+<li class="fragment"><p>reinforcement learning</p></li>
+</ul>
+</div>
+</section>
+<section id="what-is-learning" class="slide level2">
+<h2>What is learning?</h2>
+<p>A machine can perform a task <span class="math inline">\(f(x; \theta)\)</span> for some input <span class="math inline">\(x\)</span> in a data-generating process <span class="math inline">\(\mathcal{X}\)</span> and and some parameters <span class="math inline">\(\theta\)</span>.</p>
+<p>A typical learning task consists in optimizing a <strong>loss function</strong> (aka theoretical risk): <span class="math display">\[\min _{\theta} \mathcal{L}(\theta) = \mathbb{E}_{\theta} f(x; \theta)\]</span></p>
+<p>The central learning method to minimize the objective is called <strong>stochastic gradient descent</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/gradient_descent.gif" style="width:30.0%"></p>
+<figcaption>.</figcaption>
+</figure>
+</div>
+
+<aside><div>
+<p>A common issue in ai is that of preference misspecification. (Cf <a href="https://nickbostrom.com/ethics/artificial-intelligence.pdf">Bostrom</a> or <a href="https://vimeo.com/208642358">link</a>)</p>
+</div></aside></section>
+<section id="learning-set" class="slide level2">
+<h2>Learning Set</h2>
+<p>In practice one has access to a <em>dataset</em> <span class="math inline">\((x_n) \subset \mathcal{X}\)</span> and minimizes the “empirical” risk function</p>
+<p><span class="math display">\[L\left( (x_n)_{n=1:N}, \theta \right) = \frac{1}{N} \sum_{n=1}^N f(x; \theta)\]</span></p>
+<div class="fragment">
+<p>Regular case: in usual cases, we assume that the dataset is generated by the true model (data-generating process)</p>
+<p>Two important variants:</p>
+<ul>
+<li><strong>transfer learning</strong>:
+<ul>
+<li>goal is to use the model <span class="math inline">\(\mathcal{X}\)</span> but the training dataset is generated from another data-generating process <span class="math inline">\(\mathcal{Y}\)</span></li>
+<li><span class="math inline">\(\mathcal{Y}\)</span> can be a subset of <span class="math inline">\(\mathcal{X}\)</span> or (partially) disjoint</li>
+<li>do you need <em>some</em> data from <span class="math inline">\(\mathcal{Y}\)</span> (<strong>few shots</strong> learning) or non at all (<strong>zero-shot</strong> learning)</li>
+</ul></li>
+<li><strong>reinforcement learning</strong>
+<ul>
+<li>the learning algorithm can generate some data to improve learning</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="transfer-learning" class="slide level2">
+<h2>Transfer learning</h2>
+<div>
+<ul>
+<li class="fragment">GPT is inherently a <em>transfer learning</em> machine
+<ul>
+<li class="fragment">why?</li>
+</ul></li>
+<li class="fragment">earlier versions (GPT-1, GPT-2) needed some examples before being able to perform any given task:
+<ul>
+<li class="fragment">fine-tuning: retrain <em>some</em> coefficients of the wole NN</li>
+</ul></li>
+<li class="fragment">new versions (&gt;GPT-3) can perform zero-shot tasks just by text completion
+<ul>
+<li class="fragment">fine-tuning can be emulated by prompting</li>
+<li class="fragment">there is still a fine-tuning API</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="reinforcement-learning" class="slide level2">
+<h2>Reinforcement Learning</h2>
+<p>A reinforcement learning algorithm can take actions which have two effects:</p>
+<ul>
+<li>provide some reward to the algorithm</li>
+<li>generate (more) data to improve the quality of future actions</li>
+</ul>
+<p>Example:</p>
+<ul>
+<li>choose a restaurant</li>
+<li>drive a car</li>
+<li>famous exapmles: <a href="https://www.youtube.com/watch?v=V1eYniJ0Rnk">breakout</a>, <a href="https://www.youtube.com/watch?v=Lu56xVlZ40M">hide and seek</a></li>
+</ul>
+</section>
+<section id="reinforcement-learning-for-gpt-4" class="slide level2">
+<h2>Reinforcement Learning for GPT-4</h2>
+<p>The GPT-4 model has been fine-tuned with reinforcement learning. The language model was <em>rewarded</em> for providing the right kind of answer:</p>
+<ul>
+<li>the feedback came from kenyan workers (<a href="https://time.com/6247678/openai-chatgpt-kenya-workers/">sic</a>!)</li>
+</ul>
+<p>Two main variants:<sup>1</sup></p>
+<ul>
+<li><code>instructGPT</code>
+<ul>
+<li>alignment, non-toxicity, …</li>
+<li>factual correctness</li>
+</ul></li>
+<li><code>chatGPT</code>
+<ul>
+<li>follow a conversation</li>
+<li>organization of answer</li>
+<li>not just a context on top of GPT</li>
+</ul></li>
+</ul>
+<aside><ol class="aside-footnotes"><li id="fn3"><p>Coming next: assistants.</p></li></ol></aside></section>
+<section id="the-different-variants-of-gpt" class="slide level2">
+<h2>The different variants of GPT</h2>
+<p>Which of the following model should you use?</p>
+<p>Lots of options:</p>
+<div>
+<ul>
+<li class="fragment"><code>text-curie-001</code></li>
+<li class="fragment"><code>text-davinci-003</code></li>
+<li class="fragment"><code>text-babbage-001</code></li>
+<li class="fragment"><code>text-ada-001</code></li>
+<li class="fragment">…</li>
+</ul>
+</div>
+<p>What are the differences between the various engines?</p>
+</section></section>
+<section>
+<section id="some-examples-of-applications" class="title-slide slide level1 center">
+<h1>Some examples of applications</h1>
+
+</section>
+<section id="replace-many-nlp-algorithms" class="slide level2">
+<h2>Replace Many NLP Algorithms</h2>
+<p>Beyond generating text, most Natural Language Processing tasks can be now done with GPT-3:</p>
+<ul>
+<li>Named entity recognition</li>
+<li>Classification
+<ul>
+<li>sentiment analysis</li>
+<li>multimodel sentiment analysis</li>
+</ul></li>
+<li>Entity linking</li>
+<li>Summarization</li>
+<li>Many <a href="https://platform.openai.com/examples">more</a></li>
+</ul>
+</section>
+<section id="named-entity-recognition" class="slide level2">
+<h2>Named Entity recognition</h2>
+<p>Prompt:<sup>1</sup></p>
+<pre><code>[Text]: Helena Smith founded Core.ai 2 years ago. She is now the CEO and CTO of the company and is building a team of highly skilled developers in machine learning and natural language processing.
+[Position]: CEO and CTO
+###
+[Text]: Tech Robotics is a robot automation company specialized in AI driven robotization. Its Chief Technology Officer, Max Smith, says a new wave of improvements should be expected for next year.
+[Position]: Chief Technology Officer
+###
+[Text]: François is a Go developer. He mostly works as a freelancer but is open to any kind of job offering!
+[Position]: Go developer
+###
+[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.
+[Position]:</code></pre>
+<div class="fragment">
+<p><code>Response: Data Scientist</code></p>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn4"><p>https://towardsdatascience.com/advanced-ner-with-gpt-3-and-gpt-j-ce43dc6cdb9c</p></li></ol></aside></section>
+<section id="fine-tuning-1" class="slide level2">
+<h2>Fine-tuning (1)</h2>
+<ul>
+<li>To get better result, or to proceed larger amounts of data, pretrain the model</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="in">```{python}</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="in">model.train("""</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="in">"[Text]: Helena Smith founded Core.ai 2 years ago. She is now the CEO and CTO of the company and is building a team of highly skilled developers in machine learning and natural language processing.</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="in">[Position]: CEO and CTO</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="in">""")</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="in">model.train("""</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="in">[Text]: Tech Robotics is a robot automation company specialized in AI driven robotization. Its Chief Technology Officer, Max Smith, says a new wave of improvements should be expected for next year.</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="in">[Position]: Chief Technology Officer</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="in">""")</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="fine-tuning-2" class="slide level2">
+<h2>Fine-tuning (2)</h2>
+<ul>
+<li>Query the model:</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1"></a><span class="in">```{python}</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="in">model.eval("""</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="in">[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="in">[Position]:</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="in">""")</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>…</p>
+<pre><code>[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.
+[Position]: Data Scientist```</code></pre>
+</section>
+<section id="sentiment-analysis" class="slide level2">
+<h2>Sentiment Analysis</h2>
+<p>Zero-shot learning:</p>
+<pre><code>Decide whether a Tweet's sentiment is positive, neutral, or negative.
+
+Tweet: "I loved the new Batman movie!"
+Sentiment:</code></pre>
+<p>Output: <code>Positive</code></p>
+</section></section>
+<section>
+<section id="conclusion" class="title-slide slide level1 center">
+<h1>Conclusion</h1>
+
+</section>
+<section id="homework-for-next-time" class="slide level2">
+<h2>Homework for next time</h2>
+<ul>
+<li>finish tutorial / pushups</li>
+<li>start the work on your replication coursework</li>
+<li>propose a topic for your talk in the last session (20 min)</li>
+</ul>
 
 <div class="footer footer-default">
 
 </div>
-</section>
+</section></section>
+
     </div>
   </div>
 

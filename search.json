@@ -492,6 +492,48 @@
     "text": "from matplotlib import pyplot as plt\nimport numpy as np\nimport pandas as pd\n\n\nimport statsmodels.api as sm\n\n\ndf.describe()\n\n\n\n\n\n\n\n\nincome\neducation\nprestige\n\n\n\n\ncount\n45.000000\n45.000000\n45.000000\n\n\nmean\n41.866667\n52.555556\n47.688889\n\n\nstd\n24.435072\n29.760831\n31.510332\n\n\nmin\n7.000000\n7.000000\n3.000000\n\n\n25%\n21.000000\n26.000000\n16.000000\n\n\n50%\n42.000000\n45.000000\n41.000000\n\n\n75%\n64.000000\n84.000000\n81.000000\n\n\nmax\n81.000000\n100.000000\n97.000000\n\n\n\n\n\n\n\n\ndf.cov()\n\n\n\n\n\n\n\n\nincome\neducation\nprestige\n\n\n\n\nincome\n597.072727\n526.871212\n645.071212\n\n\neducation\n526.871212\n885.707071\n798.904040\n\n\nprestige\n645.071212\n798.904040\n992.901010\n\n\n\n\n\n\n\n\nfrom matplotlib import pyplot as plt\n\n\nplt.figure(figsize=(8,6))\nplt.plot(df['education'],df['income'],'o')\nplt.grid()\nplt.xlabel(\"x (Education)\")\nplt.ylabel(\"y (Income)\")\nplt.savefig(\"data_description.png\")\n\n\n\n\n\nfor i in [1,2,3]:\n    xvec = np.linspace(10,100)\n\n    plt.figure(figsize=(12,8))\n    plt.plot(df['education'],df['income'],'o')\n\n    plt.plot(xvec, xvec * 0 + 50)\n    if i&gt;=2:\n        plt.plot(xvec, xvec )\n    if i&gt;=3:\n        plt.plot(xvec,  90- 0.6*xvec )\n\n    plt.grid()\n    plt.xlabel(\"x (Education)\")\n    plt.ylabel(\"y (Income)\")\n    plt.savefig(f\"which_line_{i}.png\")\n\n\n\n\n\n\n\n\n\n\n\nfrom ipywidgets import interact\n\n\nimport matplotlib.patches as patches\n\n\na = 0.1\nb = 1.0\nind = 23\n\n\napprox =  a + b*xvec\n\n# Create figure and axes\n\n# plt.figure(figsize=(8,6))\nfig,ax = plt.subplots(1,figsize=(12,8))\nplt.plot(df['education'],df['income'],'o')\nplt.plot(xvec, approx, color='red')\n\nx, y = df['education'][ind], df['income'][ind]\nplt.plot(x, y, 'o', color='red' )\np = a+b*x\nplt.grid(True)\nh = abs(p-y)\nplt.vlines(x, y+h, y, color='red')\n\nplt.xlim(0,140)\nplt.ylim(0,100)\nplt.savefig(f\"error_0.png\")\n\n\n\n\n\nplt.vlines?\n\n\nSignature:\nplt.vlines(\n    x,\n    ymin,\n    ymax,\n    colors=None,\n    linestyles='solid',\n    label='',\n    *,\n    data=None,\n    **kwargs,\n)\nDocstring:\nPlot vertical lines.\nPlot vertical lines at each *x* from *ymin* to *ymax*.\nParameters\n----------\nx : float or array-like\n    x-indexes where to plot the lines.\nymin, ymax : float or array-like\n    Respective beginning and end of each line. If scalars are\n    provided, all lines will have same length.\ncolors : list of colors, default: :rc:`lines.color`\nlinestyles : {'solid', 'dashed', 'dashdot', 'dotted'}, optional\nlabel : str, default: ''\nReturns\n-------\n`~matplotlib.collections.LineCollection`\nOther Parameters\n----------------\n**kwargs : `~matplotlib.collections.LineCollection` properties.\nSee Also\n--------\nhlines : horizontal lines\naxvline: vertical line across the axes\nNotes\n-----\n.. note::\n    In addition to the above described arguments, this function can take\n    a *data* keyword argument. If such a *data* argument is given,\n    the following arguments can also be string ``s``, which is\n    interpreted as ``data[s]`` (unless this raises an exception):\n    *x*, *ymin*, *ymax*, *colors*.\n    Objects passed as **data** must support item access (``data[s]``) and\n    membership test (``s in data``).\nFile:      ~/.local/opt/miniconda/lib/python3.8/site-packages/matplotlib/pyplot.py\nType:      function\n\n\n\n\n\na = 0.1\nb = 1.0\nind = 23\n\n\napprox =  a + b*xvec\n\n# Create figure and axes\n\n# plt.figure(figsize=(8,6))\nfig,ax = plt.subplots(1,figsize=(12,8))\nplt.plot(df['education'],df['income'],'o')\nplt.plot(xvec, approx, color='red')\n\nx, y = df['education'][ind], df['income'][ind]\nplt.plot(x, y, 'o', color='red' )\np = a+b*x\nplt.grid(True)\nh = abs(p-y)\nif p-y&gt;0:\n    # Create a Rectangle patch\n    rect = patches.Rectangle((x,y),h,h,linewidth=1, color='red', fill=True, alpha=0.05)\n    ax.add_patch(rect)\n    \nplt.xlim(0,140)\nplt.ylim(0,100)\nplt.savefig(f\"errors_{1}.png\")\n\n\n\n\n\ndef L(a,b):\n    Δ = a + b*df['education'] - df['income']\n    return (Δ**2).sum()\n\n\na = 0.1\nb = 0.8\n\napprox =  a + b*xvec\n\n\n# plt.figure(figsize=(8,6))\nfig,ax = plt.subplots(1,figsize=(12,8))\n\n\nplt.plot(df['education'],df['income'],'o', label=f\"L({a,b})={L(a,b)}\")\nplt.plot(xvec, approx, color='red')\n\nplt.grid(True)\nfor ind in range(df.shape[0]):\n    \n    x, y = df['education'][ind], df['income'][ind]\n    p = a+b*x\n\n    h = abs(p-y)\n    if p-y&gt;0:\n        # Create a Rectangle patch\n        rect = patches.Rectangle((x,y),h,h,linewidth=1, color='red', fill=True, alpha=0.05)\n        ax.add_patch(rect)\n    else:\n        rect = patches.Rectangle((x,y-h),h,h,linewidth=1, color='red', fill=True, alpha=0.05)\n        ax.add_patch(rect)\nplt.xlim(0,140)\nplt.ylim(0,100)\nplt.legend(loc='upper right')\nplt.savefig(f\"errors_2.png\")\n\n\n\n\n\na = 90\nb = -0.6\n\napprox =  a + b*xvec\n\n\n# plt.figure(figsize=(8,6))\nfig,ax = plt.subplots(1,figsize=(12,8))\n\n\nplt.plot(df['education'],df['income'],'o', label=f\"L({a,b})={L(a,b)}\")\nplt.plot(xvec, approx, color='red')\n\nplt.grid(True)\nfor ind in range(df.shape[0]):\n    \n    x, y = df['education'][ind], df['income'][ind]\n    p = a+b*x\n\n    h = abs(p-y)\n    if p-y&gt;0:\n        # Create a Rectangle patch\n        rect = patches.Rectangle((x,y),h,h,linewidth=1, color='red', fill=True, alpha=0.05)\n        ax.add_patch(rect)\n    else:\n        rect = patches.Rectangle((x,y-h),h,h,linewidth=1, color='red', fill=True, alpha=0.05)\n        ax.add_patch(rect)\nplt.xlim(0,140)\nplt.ylim(0,100)\nplt.legend(loc='upper right')\nplt.savefig(f\"errors_3.png\")\n\n\n\n\n\nimport scipy.optimize\n\n\nscipy.optimize.minimize(lambda x: L(x[0], x[1]),np.array([0.5, 0.5]))\n\n      fun: 12480.970174488397\n hess_inv: array([[ 7.14169839e-09, -3.91281920e-09],\n       [-3.91281920e-09,  2.46663613e-09]])\n      jac: array([0.00024414, 0.00012207])\n  message: 'Desired error not necessarily achieved due to precision loss.'\n     nfev: 57\n      nit: 7\n     njev: 19\n   status: 2\n  success: False\n        x: array([10.60350224,  0.59485938])\n\n\n\na = 10\nb = 0.59\n\napprox =  a + b*xvec\n\n\n# plt.figure(figsize=(8,6))\nfig,ax = plt.subplots(1,figsize=(12,8))\n\n\nplt.plot(df['education'],df['income'],'o', label=f\"L({a,b})={L(a,b)}\")\nplt.plot(xvec, approx, color='red')\n\nplt.grid(True)\nfor ind in range(df.shape[0]):\n    \n    x, y = df['education'][ind], df['income'][ind]\n    p = a+b*x\n\n    h = abs(p-y)\n    if p-y&gt;0:\n        # Create a Rectangle patch\n        rect = patches.Rectangle((x,y),h,h,linewidth=1, color='red', fill=True, alpha=0.05)\n        ax.add_patch(rect)\n    else:\n        rect = patches.Rectangle((x,y-h),h,h,linewidth=1, color='red', fill=True, alpha=0.05)\n        ax.add_patch(rect)\nplt.xlim(0,140)\nplt.ylim(0,100)\nplt.legend(loc='upper right')\nplt.savefig(f\"errors_4.png\")\n\n\n\n\n\na = 10\nb = 0.59\n\napprox =  a + b*xvec\n\n\n# plt.figure(figsize=(8,6))\nfig,ax = plt.subplots(1,figsize=(12,8))\n\n\nplt.plot(df['education'],df['income'],'o', label=f\"L({a,b})={L(a,b)}\")\nplt.plot(xvec, approx, color='red', alpha=0.5)\n\nplt.plot(60, a + b*60, 'o', color='red',)\n\nprint(a+b*60)\nplt.xlim(0,140)\nplt.ylim(0,100)\nplt.legend(loc='upper right')\nplt.savefig(f\"prediction.png\")\n\n45.4\n\n\n\n\n\n\na = 10\nb = 0.59\n\napprox =  (a + b*df['education'] - df['income'])\n\nplt.figure(figsize=(12,6))\n\nplt.subplot(121)\nplt.plot(approx)\nplt.grid(False)\nplt.title(\"Residuals\")\n\n\nplt.subplot(122)\ndistplot(approx)\nplt.title(\"Distribution of residuals\")\nplt.grid()\n\nplt.savefig(\"residuals.png\")\n\n/home/pablo/.local/opt/miniconda/lib/python3.8/site-packages/seaborn/distributions.py:2557: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).\n  warnings.warn(msg, FutureWarning)\n\n\n\n\n\n\n(a + b*df['education'] - df['income']).std()\n\n16.842782676352154\n\n\n\n\n\n/home/pablo/.local/opt/miniconda/lib/python3.8/site-packages/seaborn/distributions.py:2557: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).\n  warnings.warn(msg, FutureWarning)\n\n\n\n\n\n\nfrom scipy.stats import f\n\n\nf(0.3)\n\nTypeError: _parse_args() missing 1 required positional argument: 'dfd'\n\n\n\nnp.rand\n\n\nK = 100\nxvec = np.linspace(0,1,K)\ne1 = np.random.randn(K)*0.1\nyvec = 0.1 + xvec*0.4 + e1\ne2 = np.random.randn(K)*0.05\nyvec2 = 0.1 + xvec*(xvec-1)/2 + e2\ne3 = np.random.randn(K)*xvec/2\nyvec3 = 0.1 + xvec + e3\n\nyvec4 = 0.1 + np.sin(xvec*6) + np.random.randn(K)*xvec/2\n\n\nfrom dolo.numeric.processes import VAR1\n\n\nsim = VAR1( ρ=0.8, Σ=0.001).simulate(N=1,T=100)\nyvec4 = 0.1 + xvec*0.4 + sim.ravel()\n\n\nplt.figure(figsize=(18,6))\nplt.subplot(241)\nplt.plot(xvec, yvec,'o')\nplt.plot(xvec, 0.1 + xvec*0.4 )\nplt.ylabel(\"Series\")\nplt.title(\"white noise\")\nplt.subplot(242)\nplt.plot(xvec, yvec2, 'o')\nplt.plot(xvec, yvec2*0)\nplt.title('nonlinear')\nplt.subplot(243)\nplt.plot(xvec, yvec3,'o')\nplt.plot(xvec, 0.1 + xvec)\nplt.title('heteroskedastic')\nplt.subplot(244)\nplt.plot(xvec, yvec4,'o')\nplt.plot(xvec, xvec*0.6)\n\nplt.title('correlated')\n\n\nplt.subplot(245)\nplt.plot(xvec, e1,'o')\nplt.ylabel(\"Residuals\")\nplt.subplot(246)\nplt.plot(xvec, yvec2-0.075, 'o')\n\nplt.subplot(247)\nplt.plot(xvec, e3,'o')\nplt.subplot(248)\nplt.plot(xvec, sim.ravel(),'o')\n\nplt.tight_layout()\n\nplt.savefig(\"residuals_circus.png\")"
   },
   {
+    "objectID": "session_3/open_ai_api.html",
+    "href": "session_3/open_ai_api.html",
+    "title": "Using OpenAI GPT",
+    "section": "",
+    "text": "api_key = \"\" # set the openAI api key"
+  },
+  {
+    "objectID": "session_3/open_ai_api.html#rest-api",
+    "href": "session_3/open_ai_api.html#rest-api",
+    "title": "Using OpenAI GPT",
+    "section": "REST API",
+    "text": "REST API\nThe openAI services are accessible through a REST API. REST is a protocol designed to call services (through) http requests (POST and GET requests).\n\n# example of a an api call (from https://stackoverflow.com/questions/74578315/call-openai-api-with-python-requests-is-missing-a-model-parameter)\nimport requests\nkey = \"&lt;APIKEY&gt;\"\nurl = \" https://api.openai.com/v1/completions\"\nheaders = {\"Authorization\": f\"Bearer {key}\"}\ndata = {'model': 'text-davinci-002', 'prompt': 'Once upon a time'}\nrequests.post(url, headers=headers, json=data).json()\n\n\nUse the requests library to download the list of available engines. Which ones can be used with the competions API.\n\n\n## Request call\n# the following call lists all available AI engines\n\n\nLocate the openAI API documentation. Find out how to complete the following sentence: Le coup passa si près que le chapeau\nUse the Chat api to complete the following (apocryphal) dialogue:\n\n\nLady Astor: If I were married to you, I would poison your tea\nChurchill:"
+  },
+  {
+    "objectID": "session_3/open_ai_api.html#python-api",
+    "href": "session_3/open_ai_api.html#python-api",
+    "title": "Using OpenAI GPT",
+    "section": "Python API",
+    "text": "Python API\n\nImport openai python library. Check that version number is &gt;=1.\n\n\n# import openai python library\n\n\nRedo same exercises as with the Rest API."
+  },
+  {
+    "objectID": "session_3/open_ai_api.html#what-is-gpts-favourite-color",
+    "href": "session_3/open_ai_api.html#what-is-gpts-favourite-color",
+    "title": "Using OpenAI GPT",
+    "section": "What is GPT’s favourite color?",
+    "text": "What is GPT’s favourite color?\n\nWhat is GPT’s answer when you ask “What is your favourite color?”\nCompare the responses: for the different engines, the different types of calls. What is the difference between instruct/chat/completion calls?\n(bonus) By providing more context, can you override ChatGPT’s default answer?"
+  },
+  {
+    "objectID": "session_3/open_ai_api.html#fine-tuning-the-sentiment-analysis",
+    "href": "session_3/open_ai_api.html#fine-tuning-the-sentiment-analysis",
+    "title": "Using OpenAI GPT",
+    "section": "Fine-tuning the sentiment analysis",
+    "text": "Fine-tuning the sentiment analysis\n\nLoad the database from session 1. Split it into a training dataset (10%) and a test dataset (90%).\nWrite/copy a function to perform a sentiment analysis using GPT.\nFine tune a GPT model to do sentiment analysis using 10 random observations from the training dataset.\nCompare accuracy of the two versions on a randomly drawn test set with 100 observations."
+  },
+  {
+    "objectID": "session_3/plan.html",
+    "href": "session_3/plan.html",
+    "title": "AI for Research",
+    "section": "",
+    "text": "Last part about architecture of LLM\n\nencoder / decoder\nattention mechanism\n\nGood practices\n\nwhat went wrong?\n\nchange in library API\n\nAPIs\n\nFinish tutorial from session 2\n\ndescribe data\nrun sentiment analysis\nbonus?\n\nLarge Language Models in the Wild"
+  },
+  {
     "objectID": "session_0/index.html#introduction",
     "href": "session_0/index.html#introduction",
     "title": "Introduction",
@@ -516,7 +558,7 @@
     "href": "session_0/index.html#roadmap",
     "title": "Introduction",
     "section": "Roadmap",
-    "text": "Roadmap\n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nNov 15, 2023\n\n\nFrom Text Analysis…\n\n\n\n\nNov 22, 2023\n\n\n…to Large Language Models\n\n\n\n\nNov 28, 2023\n\n\nWhat are Large Language Models made of?\n\n\n\n\nDec 6, 2023\n\n\nBehavior of Large Language Models\n\n\n\n\nDec 13, 2023\n\n\nResearch Frontiers: What’s Next?\n\n\n\n\n\nNo matching items",
+    "text": "Roadmap\n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nNov 15, 2023\n\n\nFrom Text Analysis…\n\n\n\n\nNov 15, 2023\n\n\n…to Large Language Models\n\n\n\n\nNov 28, 2023\n\n\nLarge Language Models in the Wild\n\n\n\n\nDec 6, 2023\n\n\nBehavior of Large Language Models\n\n\n\n\nDec 13, 2023\n\n\nResearch Frontiers: What’s Next?\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Introduction"
     ]
@@ -744,11 +786,11 @@
     ]
   },
   {
-    "objectID": "session_2/index.html#reccurrent-neural-networks",
-    "href": "session_2/index.html#reccurrent-neural-networks",
+    "objectID": "session_2/index.html#neural-networks",
+    "href": "session_2/index.html#neural-networks",
     "title": "…to Large Language Models",
-    "section": "Reccurrent Neural Networks",
-    "text": "Reccurrent Neural Networks\n\n\n\n\n\n\n\nNeural Network\n\n\n\n\nNeural networks make it possible to increase the state-space to represent\n\\[\\forall X, P(x_n=X| x_{n-1}, ..., x_{n-k})\\]\nthey reduce endogenously the dimensionality.",
+    "section": "Neural Networks",
+    "text": "Neural Networks\n\n\n\n\n\n\n\nNeural Network\n\n\n\n\n\nNeural networks make it possible to increase the state-space to represent\n\n\\[\\forall X, P(x_n=X| x_{n-1}, ..., x_{n-k}) = \\varphi^{NL}( x_{n-1}, ..., x_{n-k}; \\theta )\\]\nwith a smaller vector of parameters \\(\\theta\\)\n\nNeural netowrks reduce endogenously the dimensionality.",
     "crumbs": [
       "…to Large Language Models"
     ]
@@ -778,7 +820,47 @@
     "href": "session_2/index.html#the-latest-transformer",
     "title": "…to Large Language Models",
     "section": "The Latest: Transformer",
-    "text": "The Latest: Transformer\nAs special kind of encode/decoder architecture.\n\n\nMost successful models since 2017\n\nPosition Encodings\n\nmodel is not sequential anymore\ntries to learn sequence\n\nAttention\n\nattention is all you need\n\nSelf-Attention\n\n\n\n\n\nExplanations here or here",
+    "text": "The Latest: Transformer\nA special kind of encode/decoder architecture.\n\n\nMost successful models since 2017\n\nPosition Encodings\n\nmodel is not sequential anymore\ntries to learn sequence\n\nAttention\n\nattention is all you need\n\nSelf-Attention\n\n\n\n\n\nExplanations here or here",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#the-rise-of-transformers",
+    "href": "session_2/index.html#the-rise-of-transformers",
+    "title": "…to Large Language Models",
+    "section": "The Rise of transformers",
+    "text": "The Rise of transformers\nA special kind of encoder/decoder architecture.\n\n\nMost successful models since 2017\n\nPosition Encodings\n\nmodel is not sequential anymore\ntries to learn sequence\n\nAttention\n\nattention is all you need\n\nSelf-Attention\n\n\n\n\n\nExplanations here or here",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#encoders-decoders-12",
+    "href": "session_2/index.html#encoders-decoders-12",
+    "title": "…to Large Language Models",
+    "section": "Encoders / Decoders (1/2)",
+    "text": "Encoders / Decoders (1/2)\nTake some data \\((x_n)\\in R^x\\).\nConsider two functions:\n\nan encoder \\[\\varphi^E(x; \\theta^E) = h \\in \\mathbb{R^h}\\]\na decoder: \\[\\varphi^D(h; \\theta^D) = x' \\in \\mathbb{R^x}\\]\n\nWhat could possibly the value of training the coefficients with:\n\\[\\min_{\\theta^E, \\theta^D}  \\left( \\varphi^D( \\varphi^E(x_n; \\theta^E), \\theta^D) - x_n\\right)^2\\]?\ni.e. train the nets \\(\\varphi^D\\) and \\(\\varphi^E\\) to predict the “data from the data”? (it is called autoencoding)",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#encoders-decoders-22",
+    "href": "session_2/index.html#encoders-decoders-22",
+    "title": "…to Large Language Models",
+    "section": "Encoders / Decoders (2/2)",
+    "text": "Encoders / Decoders (2/2)\nThe relation \\(\\varphi^D( \\varphi^E(x_n; \\theta^E), \\theta^D) ~ x_n\\) can be rewritten as\n\\[x_n \\xrightarrow{\\varphi^E(; \\theta^E)} h \\xrightarrow{\\varphi^D(; \\theta^D)} x_n \\]\nWhen that relation is (mostly) satisfied and \\(\\mathbb{R}^h &lt;&lt; \\mathbb{R}^x\\), \\(h\\) can be viewed as a lower dimension representation of \\(x\\). It encodes the information as a lower dimension vector \\(h\\) and is called learned embeddings.\n\ninstead of \\(\\underbrace{x_n}_{\\text{prompt}} \\rightarrow \\underbrace{y_n}_{\\text{text completion}}\\)\none can learn \\(\\underbrace{h_n}_{\\text{prompt (low dim)}} \\xrightarrow{\\varphi^C( ; \\theta^C)} \\underbrace{h_n^c}_{\\text{text completion (low dim)}}\\)\n\nit is easier to learn\n\nand perform the original task as \\[\\underbrace{x_n}_{\\text{prompt}} \\xrightarrow{\\varphi^E}  h_n \\xrightarrow{\\varphi^C} h_n^C \\xrightarrow{\\varphi^D} \\underbrace{y_n}_{\\text{text completion}}\\]\n\nThis very powerful approach can be applied to combine encoders/decoders from different contexts (ex Dall-E)",
+    "crumbs": [
+      "…to Large Language Models"
+    ]
+  },
+  {
+    "objectID": "session_2/index.html#attention",
+    "href": "session_2/index.html#attention",
+    "title": "…to Large Language Models",
+    "section": "Attention",
+    "text": "Attention\nMain flow with the recursive approach:\n\nthe context made to predict new words/embeddings puts a lower weight on further words/embeddings\nthis is related to the so-called vanishing gradient problem\n\n\n\n\nWith the attention mechanism, each predicted word/embedding is determined by all preceding words/embeddings, with different weights that are endogenous.\n\n\n\n\nAttention",
     "crumbs": [
       "…to Large Language Models"
     ]
@@ -788,149 +870,189 @@
     "href": "session_2/index.html#quick-summary",
     "title": "…to Large Language Models",
     "section": "Quick summary",
-    "text": "Quick summary\n\nLanguage models\n\nfrequency tables\nmonte carlo markov chains\nlong-short-term memory (&gt;2000)\ntransformers (&gt;2018)\n\n\n\n\nSince 2010 main breakthrough came through the development of deep-learning techniques (software/hardware)\nRecently, models/algorithms have improved tremendously",
+    "text": "Quick summary\n\nLanguage models\n\nfrequency tables\nmonte carlo markov chains\ndeep learning -&gt; recurrent neural networks\nlong-short-term memory (&gt;2000)\ntransformers (&gt;2018)\n\nattention is all you need . . .\n\n\nSince 2010 main breakthrough came through the development of deep-learning techniques (software/hardware)\nRecently, models/algorithms have improved tremendously",
     "crumbs": [
       "…to Large Language Models"
     ]
   },
   {
-    "objectID": "session_2/index.html#gpt",
-    "href": "session_2/index.html#gpt",
-    "title": "…to Large Language Models",
+    "objectID": "session_3/index.html#what-went-wrong-last-time",
+    "href": "session_3/index.html#what-went-wrong-last-time",
+    "title": "Large Language Models in the Wild",
+    "section": "What went wrong last time?",
+    "text": "What went wrong last time?\n\nTwo bugs prevented flawless execution:\n\npandas datetime\nopenai completion\n\nIn both cases, the problem was a recent change in Application Programming Interface.",
+    "crumbs": [
+      "Large Language Models in the Wild"
+    ]
+  },
+  {
+    "objectID": "session_3/index.html#what-is-an-api",
+    "href": "session_3/index.html#what-is-an-api",
+    "title": "Large Language Models in the Wild",
+    "section": "What is an API?",
+    "text": "What is an API?\nDefinition of an API\n\nhow you call a function from a library\nexample: python function pandas.to_datetime(df)\nexample2: REST calls, info from a website (like https://opentdb.com/api.php?amount=1&category=18)\n\nAPIs are:\n\ndocumented online\nspecific to a given version of the libary\n\nExample: where is the doc for the python API of OpenAI? for the REST API?",
+    "crumbs": [
+      "Large Language Models in the Wild"
+    ]
+  },
+  {
+    "objectID": "session_3/index.html#advice-for-writing-code",
+    "href": "session_3/index.html#advice-for-writing-code",
+    "title": "Large Language Models in the Wild",
+    "section": "Advice for writing code",
+    "text": "Advice for writing code\n\nCode Hygiene\n\ncomments: in python anything after\ndocstrings: specify the API of your own functions\nversion your code (git, git, git, …) 1\n\nReplicability\n\ndistribute and version data (example)\n\nas raw as possible\n\nspecify running environment\n\nlists the version of the system / all libraries\nconda: conda environment (environment.yml)\n\n\n(Bonus: provide a website with mybinder/shinypython )\n\nthis applies to all writing steps, especially latex documents",
+    "crumbs": [
+      "Large Language Models in the Wild"
+    ]
+  },
+  {
+    "objectID": "session_3/index.html#gpt",
+    "href": "session_3/index.html#gpt",
+    "title": "Large Language Models in the Wild",
     "section": "GPT",
-    "text": "GPT\nGenerative Pre-trained Transformer\n\nGPT1 (1018)\n\n0.1 billion parameters\nhad to be fine-tuned to a particular problem\ntransfer learning (few shots learning)\n\nGPT2:\n\nmultitask\nno mandatory fine tuning\n\nGPT3:\n\nbigger: 175 billions parameters\n\nGPT4:\n\neven bigger: 1000 billions parameters\non your harddrive: 1Tb\n\n\nBut there are many other options.",
+    "text": "GPT\nLast week we described some elements of a transformer architecture.\n\nMost famous engine developped by OpenAI: Generative Pre-trained Transformer (aka GPT)\n\n\n\n\nGPT1 (1018)\n\n0.1 billion parameters\nhad to be fine-tuned to a particular problem\ntransfer learning (few shots learning)\n\nGPT2:\n\nmultitask\nno mandatory fine tuning\n\nGPT3:\n\nbigger: 175 billions parameters\n\nGPT4:\n\neven bigger: 1000 billions parameters ???\non your harddrive: 1Tb",
     "crumbs": [
-      "…to Large Language Models"
+      "Large Language Models in the Wild"
     ]
   },
   {
-    "objectID": "session_2/index.html#corpus",
-    "href": "session_2/index.html#corpus",
-    "title": "…to Large Language Models",
+    "objectID": "session_3/index.html#corpus",
+    "href": "session_3/index.html#corpus",
+    "title": "Large Language Models in the Wild",
     "section": "Corpus",
-    "text": "Corpus\n\n\nGPT 3 was trained on\n\nCommonCrawl\nWebText\nWikipedia\nmany books\n\n45 TB of data\n\ncured into ???\n\nDataset (mostly) ends in 2021.",
+    "text": "Corpus\n\n\nGPT-3 was trained1 on\n\nCommonCrawl\nWebText (proprietary db, with opensource alternative )\nWikipedia\nmany books\n\n⇒ 45 TB of data\n\ncured into a smaller datasets\n\n⇒ size ???\nDataset (mostly) ends in 2021.\n\n\n\n\nDetailed information about gpt-4 is harder to find.",
     "crumbs": [
-      "…to Large Language Models"
+      "Large Language Models in the Wild"
     ]
   },
   {
-    "objectID": "session_2/index.html#chat-gpt",
-    "href": "session_2/index.html#chat-gpt",
-    "title": "…to Large Language Models",
-    "section": "Chat GPT",
-    "text": "Chat GPT\nIt is trivial to make a chatbot using GPT3.\nChatGPT is an interface on top of GPT3.5 (now GPT4)\n\nit keeps the context\nhas a consistent “personality”",
+    "objectID": "session_3/index.html#how-is-the-model-trained",
+    "href": "session_3/index.html#how-is-the-model-trained",
+    "title": "Large Language Models in the Wild",
+    "section": "How is the model trained?",
+    "text": "How is the model trained?\nSeveral concepts are relevant here:\n\n\nunsupervised learning\n\nautoencoding\n⇒ build a representation of the text\n\nfine tuning\nreinforcement learning",
     "crumbs": [
-      "…to Large Language Models"
+      "Large Language Models in the Wild"
     ]
   },
   {
-    "objectID": "session_2/index.html#the-relation-between-gpt-3-and-chatgpt",
-    "href": "session_2/index.html#the-relation-between-gpt-3-and-chatgpt",
-    "title": "…to Large Language Models",
-    "section": "The Relation between GPT-3 and ChatGPT",
-    "text": "The Relation between GPT-3 and ChatGPT\nTechnical paper is not out, but we know the following:\n\nchatgpt uses a version of gpt that is fine-tuned by interacting with humans\nthe fine-tuning uses reinforcement learning to optimize learning\nnow based on GPT4\n\nImprovement goals:\n\nbetter alignment\nless making up of facts\nmore useful responses",
+    "objectID": "session_3/index.html#what-is-learning",
+    "href": "session_3/index.html#what-is-learning",
+    "title": "Large Language Models in the Wild",
+    "section": "What is learning?",
+    "text": "What is learning?\nA machine can perform a task \\(f(x; \\theta)\\) for some input \\(x\\) in a data-generating process \\(\\mathcal{X}\\) and and some parameters \\(\\theta\\).\nA typical learning task consists in optimizing a loss function (aka theoretical risk): \\[\\min _{\\theta} \\mathcal{L}(\\theta) = \\mathbb{E}_{\\theta} f(x; \\theta)\\]\nThe central learning method to minimize the objective is called stochastic gradient descent.\n\n\n\n.\n\n\n\n\nA common issue in ai is that of preference misspecification. (Cf Bostrom or link)",
     "crumbs": [
-      "…to Large Language Models"
+      "Large Language Models in the Wild"
     ]
   },
   {
-    "objectID": "session_2/index.html#generate-text",
-    "href": "session_2/index.html#generate-text",
-    "title": "…to Large Language Models",
-    "section": "Generate Text",
-    "text": "Generate Text\n\n\nWould you use GPT3 to:\n\n\nwrite a paper?\nquickly respond to an email\nwrite the boring details of a paper\nget some ideas?\nhelp you structure a talk?\n\n\nThere are several concerns…",
+    "objectID": "session_3/index.html#learning-set",
+    "href": "session_3/index.html#learning-set",
+    "title": "Large Language Models in the Wild",
+    "section": "Learning Set",
+    "text": "Learning Set\nIn practice one has access to a dataset \\((x_n) \\subset \\mathcal{X}\\) and minimizes the “empirical” risk function\n\\[L\\left( (x_n)_{n=1:N}, \\theta \\right) = \\frac{1}{N} \\sum_{n=1}^N f(x; \\theta)\\]\n\nRegular case: in usual cases, we assume that the dataset is generated by the true model (data-generating process)\nTwo important variants:\n\ntransfer learning:\n\ngoal is to use the model \\(\\mathcal{X}\\) but the training dataset is generated from another data-generating process \\(\\mathcal{Y}\\)\n\\(\\mathcal{Y}\\) can be a subset of \\(\\mathcal{X}\\) or (partially) disjoint\ndo you need some data from \\(\\mathcal{Y}\\) (few shots learning) or non at all (zero-shot learning)\n\nreinforcement learning\n\nthe learning algorithm can generate some data to improve learning",
     "crumbs": [
-      "…to Large Language Models"
+      "Large Language Models in the Wild"
     ]
   },
   {
-    "objectID": "session_2/index.html#the-quality-of-the-generated-text",
-    "href": "session_2/index.html#the-quality-of-the-generated-text",
-    "title": "…to Large Language Models",
-    "section": "The quality of the generated text",
-    "text": "The quality of the generated text\n\n\nGPT-3 has the tendancy to hallucinate facts.\n\nlike kids who don’t distinguish facts and play\n\nStill a problem for research\nThis is being worked on:\n\nby improving the model:\n\nGPT4: Can you teach old dogs new tricks? yes 🐕\n\nby mixing AI and traditional computing",
+    "objectID": "session_3/index.html#transfer-learning",
+    "href": "session_3/index.html#transfer-learning",
+    "title": "Large Language Models in the Wild",
+    "section": "Transfer learning",
+    "text": "Transfer learning\n\n\nGPT is inherently a transfer learning machine\n\nwhy?\n\nearlier versions (GPT-1, GPT-2) needed some examples before being able to perform any given task:\n\nfine-tuning: retrain some coefficients of the wole NN\n\nnew versions (&gt;GPT-3) can perform zero-shot tasks just by text completion\n\nfine-tuning can be emulated by prompting\nthere is still a fine-tuning API",
     "crumbs": [
-      "…to Large Language Models"
+      "Large Language Models in the Wild"
     ]
   },
   {
-    "objectID": "session_2/index.html#ethical-concerns",
-    "href": "session_2/index.html#ethical-concerns",
-    "title": "…to Large Language Models",
-    "section": "Ethical Concerns",
-    "text": "Ethical Concerns\nWe must avoid at all cost plagiarism and credit our sources.\nWe need personal ethics:\n\ngive sources\nmention use of GPT3 we we use it",
+    "objectID": "session_3/index.html#reinforcement-learning",
+    "href": "session_3/index.html#reinforcement-learning",
+    "title": "Large Language Models in the Wild",
+    "section": "Reinforcement Learning",
+    "text": "Reinforcement Learning\nA reinforcement learning algorithm can take actions which have two effects:\n\nprovide some reward to the algorithm\ngenerate (more) data to improve the quality of future actions\n\nExample:\n\nchoose a restaurant\ndrive a car\nfamous exapmles: breakout, hide and seek",
     "crumbs": [
-      "…to Large Language Models"
+      "Large Language Models in the Wild"
     ]
   },
   {
-    "objectID": "session_2/index.html#replace-many-nlp-algorithms",
-    "href": "session_2/index.html#replace-many-nlp-algorithms",
-    "title": "…to Large Language Models",
+    "objectID": "session_3/index.html#reinforcement-learning-for-gpt-4",
+    "href": "session_3/index.html#reinforcement-learning-for-gpt-4",
+    "title": "Large Language Models in the Wild",
+    "section": "Reinforcement Learning for GPT-4",
+    "text": "Reinforcement Learning for GPT-4\nThe GPT-4 model has been fine-tuned with reinforcement learning. The language model was rewarded for providing the right kind of answer:\n\nthe feedback came from kenyan workers (sic!)\n\nTwo main variants:1\n\ninstructGPT\n\nalignment, non-toxicity, …\nfactual correctness\n\nchatGPT\n\nfollow a conversation\norganization of answer\nnot just a context on top of GPT\n\n\nComing next: assistants.",
+    "crumbs": [
+      "Large Language Models in the Wild"
+    ]
+  },
+  {
+    "objectID": "session_3/index.html#the-different-variants-of-gpt",
+    "href": "session_3/index.html#the-different-variants-of-gpt",
+    "title": "Large Language Models in the Wild",
+    "section": "The different variants of GPT",
+    "text": "The different variants of GPT\nWhich of the following model should you use?\nLots of options:\n\n\ntext-curie-001\ntext-davinci-003\ntext-babbage-001\ntext-ada-001\n…\n\n\nWhat are the differences between the various engines?",
+    "crumbs": [
+      "Large Language Models in the Wild"
+    ]
+  },
+  {
+    "objectID": "session_3/index.html#replace-many-nlp-algorithms",
+    "href": "session_3/index.html#replace-many-nlp-algorithms",
+    "title": "Large Language Models in the Wild",
     "section": "Replace Many NLP Algorithms",
     "text": "Replace Many NLP Algorithms\nBeyond generating text, most Natural Language Processing tasks can be now done with GPT-3:\n\nNamed entity recognition\nClassification\n\nsentiment analysis\nmultimodel sentiment analysis\n\nEntity linking\nSummarization\nMany more",
     "crumbs": [
-      "…to Large Language Models"
+      "Large Language Models in the Wild"
     ]
   },
   {
-    "objectID": "session_2/index.html#named-entity-recognition",
-    "href": "session_2/index.html#named-entity-recognition",
-    "title": "…to Large Language Models",
+    "objectID": "session_3/index.html#named-entity-recognition",
+    "href": "session_3/index.html#named-entity-recognition",
+    "title": "Large Language Models in the Wild",
     "section": "Named Entity recognition",
     "text": "Named Entity recognition\nPrompt:1\n[Text]: Helena Smith founded Core.ai 2 years ago. She is now the CEO and CTO of the company and is building a team of highly skilled developers in machine learning and natural language processing.\n[Position]: CEO and CTO\n###\n[Text]: Tech Robotics is a robot automation company specialized in AI driven robotization. Its Chief Technology Officer, Max Smith, says a new wave of improvements should be expected for next year.\n[Position]: Chief Technology Officer\n###\n[Text]: François is a Go developer. He mostly works as a freelancer but is open to any kind of job offering!\n[Position]: Go developer\n###\n[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.\n[Position]:\n\nResponse: Data Scientist\n\nhttps://towardsdatascience.com/advanced-ner-with-gpt-3-and-gpt-j-ce43dc6cdb9c",
     "crumbs": [
-      "…to Large Language Models"
+      "Large Language Models in the Wild"
     ]
   },
   {
-    "objectID": "session_2/index.html#fine-tuning-1",
-    "href": "session_2/index.html#fine-tuning-1",
-    "title": "…to Large Language Models",
+    "objectID": "session_3/index.html#fine-tuning-1",
+    "href": "session_3/index.html#fine-tuning-1",
+    "title": "Large Language Models in the Wild",
     "section": "Fine-tuning (1)",
     "text": "Fine-tuning (1)\n\nTo get better result, or to proceed larger amounts of data, pretrain the model\n\n```{python}\nmodel.train(\"\"\"\n\"[Text]: Helena Smith founded Core.ai 2 years ago. She is now the CEO and CTO of the company and is building a team of highly skilled developers in machine learning and natural language processing.\n[Position]: CEO and CTO\n\"\"\")\n```\n```{python}\nmodel.train(\"\"\"\n[Text]: Tech Robotics is a robot automation company specialized in AI driven robotization. Its Chief Technology Officer, Max Smith, says a new wave of improvements should be expected for next year.\n[Position]: Chief Technology Officer\n\"\"\")\n```",
     "crumbs": [
-      "…to Large Language Models"
+      "Large Language Models in the Wild"
     ]
   },
   {
-    "objectID": "session_2/index.html#fine-tuning-2",
-    "href": "session_2/index.html#fine-tuning-2",
-    "title": "…to Large Language Models",
+    "objectID": "session_3/index.html#fine-tuning-2",
+    "href": "session_3/index.html#fine-tuning-2",
+    "title": "Large Language Models in the Wild",
     "section": "Fine-tuning (2)",
     "text": "Fine-tuning (2)\n\nQuery the model:\n\n```{python}\nmodel.eval(\"\"\"\n[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.\n[Position]:\n\"\"\")\n```\n…\n[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.\n[Position]: Data Scientist```",
     "crumbs": [
-      "…to Large Language Models"
+      "Large Language Models in the Wild"
     ]
   },
   {
-    "objectID": "session_2/index.html#sentiment-analysis",
-    "href": "session_2/index.html#sentiment-analysis",
-    "title": "…to Large Language Models",
+    "objectID": "session_3/index.html#sentiment-analysis",
+    "href": "session_3/index.html#sentiment-analysis",
+    "title": "Large Language Models in the Wild",
     "section": "Sentiment Analysis",
     "text": "Sentiment Analysis\nZero-shot learning:\nDecide whether a Tweet's sentiment is positive, neutral, or negative.\n\nTweet: \"I loved the new Batman movie!\"\nSentiment:\nOutput: Positive",
     "crumbs": [
-      "…to Large Language Models"
+      "Large Language Models in the Wild"
     ]
   },
   {
-    "objectID": "session_2/index.html#are-we-on-the-way-to-general-artificial-intelligence",
-    "href": "session_2/index.html#are-we-on-the-way-to-general-artificial-intelligence",
-    "title": "…to Large Language Models",
-    "section": "Are we on the way to General Artificial Intelligence?",
-    "text": "Are we on the way to General Artificial Intelligence?\n\nA Benevolent General Purpose Artificial Intelligence. Dall-E-2\nMy two cents:\n\n\n\nartificial intelligence is already there (we are fooling ourselves…)\nare we ready for artificial humanity?",
-    "crumbs": [
-      "…to Large Language Models"
-    ]
-  },
-  {
-    "objectID": "session_2/index.html#homework-for-next-time",
-    "href": "session_2/index.html#homework-for-next-time",
-    "title": "…to Large Language Models",
+    "objectID": "session_3/index.html#homework-for-next-time",
+    "href": "session_3/index.html#homework-for-next-time",
+    "title": "Large Language Models in the Wild",
     "section": "Homework for next time",
-    "text": "Homework for next time\n\nfinish tutorial / pushups\nchoose text analysis paper\nsearch for alternatives to GPT\n\nfill the collaborative doc",
+    "text": "Homework for next time\n\nfinish tutorial / pushups\nstart the work on your replication coursework\npropose a topic for your talk in the last session (20 min)",
     "crumbs": [
-      "…to Large Language Models"
+      "Large Language Models in the Wild"
     ]
   },
   {
@@ -945,7 +1067,7 @@
     "href": "index.html#schedule",
     "title": "AI for Research",
     "section": "Schedule",
-    "text": "Schedule\n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nNov 15, 2023\n\n\nFrom Text Analysis…\n\n\n\n\nNov 22, 2023\n\n\n…to Large Language Models\n\n\n\n\nNov 28, 2023\n\n\nWhat are Large Language Models made of?\n\n\n\n\nDec 6, 2023\n\n\nBehavior of Large Language Models\n\n\n\n\nDec 13, 2023\n\n\nResearch Frontiers: What’s Next?\n\n\n\n\n \n\n\nSentiment analysis\n\n\n\n\n \n\n\n \n\n\n\n\n\nNo matching items"
+    "text": "Schedule\n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nNov 15, 2023\n\n\nFrom Text Analysis…\n\n\n\n\nNov 15, 2023\n\n\n…to Large Language Models\n\n\n\n\nNov 28, 2023\n\n\nLarge Language Models in the Wild\n\n\n\n\nDec 6, 2023\n\n\nBehavior of Large Language Models\n\n\n\n\nDec 13, 2023\n\n\nResearch Frontiers: What’s Next?\n\n\n\n\n \n\n\nSentiment analysis\n\n\n\n\n \n\n\n \n\n\n\n\n \n\n\n \n\n\n\n\n \n\n\nUsing OpenAI GPT\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "session_1_2/graphs/inference.html",
