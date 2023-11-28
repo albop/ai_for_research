@@ -15,7 +15,7 @@ format:
       width: normal
 ---
 
-# What does GPT-3 do?
+# What does GPT do?
 
 ##  Do you like poetry?
 
@@ -62,7 +62,7 @@ The type of answer, will depend on the kind of prompt.
 
 [^plausible]: here, plausible, means that it is more likely to be a correct text written by a human, rather than otherwise
 
-## GPT3 Playground
+## GPT Playground
 
 To use GPT-3 profficiently, you have to experiment with the prompt.
 
@@ -73,13 +73,15 @@ It is the same as learning how to do google queries
 - altavista: `+noir +film -"pinot noir"`
 - nowadays: ???
 
+"Prompting" is becoming a discipline in itself... (or is it?)
+
 ## Some Examples
 
 By providing enough *context*, it is possible to perform amazing tasks
 
 [Look at the demos](https://gpt3demo.com/)
 
-# How does it do it?
+# What is a language model?
 
 ## Language Models and Cryptography
 
@@ -170,39 +172,55 @@ Can we augment memory?
     - `Despite the constant negative press covfefe` [🤔]{.fragment}
 
 
-## Reccurrent Neural Networks
+## Neural Networks
 
 
 ::: columns
 
-::: {.column width=30%}
+::: column
 
-![](assets/glowing_nn.png)
-
-:::
-::: {.column width=60%}
-
-![Recurrent Neural Network](assets/Recurrent_neural_network_unfold.svg.png)
+![](assets/glowing_nn.png){width=60%}
 
 :::
+::: column
+
+![Neural Network](assets/neural_networks.png){width=60%}
+
+:::
 :::
 
-Neural networks make it possible to increase the state-space to represent
+- Neural networks make it possible to increase the state-space to represent
 
-$$\forall X, P(x_n=X| x_{n-1}, ..., x_{n-k})$$
+$$\forall X, P(x_n=X| x_{n-1}, ..., x_{n-k}) = \varphi^{NL}( x_{n-1}, ..., x_{n-k}; \theta )$$
 
-they reduce endogenously the dimensionality.
+with a smaller vector of parameters $\theta$
+
+- Neural netowrks reduce endogenously the dimensionality.
 
 
 ## Recurrent Neural Networks
 
-In 2015
+::: columns
 
+:::: column
+
+In 2015
 
 <iframe width="780" height="500" src="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" title="The unreasonable Effectiveness of Recurrent Neural Networks"></iframe>
 
-- __Neural Network__ reduce dimensionality of data discovering structure
 
+::::
+
+:::: column
+
+![](assets/Recurrent_neural_network_unfold.svg.png)
+
+- __Neural Network__ reduce dimensionality of data discovering structure
+- hidden state encodes meaning of the model so far
+
+::::
+
+:::
 
 ## Long Short Term Memory
 
@@ -215,21 +233,26 @@ In 2015
 
 ## The Latest: Transformer
 
+A special kind of encode/decoder architecture.
+
 ::: columns
 
 :::: column
+
+Most successful models since 2017
 
 1. Position Encodings
     - model is not sequential anymore
     - tries to learn sequence
 2. Attention
+    - [attention is all you need](https://arxiv.org/abs/1706.03762)
 3. Self-Attention
 
 ::::
 
 :::: column
 
-![](assets/transformers.png)
+![](assets/transformers.png){width=60%}
 
 ::::
 
@@ -237,240 +260,108 @@ In 2015
 
 Explanations [here](https://towardsdatascience.com/transformers-141e32e69591) or [here](https://blogs.nvidia.com/blog/2022/03/25/what-is-a-transformer-model/)
 
+
+## The Rise of *transformers*
+
+A special kind of __encoder/decoder__ architecture.
+
+::: columns
+
+:::: column
+
+Most successful models since 2017
+
+1. Position Encodings
+    - model is not sequential anymore
+    - tries to learn sequence
+2. __Attention__
+    - [attention is all you need](https://arxiv.org/abs/1706.03762)
+3. Self-Attention
+
+::::
+
+:::: column
+
+![](assets/transformers.png){width=60%}
+
+::::
+
+:::
+
+Explanations [here](https://towardsdatascience.com/transformers-141e32e69591) or [here](https://blogs.nvidia.com/blog/2022/03/25/what-is-a-transformer-model/)
+
+
+## Encoders / Decoders (1/2)
+
+
+Take some data $(x_n)\in R^x$. 
+
+Consider two functions:
+
+- an *encoder*
+    $$\varphi^E(x; \theta^E) = h \in \mathbb{R^h}$$
+- a *decoder*:
+    $$\varphi^D(h; \theta^D) = x' \in \mathbb{R^x}$$
+
+What could possibly the value of training the coefficients with:
+
+$$\min_{\theta^E, \theta^D}  \left( \varphi^D( \varphi^E(x_n; \theta^E), \theta^D) - x_n\right)^2$$?
+
+i.e. train the nets $\varphi^D$ and $\varphi^E$ to predict the "data from the data"? (it is called __autoencoding__)
+
+
+## Encoders / Decoders (2/2)
+
+
+The relation $\varphi^D( \varphi^E(x_n; \theta^E), \theta^D) ~ x_n$ can be rewritten as
+
+$$x_n \xrightarrow{\varphi^E(; \theta^E)} h \xrightarrow{\varphi^D(; \theta^D)} x_n $$
+
+When that relation is (mostly) satisfied and $\mathbb{R}^h << \mathbb{R}^x$, $h$ can be viewed as a lower dimension representation of $x$. It encodes the information as a lower dimension vector $h$ and is called __learned embeddings__.
+
+- instead of $\underbrace{x_n}_{\text{prompt}} \rightarrow \underbrace{y_n}_{\text{text completion}}$
+- one can learn $\underbrace{h_n}_{\text{prompt (low dim)}} \xrightarrow{\varphi^C( ; \theta^C)} \underbrace{h_n^c}_{\text{text completion (low dim)}}$
+    - it is easier to learn
+- and perform the original task as $$\underbrace{x_n}_{\text{prompt}} \xrightarrow{\varphi^E}  h_n \xrightarrow{\varphi^C} h_n^C \xrightarrow{\varphi^D} \underbrace{y_n}_{\text{text completion}}$$
+
+This very powerful approach can be applied to combine encoders/decoders from different contexts (ex [Dall-E](https://openai.com/dall-e-2))
+
+
+## Attention
+
+Main flow with the recursive approach:
+
+- the context made to predict new words/embeddings puts a lower weight on further words/embeddings
+- this is related to the so-called vanishing gradient problem
+
+. . .
+
+::: columns
+
+:::: column
+
+With the attention mechanism, each predicted word/embedding is determined by all preceding words/embeddings, with different weights that are endogenous.
+
+::::
+
+:::: column
+
+![Attention](assets/attention.webp){width=50%}
+
+::::
+
+:::
+
 ## Quick summary
 
 - Language models
     - frequency tables
     - monte carlo markov chains
+    - deep learning -> recurrent neural networks
     - long-short-term memory (>2000)
     - transformers (>2018)
-
+        - [attention is all you need](https://arxiv.org/abs/1706.03762)
 . . .
 
 - Since 2010 main breakthrough came through the development of deep-learning techniques (software/hardware)
 - Recently, *models*/algorithms have improved tremendously
-
-
-## GPT3 {.smaller}
-
-Generative Pre-trained Transformer
-
-- GPT1 (1018)
-    - 0.1 billion parameters
-    - had to be fine-tuned to a particular problem
-    - transfer learning (few shots learning)
-- GPT2:
-    - multitask
-    - no mandatory fine tuning
-- GPT3: 
-    - bigger: 175 billions parameters
-- [GPT4](https://openai.com/research/gpt-4): 
-    - even bigger: 1000 billions parameters
-    - on your harddrive: 1Tb
-
-## Corpus
-
-::: columns
-
-:::: column
-
-GPT 3 was trained on
-
-- CommonCrawl
-- WebText
-- Wikipedia
-- many books
-
-45 TB of data
-
-- cured into ???
-
-Dataset (mostly) ends in 2021.
-
-::::
-
-:::: column
-
-![](assets/matrix.gif)
-
-::::
-
-:::
-
-## Chat GPT
-
-It is trivial to make a chatbot using GPT3.
-
-[ChatGPT](https://openai.com/blog/chatgpt) is an interface on top of GPT3.5 (now GPT4) plus some fine-tuning.
-
-- it keeps the context
-- has a consistent "personality"
-
-
-## The Relation between GPT-3 and ChatGPT
-
-Technical paper is not out, but we know the following:
-
-- it is *fine-tuned* by interacting with [humans](https://time.com/6247678/openai-chatgpt-kenya-workers/)
-- it uses *reinforcement learning* to optimize learning
-- now based on GPT4
-
-Improvment goals:
-
-- better alignment
-- less making up of facts
-
-
-# How can we use GPT3
-
-## Generate Text
-
-::: columns
-
-:::: column
-
-Would you use GPT3 to:
-
-::::: incremental
-- write a paper?
-- quickly respond to an email
-- write the boring details of a paper
-- get some ideas?
-- help you structure a talk?
-:::::
-
-There are several concerns...
-
-::::
-
-:::: column
-
-![](assets/evil.jpg)
-
-:::: 
-
-:::
-
-## The quality of the generated text
-
-::: incremental
-- GPT-3 has the tendancy to *hallucinate* facts.
-
-    - like kids who don't distinguish facts and play
-
-- This is being worked on:
-
-    - GPT4: *Can you teach old dogs new tricks?* [yes 🐕]{.fragment}
-
-- Still a problem for research
-
-- Possibly solved by mixing AI and traditional computing
-:::
-
-## Ethical Concerns
-
-We must avoid at all cost *plagiarism* and credit our sources.
-
-We need personal ethics:
-
-- give sources
-- mention use of GPT3 we we use it
-
-## Replace Many NLP Algorithms
-
-Beyond generating text, most Natural Language Processing tasks can be now done with GPT-3:
-
-- Named entity recognition
-- Classification
-    - sentiment analysis
-    - multimodel sentiment analysis
-- Entity linking
-- Summarization
-- Many [more](https://platform.openai.com/examples)
-
-## Named Entity recognition
-
-Prompt:[^cf]
-
-```
-[Text]: Helena Smith founded Core.ai 2 years ago. She is now the CEO and CTO of the company and is building a team of highly skilled developers in machine learning and natural language processing.
-[Position]: CEO and CTO
-###
-[Text]: Tech Robotics is a robot automation company specialized in AI driven robotization. Its Chief Technology Officer, Max Smith, says a new wave of improvements should be expected for next year.
-[Position]: Chief Technology Officer
-###
-[Text]: François is a Go developer. He mostly works as a freelancer but is open to any kind of job offering!
-[Position]: Go developer
-###
-[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.
-[Position]:
-```
-. . .
-
-```Response: Data Scientist```
-
-[^cf]: https://towardsdatascience.com/advanced-ner-with-gpt-3-and-gpt-j-ce43dc6cdb9c
-
-
-## Fine-tuning (1)
-
-- To get better result, or to proceed larger amounts of data, pretrain the model
-
-```{{python}}
-model.train("""
-"[Text]: Helena Smith founded Core.ai 2 years ago. She is now the CEO and CTO of the company and is building a team of highly skilled developers in machine learning and natural language processing.
-[Position]: CEO and CTO
-""")
-```
-
-```{{python}}
-model.train("""
-[Text]: Tech Robotics is a robot automation company specialized in AI driven robotization. Its Chief Technology Officer, Max Smith, says a new wave of improvements should be expected for next year.
-[Position]: Chief Technology Officer
-""")
-```
-
-## Fine-tuning (2)
-
-- Query the model:
-```{{python}}
-model.eval("""
-[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.
-[Position]:
-""")
-```
-
-...
-
-```
-[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.
-[Position]: Data Scientist```
-```
-
-## Sentiment Analysis
-
-Zero-shot learning:
-
-```
-Decide whether a Tweet's sentiment is positive, neutral, or negative.
-
-Tweet: "I loved the new Batman movie!"
-Sentiment:
-```
-
-Output: ```Positive```
-
-# Conclusion
-
-## Are we on the way to General Artificial Intelligence?
-
-![A Benevolent General Purpose Artificial Intelligence. Dall-E-2](assets/benevolent_ai.jpg)
-
-. . .
-
-My two cents:
-
-. . .
-
-- artificial intelligence is already there (we are fooling ourselves...)
-- are we ready for artificial humanity?
