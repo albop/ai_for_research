@@ -217,7 +217,7 @@ Example:
 
 - choose a restaurant
 - drive a car
-- famous exapmles: [breakout](https://www.youtube.com/watch?v=V1eYniJ0Rnk), [hide and seek](https://www.youtube.com/watch?v=Lu56xVlZ40M)
+- famous examples: [breakout](https://www.youtube.com/watch?v=V1eYniJ0Rnk), [hide and seek](https://www.youtube.com/watch?v=Lu56xVlZ40M)
 
 
 ## Reinforcement Learning for GPT-4
@@ -227,7 +227,7 @@ The language model was *rewarded* for providing the right kind of answer:
 
 - the feedback came from kenyan workers ([sic](https://time.com/6247678/openai-chatgpt-kenya-workers/)!)
 
-Two main variants:[^coming_next]
+Two main variants on top of foundation model `GPT Base`:[^coming_next]
 
 - `instructGPT` 
     - alignment, non-toxicity, ...
@@ -237,8 +237,34 @@ Two main variants:[^coming_next]
     - organization of answer
     - not just a context on top of GPT
 
-
 [^coming_next]: Coming next: assistants.
+
+
+## {auto-animate=true}
+
+There is information about how GPT-3 was trained (check technical [paper](https://arxiv.org/pdf/2203.02155.pdf) or [summary](https://openai.com/research/instruction-following))
+
+![](assets/instruct_gpt.svg)
+
+## {auto-animate=true}
+
+
+::: columns
+
+:::: column
+
+There is information about how GPT-3 was trained (check technical [paper](https://arxiv.org/pdf/2203.02155.pdf) or [summary](https://openai.com/research/instruction-following))
+
+![](assets/instruct_gpt.svg)
+
+::::
+
+::::
+
+::::
+
+:::
+
 
 ## The different variants of GPT
 
@@ -258,93 +284,48 @@ Lots of options:
 
 What are the differences between the various engines?
 
+- architecture / model size
+- training set of foundation model (GPT Base)
+- type of fine-tuning (instruct/chat/code)
 
-# Some examples of applications
+It is not clear whether GPT Base will still be accessible in the future or whether it will be fine-tuned for alignement or not.
 
-
-## Replace Many NLP Algorithms
-
-Beyond generating text, most Natural Language Processing tasks can be now done with GPT-3:
-
-- Named entity recognition
-- Classification
-    - sentiment analysis
-    - multimodel sentiment analysis
-- Entity linking
-- Summarization
-- Many [more](https://platform.openai.com/examples)
-
-## Named Entity recognition
-
-Prompt:[^cf]
-
-```
-[Text]: Helena Smith founded Core.ai 2 years ago. She is now the CEO and CTO of the company and is building a team of highly skilled developers in machine learning and natural language processing.
-[Position]: CEO and CTO
-###
-[Text]: Tech Robotics is a robot automation company specialized in AI driven robotization. Its Chief Technology Officer, Max Smith, says a new wave of improvements should be expected for next year.
-[Position]: Chief Technology Officer
-###
-[Text]: François is a Go developer. He mostly works as a freelancer but is open to any kind of job offering!
-[Position]: Go developer
-###
-[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.
-[Position]:
-```
-. . .
-
-```Response: Data Scientist```
-
-[^cf]: https://towardsdatascience.com/advanced-ner-with-gpt-3-and-gpt-j-ce43dc6cdb9c
+- consequences?
 
 
-## Fine-tuning (1)
+## {auto-animate=true}
 
-- To get better result, or to proceed larger amounts of data, pretrain the model
+Checkout the [awesome list](https://github.com/Hannibal046/Awesome-LLM)!
 
-```{{python}}
-model.train("""
-"[Text]: Helena Smith founded Core.ai 2 years ago. She is now the CEO and CTO of the company and is building a team of highly skilled developers in machine learning and natural language processing.
-[Position]: CEO and CTO
-""")
-```
+![](assets/survey-gif-test.jpg)
 
-```{{python}}
-model.train("""
-[Text]: Tech Robotics is a robot automation company specialized in AI driven robotization. Its Chief Technology Officer, Max Smith, says a new wave of improvements should be expected for next year.
-[Position]: Chief Technology Officer
-""")
-```
 
-## Fine-tuning (2)
+## {auto-animate=true}
 
-- Query the model:
-```{{python}}
-model.eval("""
-[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.
-[Position]:
-""")
-```
+::: columns
 
-...
+:::: column
 
-```
-[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.
-[Position]: Data Scientist```
-```
+![](assets/survey-gif-test.jpg)
 
-## Sentiment Analysis
+::::
 
-Zero-shot learning:
+:::: column
 
-```
-Decide whether a Tweet's sentiment is positive, neutral, or negative.
+What are the trends?
 
-Tweet: "I loved the new Batman movie!"
-Sentiment:
-```
+- many foundation Models
+    - move from opensource to closedsource
+    - __but__: opensource is still very alive
 
-Output: ```Positive```
+- research to reduce size of models / training time
+
+- many more versions specialized (fine-tuned) to specific tasks
+
+
+::::
+
+:::
 
 
 # Conclusion
