@@ -30,71 +30,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -410,7 +345,6 @@ Pablo Winant
 <ul>
 <li><a href="#/some-tips-for-reproducible-research" id="/toc-some-tips-for-reproducible-research">Some tips for reproducible research</a></li>
 <li><a href="#/variants-of-gpt" id="/toc-variants-of-gpt">Variants of GPT</a></li>
-<li><a href="#/some-examples-of-applications" id="/toc-some-examples-of-applications">Some examples of applications</a></li>
 <li><a href="#/conclusion" id="/toc-conclusion">Conclusion</a></li>
 </ul>
 </nav>
@@ -612,7 +546,7 @@ Pablo Winant
 <ul>
 <li>choose a restaurant</li>
 <li>drive a car</li>
-<li>famous exapmles: <a href="https://www.youtube.com/watch?v=V1eYniJ0Rnk">breakout</a>, <a href="https://www.youtube.com/watch?v=Lu56xVlZ40M">hide and seek</a></li>
+<li>famous examples: <a href="https://www.youtube.com/watch?v=V1eYniJ0Rnk">breakout</a>, <a href="https://www.youtube.com/watch?v=Lu56xVlZ40M">hide and seek</a></li>
 </ul>
 </section>
 <section id="reinforcement-learning-for-gpt-4" class="slide level2">
@@ -621,7 +555,7 @@ Pablo Winant
 <ul>
 <li>the feedback came from kenyan workers (<a href="https://time.com/6247678/openai-chatgpt-kenya-workers/">sic</a>!)</li>
 </ul>
-<p>Two main variants:<sup>1</sup></p>
+<p>Two main variants on top of foundation model <code>GPT Base</code>:<sup>1</sup></p>
 <ul>
 <li><code>instructGPT</code>
 <ul>
@@ -636,6 +570,11 @@ Pablo Winant
 </ul></li>
 </ul>
 <aside><ol class="aside-footnotes"><li id="fn3"><p>Coming next: assistants.</p></li></ol></aside></section>
+<section id="section" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<p>There is information about how GPT-3 was trained (check technical <a href="https://arxiv.org/pdf/2203.02155.pdf">paper</a> or <a href="https://openai.com/research/instruction-following">summary</a>)</p>
+
+<img data-src="assets/instruct_gpt.svg" class="r-stretch"></section>
 <section id="the-different-variants-of-gpt" class="slide level2">
 <h2>The different variants of GPT</h2>
 <p>Which of the following model should you use?</p>
@@ -650,99 +589,79 @@ Pablo Winant
 </ul>
 </div>
 <p>What are the differences between the various engines?</p>
-</section></section>
-<section>
-<section id="some-examples-of-applications" class="title-slide slide level1 center">
-<h1>Some examples of applications</h1>
-
+<ul>
+<li>architecture / model size</li>
+<li>training set of foundation model (GPT Base)</li>
+<li>type of fine-tuning (instruct/chat/code)</li>
+</ul>
+<p>It is not clear whether GPT Base will still be accessible in the future or whether it will be fine-tuned for alignement or not.</p>
+<ul>
+<li>consequences?</li>
+</ul>
 </section>
-<section id="replace-many-nlp-algorithms" class="slide level2">
-<h2>Replace Many NLP Algorithms</h2>
-<p>Beyond generating text, most Natural Language Processing tasks can be now done with GPT-3:</p>
+<section id="section-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<p>Checkout the <a href="https://github.com/Hannibal046/Awesome-LLM">awesome list</a>!</p>
+
+<img data-src="assets/survey-gif-test.jpg" class="r-stretch"></section>
+<section id="section-2" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="columns">
+<div class="column">
+<p><img data-src="assets/survey-gif-test.jpg"></p>
+</div><div class="column">
+<p>What are the trends?</p>
 <ul>
-<li>Named entity recognition</li>
-<li>Classification
+<li><p>many foundation Models</p>
 <ul>
-<li>sentiment analysis</li>
-<li>multimodel sentiment analysis</li>
+<li>move from opensource to closedsource</li>
+<li><strong>but</strong>: opensource is still very alive</li>
 </ul></li>
-<li>Entity linking</li>
-<li>Summarization</li>
-<li>Many <a href="https://platform.openai.com/examples">more</a></li>
+<li><p>research to reduce size of models / training time</p></li>
+<li><p>many more versions specialized (fine-tuned) to specific tasks</p></li>
 </ul>
-</section>
-<section id="named-entity-recognition" class="slide level2">
-<h2>Named Entity recognition</h2>
-<p>Prompt:<sup>1</sup></p>
-<pre><code>[Text]: Helena Smith founded Core.ai 2 years ago. She is now the CEO and CTO of the company and is building a team of highly skilled developers in machine learning and natural language processing.
-[Position]: CEO and CTO
-###
-[Text]: Tech Robotics is a robot automation company specialized in AI driven robotization. Its Chief Technology Officer, Max Smith, says a new wave of improvements should be expected for next year.
-[Position]: Chief Technology Officer
-###
-[Text]: François is a Go developer. He mostly works as a freelancer but is open to any kind of job offering!
-[Position]: Go developer
-###
-[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.
-[Position]:</code></pre>
-<div class="fragment">
-<p><code>Response: Data Scientist</code></p>
 </div>
-<aside><ol class="aside-footnotes"><li id="fn4"><p>https://towardsdatascience.com/advanced-ner-with-gpt-3-and-gpt-j-ce43dc6cdb9c</p></li></ol></aside></section>
-<section id="fine-tuning-1" class="slide level2">
-<h2>Fine-tuning (1)</h2>
-<ul>
-<li>To get better result, or to proceed larger amounts of data, pretrain the model</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="in">model.train("""</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="in">"[Text]: Helena Smith founded Core.ai 2 years ago. She is now the CEO and CTO of the company and is building a team of highly skilled developers in machine learning and natural language processing.</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="in">[Position]: CEO and CTO</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="in">""")</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="in">model.train("""</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="in">[Text]: Tech Robotics is a robot automation company specialized in AI driven robotization. Its Chief Technology Officer, Max Smith, says a new wave of improvements should be expected for next year.</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="in">[Position]: Chief Technology Officer</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="in">""")</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="fine-tuning-2" class="slide level2">
-<h2>Fine-tuning (2)</h2>
-<ul>
-<li>Query the model:</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1"></a><span class="in">```{python}</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="in">model.eval("""</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="in">[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="in">[Position]:</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="in">""")</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>…</p>
-<pre><code>[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.
-[Position]: Data Scientist```</code></pre>
-</section>
-<section id="sentiment-analysis" class="slide level2">
-<h2>Sentiment Analysis</h2>
-<p>Zero-shot learning:</p>
-<pre><code>Decide whether a Tweet's sentiment is positive, neutral, or negative.
-
-Tweet: "I loved the new Batman movie!"
-Sentiment:</code></pre>
-<p>Output: <code>Positive</code></p>
+</div>
 </section></section>
 <section>
 <section id="conclusion" class="title-slide slide level1 center">
 <h1>Conclusion</h1>
 
 </section>
-<section id="homework-for-next-time" class="slide level2">
-<h2>Homework for next time</h2>
+<section id="one-common-misconception" class="slide level2">
+<h2>One common misconception</h2>
 <ul>
-<li>finish tutorial / pushups</li>
-<li>start the work on your replication coursework</li>
-<li>propose a topic for your talk in the last session (20 min)</li>
+<li>Language models hallucinate facts…
+<ul>
+<li>therefore are definitely unreliable for research</li>
+</ul></li>
+<li>There are possible workarounds
+<ul>
+<li>avoid tasks where hallucinations occur (like ask for paper citations)</li>
+<li>more structure in the prompting (like “detail your reasoning”)</li>
+</ul></li>
+<li>And research being done…
+<ul>
+<li>on using fine-tuning for more correctness (e.g.&nbsp;instructGPT)</li>
+<li>on developing mixed systems</li>
+</ul></li>
 </ul>
+<p>Check out <a href="https://platform.openai.com/docs/assistants/overview">GPT Assistants</a> and <a href="https://scite.ai/">Scite</a></p>
+</section>
+<section id="how-much-should-we-trust-ai" class="slide level2">
+<h2>How much should we trust AI?</h2>
+<p>AI safety and AI alignment is a very active field right now.</p>
+<p>For economists, AI behaviour can be characterized in terms of biases:</p>
+<ol type="1">
+<li>statistical bias</li>
+<li>preference misspecification
+<ul>
+<li>explicit</li>
+<li>implicit</li>
+</ul></li>
+<li>behavioural biases</li>
+</ol>
+<p>For now we don’t know much.</p>
 
 <div class="footer footer-default">
 

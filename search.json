@@ -970,7 +970,7 @@
     "href": "session_3/index.html#reinforcement-learning",
     "title": "Large Language Models in the Wild",
     "section": "Reinforcement Learning",
-    "text": "Reinforcement Learning\nA reinforcement learning algorithm can take actions which have two effects:\n\nprovide some reward to the algorithm\ngenerate (more) data to improve the quality of future actions\n\nExample:\n\nchoose a restaurant\ndrive a car\nfamous exapmles: breakout, hide and seek",
+    "text": "Reinforcement Learning\nA reinforcement learning algorithm can take actions which have two effects:\n\nprovide some reward to the algorithm\ngenerate (more) data to improve the quality of future actions\n\nExample:\n\nchoose a restaurant\ndrive a car\nfamous examples: breakout, hide and seek",
     "crumbs": [
       "Large Language Models in the Wild"
     ]
@@ -980,7 +980,17 @@
     "href": "session_3/index.html#reinforcement-learning-for-gpt-4",
     "title": "Large Language Models in the Wild",
     "section": "Reinforcement Learning for GPT-4",
-    "text": "Reinforcement Learning for GPT-4\nThe GPT-4 model has been fine-tuned with reinforcement learning. The language model was rewarded for providing the right kind of answer:\n\nthe feedback came from kenyan workers (sic!)\n\nTwo main variants:1\n\ninstructGPT\n\nalignment, non-toxicity, …\nfactual correctness\n\nchatGPT\n\nfollow a conversation\norganization of answer\nnot just a context on top of GPT\n\n\nComing next: assistants.",
+    "text": "Reinforcement Learning for GPT-4\nThe GPT-4 model has been fine-tuned with reinforcement learning. The language model was rewarded for providing the right kind of answer:\n\nthe feedback came from kenyan workers (sic!)\n\nTwo main variants on top of foundation model GPT Base:1\n\ninstructGPT\n\nalignment, non-toxicity, …\nfactual correctness\n\nchatGPT\n\nfollow a conversation\norganization of answer\nnot just a context on top of GPT\n\n\nComing next: assistants.",
+    "crumbs": [
+      "Large Language Models in the Wild"
+    ]
+  },
+  {
+    "objectID": "session_3/index.html#section",
+    "href": "session_3/index.html#section",
+    "title": "Large Language Models in the Wild",
+    "section": "",
+    "text": "There is information about how GPT-3 was trained (check technical paper or summary)",
     "crumbs": [
       "Large Language Models in the Wild"
     ]
@@ -990,67 +1000,47 @@
     "href": "session_3/index.html#the-different-variants-of-gpt",
     "title": "Large Language Models in the Wild",
     "section": "The different variants of GPT",
-    "text": "The different variants of GPT\nWhich of the following model should you use?\nLots of options:\n\n\ntext-curie-001\ntext-davinci-003\ntext-babbage-001\ntext-ada-001\n…\n\n\nWhat are the differences between the various engines?",
+    "text": "The different variants of GPT\nWhich of the following model should you use?\nLots of options:\n\n\ntext-curie-001\ntext-davinci-003\ntext-babbage-001\ntext-ada-001\n…\n\n\nWhat are the differences between the various engines?\n\narchitecture / model size\ntraining set of foundation model (GPT Base)\ntype of fine-tuning (instruct/chat/code)\n\nIt is not clear whether GPT Base will still be accessible in the future or whether it will be fine-tuned for alignement or not.\n\nconsequences?",
     "crumbs": [
       "Large Language Models in the Wild"
     ]
   },
   {
-    "objectID": "session_3/index.html#replace-many-nlp-algorithms",
-    "href": "session_3/index.html#replace-many-nlp-algorithms",
+    "objectID": "session_3/index.html#section-1",
+    "href": "session_3/index.html#section-1",
     "title": "Large Language Models in the Wild",
-    "section": "Replace Many NLP Algorithms",
-    "text": "Replace Many NLP Algorithms\nBeyond generating text, most Natural Language Processing tasks can be now done with GPT-3:\n\nNamed entity recognition\nClassification\n\nsentiment analysis\nmultimodel sentiment analysis\n\nEntity linking\nSummarization\nMany more",
+    "section": "",
+    "text": "Checkout the awesome list!",
     "crumbs": [
       "Large Language Models in the Wild"
     ]
   },
   {
-    "objectID": "session_3/index.html#named-entity-recognition",
-    "href": "session_3/index.html#named-entity-recognition",
+    "objectID": "session_3/index.html#section-2",
+    "href": "session_3/index.html#section-2",
     "title": "Large Language Models in the Wild",
-    "section": "Named Entity recognition",
-    "text": "Named Entity recognition\nPrompt:1\n[Text]: Helena Smith founded Core.ai 2 years ago. She is now the CEO and CTO of the company and is building a team of highly skilled developers in machine learning and natural language processing.\n[Position]: CEO and CTO\n###\n[Text]: Tech Robotics is a robot automation company specialized in AI driven robotization. Its Chief Technology Officer, Max Smith, says a new wave of improvements should be expected for next year.\n[Position]: Chief Technology Officer\n###\n[Text]: François is a Go developer. He mostly works as a freelancer but is open to any kind of job offering!\n[Position]: Go developer\n###\n[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.\n[Position]:\n\nResponse: Data Scientist\n\nhttps://towardsdatascience.com/advanced-ner-with-gpt-3-and-gpt-j-ce43dc6cdb9c",
+    "section": "",
+    "text": "What are the trends?\n\nmany foundation Models\n\nmove from opensource to closedsource\nbut: opensource is still very alive\n\nresearch to reduce size of models / training time\nmany more versions specialized (fine-tuned) to specific tasks",
     "crumbs": [
       "Large Language Models in the Wild"
     ]
   },
   {
-    "objectID": "session_3/index.html#fine-tuning-1",
-    "href": "session_3/index.html#fine-tuning-1",
+    "objectID": "session_3/index.html#one-common-misconception",
+    "href": "session_3/index.html#one-common-misconception",
     "title": "Large Language Models in the Wild",
-    "section": "Fine-tuning (1)",
-    "text": "Fine-tuning (1)\n\nTo get better result, or to proceed larger amounts of data, pretrain the model\n\n```{python}\nmodel.train(\"\"\"\n\"[Text]: Helena Smith founded Core.ai 2 years ago. She is now the CEO and CTO of the company and is building a team of highly skilled developers in machine learning and natural language processing.\n[Position]: CEO and CTO\n\"\"\")\n```\n```{python}\nmodel.train(\"\"\"\n[Text]: Tech Robotics is a robot automation company specialized in AI driven robotization. Its Chief Technology Officer, Max Smith, says a new wave of improvements should be expected for next year.\n[Position]: Chief Technology Officer\n\"\"\")\n```",
+    "section": "One common misconception",
+    "text": "One common misconception\n\nLanguage models hallucinate facts…\n\ntherefore are definitely unreliable for research\n\nThere are possible workarounds\n\navoid tasks where hallucinations occur (like ask for paper citations)\nmore structure in the prompting (like “detail your reasoning”)\n\nAnd research being done…\n\non using fine-tuning for more correctness (e.g. instructGPT)\non developing mixed systems\n\n\nCheck out GPT Assistants and Scite",
     "crumbs": [
       "Large Language Models in the Wild"
     ]
   },
   {
-    "objectID": "session_3/index.html#fine-tuning-2",
-    "href": "session_3/index.html#fine-tuning-2",
+    "objectID": "session_3/index.html#how-much-should-we-trust-ai",
+    "href": "session_3/index.html#how-much-should-we-trust-ai",
     "title": "Large Language Models in the Wild",
-    "section": "Fine-tuning (2)",
-    "text": "Fine-tuning (2)\n\nQuery the model:\n\n```{python}\nmodel.eval(\"\"\"\n[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.\n[Position]:\n\"\"\")\n```\n…\n[Text]: Maxime is a data scientist at Auto Dataset, and he's been working there for 1 year.\n[Position]: Data Scientist```",
-    "crumbs": [
-      "Large Language Models in the Wild"
-    ]
-  },
-  {
-    "objectID": "session_3/index.html#sentiment-analysis",
-    "href": "session_3/index.html#sentiment-analysis",
-    "title": "Large Language Models in the Wild",
-    "section": "Sentiment Analysis",
-    "text": "Sentiment Analysis\nZero-shot learning:\nDecide whether a Tweet's sentiment is positive, neutral, or negative.\n\nTweet: \"I loved the new Batman movie!\"\nSentiment:\nOutput: Positive",
-    "crumbs": [
-      "Large Language Models in the Wild"
-    ]
-  },
-  {
-    "objectID": "session_3/index.html#homework-for-next-time",
-    "href": "session_3/index.html#homework-for-next-time",
-    "title": "Large Language Models in the Wild",
-    "section": "Homework for next time",
-    "text": "Homework for next time\n\nfinish tutorial / pushups\nstart the work on your replication coursework\npropose a topic for your talk in the last session (20 min)",
+    "section": "How much should we trust AI?",
+    "text": "How much should we trust AI?\nAI safety and AI alignment is a very active field right now.\nFor economists, AI behaviour can be characterized in terms of biases:\n\nstatistical bias\npreference misspecification\n\nexplicit\nimplicit\n\nbehavioural biases\n\nFor now we don’t know much.",
     "crumbs": [
       "Large Language Models in the Wild"
     ]
