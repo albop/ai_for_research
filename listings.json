@@ -1,15 +1,5 @@
 [
   {
-    "listing": "/session_0/index.html",
-    "items": [
-      "/session_1/index.html",
-      "/session_2/index.html",
-      "/session_3/index.html",
-      "/session_4/index.html",
-      "/session_5/index.html"
-    ]
-  },
-  {
     "listing": "/index.html",
     "items": [
       "/session_1/index.html",
@@ -17,10 +7,28 @@
       "/session_3/index.html",
       "/session_4/index.html",
       "/session_5/index.html",
+      "/slides/session_1/index.html",
+      "/slides/session_2/index.html",
+      "/slides/session_3/index.html",
+      "/slides/session_4/index.html",
+      "/slides/session_5/index.html",
+      "/tutorials/session_1/python_syntax.html",
+      "/tutorials/session_1/python_fundamentals/index.html",
+      "/tutorials/session_1/python_fundamentals/basics.html",
+      "/tutorials/session_1/python_fundamentals/control_flow.html",
+      "/tutorials/session_1/python_fundamentals/collections.html",
+      "/tutorials/session_1/python_fundamentals/functions.html",
       "/session_2/tutorial_2.html",
       "/session_2/exercise.html",
+      "/slides/session_2/tutorial_2.html",
+      "/slides/session_2/exercise.html",
+      "/tutorials/session_2/sentiment_analysis_correction.html",
+      "/tutorials/session_2/sentiment_analysis.html",
+      "/slides/session_3/plan.html",
+      "/slides/session_3/open_ai_api.html",
       "/session_3/plan.html",
-      "/session_3/open_ai_api.html"
+      "/session_3/open_ai_api.html",
+      "/tutorials/session_3/open_ai_api.html"
     ]
   }
 ]

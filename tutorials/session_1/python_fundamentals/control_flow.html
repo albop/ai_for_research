@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>AI for Research - Control Flow</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      AI for Research
+      </li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../">AI for Research</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../session_0/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../session_1/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">From Text Analysis…</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../session_2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">…to Large Language Models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../session_3/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Large Language Models in the Wild</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../session_4/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavior of Large Language Models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../session_5/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Research Frontiers: What’s Next?</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#control-flow" id="toc-control-flow" class="nav-link active" data-scroll-target="#control-flow">Control Flow</a>
+  <ul class="collapse">
+  <li><a href="#net-present-values-and-asset-pricing" id="toc-net-present-values-and-asset-pricing" class="nav-link" data-scroll-target="#net-present-values-and-asset-pricing">Net Present Values and Asset Pricing</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a>
+  <ul class="collapse">
+  <li><a href="#net-present-value" id="toc-net-present-value" class="nav-link" data-scroll-target="#net-present-value">Net Present Value</a></li>
+  </ul></li>
+  <li><a href="#conditional-statements-and-blocks" id="toc-conditional-statements-and-blocks" class="nav-link" data-scroll-target="#conditional-statements-and-blocks">Conditional Statements and Blocks</a></li>
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise</a></li>
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise</a>
+  <ul class="collapse">
+  <li><a href="#elif-clauses" id="toc-elif-clauses" class="nav-link" data-scroll-target="#elif-clauses"><code>elif</code> clauses</a></li>
+  </ul></li>
+  <li><a href="#iteration" id="toc-iteration" class="nav-link" data-scroll-target="#iteration">Iteration</a>
+  <ul class="collapse">
+  <li><a href="#a-contrived-example" id="toc-a-contrived-example" class="nav-link" data-scroll-target="#a-contrived-example">A Contrived Example</a></li>
+  <li><a href="#for-loops" id="toc-for-loops" class="nav-link" data-scroll-target="#for-loops"><code>for</code> Loops</a></li>
+  <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise</a></li>
+  <li><a href="#exercise-5" id="toc-exercise-5" class="nav-link" data-scroll-target="#exercise-5">Exercise</a></li>
+  <li><a href="#while-loops" id="toc-while-loops" class="nav-link" data-scroll-target="#while-loops"><code>while</code> Loops</a></li>
+  <li><a href="#exercise-6" id="toc-exercise-6" class="nav-link" data-scroll-target="#exercise-6">Exercise</a></li>
+  <li><a href="#break-and-continue" id="toc-break-and-continue" class="nav-link" data-scroll-target="#break-and-continue"><code>break</code> and <code>continue</code></a></li>
+  </ul></li>
+  <li><a href="#comprehension" id="toc-comprehension" class="nav-link" data-scroll-target="#comprehension">Comprehension</a></li>
+  <li><a href="#exercise-9" id="toc-exercise-9" class="nav-link" data-scroll-target="#exercise-9">Exercise</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1-1" id="toc-exercise-1-1" class="nav-link" data-scroll-target="#exercise-1-1">Exercise 1</a></li>
+  <li><a href="#exercise-2-1" id="toc-exercise-2-1" class="nav-link" data-scroll-target="#exercise-2-1">Exercise 2</a></li>
+  <li><a href="#exercise-3-1" id="toc-exercise-3-1" class="nav-link" data-scroll-target="#exercise-3-1">Exercise 3</a></li>
+  <li><a href="#exercise-4-1" id="toc-exercise-4-1" class="nav-link" data-scroll-target="#exercise-4-1">Exercise 4</a></li>
+  <li><a href="#exercise-5-1" id="toc-exercise-5-1" class="nav-link" data-scroll-target="#exercise-5-1">Exercise 5</a></li>
+  <li><a href="#exercise-6-1" id="toc-exercise-6-1" class="nav-link" data-scroll-target="#exercise-6-1">Exercise 6</a></li>
+  <li><a href="#exercise-7-1" id="toc-exercise-7-1" class="nav-link" data-scroll-target="#exercise-7-1">Exercise 7</a></li>
+  <li><a href="#exercise-8-1" id="toc-exercise-8-1" class="nav-link" data-scroll-target="#exercise-8-1">Exercise 8</a></li>
+  <li><a href="#exercise-9-1" id="toc-exercise-9-1" class="nav-link" data-scroll-target="#exercise-9-1">Exercise 9</a></li>
+  <li><a href="#exercise-10" id="toc-exercise-10" class="nav-link" data-scroll-target="#exercise-10">Exercise 10</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Control Flow</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="control-flow" class="level1">
+<h1>Control Flow</h1>
+<p><strong>Prerequisites</strong></p>
+<ul>
+<li>Booleans section in <a href="https://datascience.quantecon.org/basics.html">Basics</a><br>
+</li>
+<li><a href="https://datascience.quantecon.org/collections.html">Collections</a></li>
+</ul>
+<p><strong>Outcomes</strong></p>
+<ul>
+<li>Asset pricing and NPV
+<ul>
+<li>Understand basic principles of pricing assets with deterministic payoffs<br>
+</li>
+<li>Apply programming with iteration and conditionals to asset pricing examples<br>
+</li>
+</ul></li>
+<li>Conditionals
+<ul>
+<li>Understand what a conditional is<br>
+</li>
+<li>Be able to construct <code>if</code>/<code>elif</code>/<code>else</code> conditional blocks<br>
+</li>
+<li>Understand how conditionals can be used to selectively execute blocks of code<br>
+</li>
+</ul></li>
+<li>Iteration
+<ul>
+<li>Understand what an iterable is<br>
+</li>
+<li>Be able to write <code>for</code> and <code>while</code> loops<br>
+</li>
+<li>Understand the keywords <code>break</code> and <code>continue</code></li>
+</ul></li>
+</ul>
+<p><a id="deterministic-asset-pricing"></a></p>
+<section id="net-present-values-and-asset-pricing" class="level2">
+<h2 class="anchored" data-anchor-id="net-present-values-and-asset-pricing">Net Present Values and Asset Pricing</h2>
+<p>In this lecture, we’ll introduce two related topics from economics:</p>
+<ul>
+<li>Net present valuations<br>
+</li>
+<li>Asset pricing</li>
+</ul>
+<p>These topics will motivate some of the programming we do in this course.</p>
+<p>In economics and finance, “assets” provide a stream of payoffs.</p>
+<p>These “assets” can be concrete or abstract: a stock pays dividends over time, a bond pays interest, an apple tree provides apples, a job pays wages, and an education provides possible jobs (which, in turn, pay wages).</p>
+<p>When deciding the price to pay for an asset or how to choose between different alternatives, we need to take into account that most people would prefer to receive 1 today vs.&nbsp;1 next year.</p>
+<p>This reflection on consumer preferences leads to the notion of a discount rate. If you are indifferent between receiving 1.00 today and 1.10 next year, then the discount rate over the next year is $ r = 0.10 $.</p>
+<p>If we assume that an individuals preferences are consistent over time, then we can apply that same discount rate to valuing assets further into the future.</p>
+<p>For example, we would expect that the consumer would be indifferent between consuming 1.00 today and $ (1+r)(1+r) = 1.21 $ dollars two years from now (i.e.&nbsp;discount twice).</p>
+<p>Inverting this formula, 1 delivered two years from now is equivalent to $ $ today.</p>
+</section>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<p>See exercise 1 in the <a href="#ex2-3">exercise list</a>.</p>
+<p><a id="npv"></a></p>
+<section id="net-present-value" class="level3">
+<h3 class="anchored" data-anchor-id="net-present-value">Net Present Value</h3>
+<p>If an asset pays a stream of payoffs over multiple time periods, then we can use a discount rate to calculate the value to the consumer of a entire sequence of payoffs.</p>
+<p>Most generally, we enumerate each discrete time period (e.g.&nbsp;year, month, day) by the index $ t $ where today is $ t=0 $ and the asset lives for $ T $ periods.</p>
+<p>List the payoff at each time period as $ y_t $, which we will assume, for now, is known in advance.</p>
+<p>Then if the discount factor is $ r $, the consumer “values” the payoff $ y_t $ delivered at time $ t $ as $ y_t $ where we note that if $ t=0 <span class="math inline">\(, the value is just the current payoff\)</span> y_0 $.</p>
+<p>Using this logic, we can write an expression for the value of the entire sequence of payoffs with a sum.</p>
+<p><a id="equation-eq-npv"></a> <span class="math display">\[
+P_0 = \sum_{t=0}^T \left(\frac{1}{1 + r}\right)^t y_t \tag{1}
+\]</span></p>
+<p>If $ y_t $ is a constant, then we can compute this sum with a simple formula!</p>
+<p>Below, we present some useful formulas that come from infinite series that we will use to get our net present value formula.</p>
+<p>For any constant $ 0 &lt; &lt; 1 $ and integer value $ &gt; 0 $,</p>
+<p><a id="equation-eq-infinite-sums"></a> <span class="math display">\[
+\begin{aligned}
+\sum_{t=0}^{\infty} \beta^t &amp; = \frac{1}{1-\beta}\\
+\sum_{t=0}^{\tau} \beta^t &amp;= \frac{1- \beta^{\tau+1}}{1-\beta}\\
+\sum_{t=\tau}^{\infty} \beta^t &amp;=  \frac{\beta^{\tau}}{1-\beta}
+\end{aligned} \tag{2}
+\]</span></p>
+<p>In the case of an asset which pays one dollar until time $ T $, we can use these formulas, taking $ = $ and $ T = $, to find</p>
+<p><span class="math display">\[
+\begin{aligned}
+P_0 &amp;= \sum_{t=0}^T \left(\frac{1}{1 + r}\right)^t = \frac{1- (\frac{1}{1+r})^{\tau+1}}{1-\frac{1}{1+r}}\\
+&amp;= \frac{1 + r}{r} - \frac{1}{r}\left(\frac{1}{1+r} \right)^\tau
+\end{aligned}
+\]</span></p>
+<p>Note that we can also consider an asset that lives and pays forever if $ T= $, and from <a href="#equation-eq-infinite-sums">(2)</a>, the value of an asset which pays 1 forever is $ $.</p>
+</section>
+</section>
+<section id="conditional-statements-and-blocks" class="level2">
+<h2 class="anchored" data-anchor-id="conditional-statements-and-blocks">Conditional Statements and Blocks</h2>
+<p>Sometimes, we will only want to execute some piece of code if a certain condition is met.</p>
+<p>These conditions can be anything.</p>
+<p>For example, we might add to total sales if the transaction value is positive, but add to total returns if the value is negative.</p>
+<p>Or, we might want to add up all incurred costs, only if the transaction happened before a certain date.</p>
+<p>We use <em>conditionals</em> to run particular pieces of code when certain criterion are met.</p>
+<p>Conditionals are closely tied to booleans, so if you don’t remember what those are, go back to the <a href="https://datascience.quantecon.org/basics.html">basics</a> lecture for a refresher.</p>
+<p>The basic syntax for conditionals is</p>
+<div id="e4632844" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>if condition:
+    # code to run when condition is True
+else:
+    # code to run if no conditions above are True</code></pre>
+</div>
+<p>Note that immediately following the condition, there is a colon <em>and</em> that the next line begins with blank spaces.</p>
+<p>Using 4 spaces is a <em>very strong</em> convention, so that is what we do — we recommend that you do the same.</p>
+<p>Also note that the <code>else</code> clause is optional.</p>
+<p>Let’s see some simple examples.</p>
+<div id="0a304cc0" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>if True:
+    print("This is where `True` code is run")</code></pre>
+</div>
+<p>Alternatively, you could have a test which returns a booleans</p>
+<div id="4709254e" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>if 1 &lt; 2:
+     print("This is where `True` code is run")</code></pre>
+</div>
+<p>This example is equivalent to just typing the print statement, but the example below isn’t…</p>
+<div id="5dc85417" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>if False:
+    print("This is where `True` code is run")</code></pre>
+</div>
+<p>Or</p>
+<div id="c13edca4" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>if 1 &gt; 2:
+     print("This is where `True` code is run")</code></pre>
+</div>
+<p>Notice that when you run the cells above nothing is printed.</p>
+<p>That is because the condition for the <code>if</code> statement was not true, so the code inside the indented block was never run.</p>
+<p>This also allows us to demonstrate the role of indentation in determining the “block” of code.</p>
+<div id="de8a92d3" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>val = False
+
+if val is True: # check an expression
+    print("This is where `True` code is run")
+    print("More code in the if block")
+print("Code runs after 'if' block, regardless of val")</code></pre>
+</div>
+</section>
+<section id="exercise-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1">Exercise</h2>
+<p>See exercise 2 in the <a href="#ex2-3">exercise list</a>.</p>
+<p>The next example shows us how <code>else</code> works.</p>
+<div id="4d209c35" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>val = (2 == 4)  # returns False
+if val is True:
+    print("This is where `True` code is run")
+else:
+    print("This is where `False` code is run")
+    print("More else code")
+print("Code runs after 'if' block, regardless of val")</code></pre>
+</div>
+<p>The <code>if False: ...</code> part of this example is the same as the example before, but now, we added an <code>else:</code> clause.</p>
+<p>In this case, because the conditional for the <code>if</code> statement was not <code>True</code>, the if code block was not executed, but the <code>else</code> block was.</p>
+<p>Finally, the <code>Condition is True</code> is assumed in the <code>if</code> statement, and is often left out. For example, the following are identical</p>
+<div id="bda914e1" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>if (1 &lt; 2) is True:
+    print("1 &lt; 2")
+
+if 1 &lt; 2:
+    print("1 &lt; 2")</code></pre>
+</div>
+</section>
+<section id="exercise-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2">Exercise</h2>
+<p>See exercise 3 in the <a href="#ex2-3">exercise list</a>.</p>
+</section>
+<section id="exercise-3" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3">Exercise</h2>
+<p>See exercise 4 in the <a href="#ex2-3">exercise list</a>.</p>
+<section id="elif-clauses" class="level3">
+<h3 class="anchored" data-anchor-id="elif-clauses"><code>elif</code> clauses</h3>
+<p>Sometimes, you have more than one condition you want to check.</p>
+<p>For example, you might want to run a different set of code based on which quarter a particular transaction took place in.</p>
+<p>In this case you could check whether the date is in Q1, or in Q2, or in Q3, or if not any of these it must be in Q4.</p>
+<p>The way to express this type of conditional is to use one or more <code>elif</code> clause in addition to the <code>if</code> and the <code>else</code>.</p>
+<p>The syntax is</p>
+<div id="6ad1aa95" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>if condition1:
+    # code to run when condition1 is True
+elif condition2:
+    # code to run when condition2 is True
+elif condition3:
+    # code to run when condition3 is True
+else:
+    # code to run when none of the above are true</code></pre>
+</div>
+<p>You can include as many <code>elif</code> clauses as you want.</p>
+<p>As before, the <code>else</code> part is optional.</p>
+<p>Here’s how we might express the quarter example referred to above.</p>
+<div id="ce4adbde" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>import datetime
+halloween = datetime.date(2017, 10, 31)
+
+if halloween.month &gt; 9:
+    print("Halloween is in Q4")
+elif halloween.month &gt; 6:
+    print("Halloween is in Q3")
+elif halloween.month &gt; 3:
+    print("Halloween is in Q2")
+else:
+    print("Halloween is in Q1")</code></pre>
+</div>
+<p>Note that when there are multiple <code>if</code> or <code>elif</code> conditions, only the code corresponding to the <strong>first</strong> true clause is run.</p>
+<p>We saw this in action above.</p>
+<p>We know that when <code>halloween.month &gt; 9</code> is true, then <code>halloween.month &gt; 6</code> and <code>halloween.month &gt; 3</code> must also be true, but only the code block associated with <code>halloween.month &gt; 9</code> was printed.</p>
+</section>
+</section>
+<section id="iteration" class="level2">
+<h2 class="anchored" data-anchor-id="iteration">Iteration</h2>
+<p>When doing computations or analyzing data, we often need to repeat certain operations a finite number of times or until some condition is met.</p>
+<p>Examples include processing all data files in a directory (folder), aggregating revenues and costs for every period in a year, or computing the net present value of certain assets. (In fact, later in this section, we will verify the equations that we wrote down above.)</p>
+<p>These are all examples of a programming concept called iteration.</p>
+<p>We feel the concept is best understood through example, so we will present a contrived example and then discuss the details behind doing iteration in Python.</p>
+<section id="a-contrived-example" class="level3">
+<h3 class="anchored" data-anchor-id="a-contrived-example">A Contrived Example</h3>
+<p>Suppose we wanted to print out the first 10 integers and their squares.</p>
+<p>We <em>could</em> do something like this.</p>
+<div id="f7e995f5" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>print(f"1**2 = {1**2}")
+print(f"2**2 = {2**2}")
+print(f"3**2 = {3**2}")
+print(f"4**2 = {4**2}")
+# .. and so on until 10</code></pre>
+</div>
+<p>As you can see, the code above is repetitive.</p>
+<p>For each integer, the code is exactly the same except for the two places where the “current” integer appears.</p>
+<p>Suppose that I asked you to write the same print statement for an int stored in a variable named <code>i</code>.</p>
+<p>You might write the following code:</p>
+<div id="828648f8" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>print(f"{i}**2 = {i**2}")</code></pre>
+</div>
+<p>This more general version of the operation suggests a strategy for achieving our goal with less repetition: have a variable <code>i</code> take on the values 1 through 10 (Quiz: How can we use <code>range</code> to create the numbers 1 to 10?) and run the line of code above for each new value of <code>i</code>.</p>
+<p>This can be accomplished with a <code>for</code> loop!</p>
+<div id="9243ad64" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>for i in range(1, 11):
+     print(f"{i}**2 = {i**2}")</code></pre>
+</div>
+<p>Whoa, what just happened?</p>
+<p>The integer <code>i</code> took on the values in <code>range(1, 11)</code> one by one and for each new value it did the operations in the indented block (here just one line that called the <code>print</code> function).</p>
+</section>
+<section id="for-loops" class="level3">
+<h3 class="anchored" data-anchor-id="for-loops"><code>for</code> Loops</h3>
+<p>The general structure of a standard <code>for</code> loop is as follows.</p>
+<div id="5c856ebf" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>for item in iterable:
+   # operation 1 with item
+   # operation 2 with item
+   # ...
+   # operation N with item</code></pre>
+</div>
+<p>where <code>iterable</code> is anything capable of producing one item at a time (see <a href="https://docs.python.org/3/glossary.html#term-iterable">here</a> for official definition from the Python team).</p>
+<p>We’ve actually already seen some of the most common iterables!</p>
+<p>Lists, tuples, dicts, and range/zip/enumerate objects are all iterables.</p>
+<p>Note that we can have as many operations as we want inside the indented block.</p>
+<p>We will refer to the indented block as the “body” of the loop.</p>
+<p>When the for loop is executed, <code>item</code> will take on one value from <code>iterable</code> at a time and execute the loop body for each value.</p>
+<p><a id="human-capital-application"></a></p>
+</section>
+<section id="exercise-4" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4">Exercise</h3>
+<p>See exercise 5 in the <a href="#ex2-3">exercise list</a>.</p>
+<p>When iterating, each <code>item</code> in <code>iterable</code> might actually contain more than one value.</p>
+<p>Recall that tuples (and lists) can be unpacked directly into variables.</p>
+<div id="52ef4804" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>tup = (4, "test")
+i, x = tup
+print(f"i = {i}, x = {x}, tup = {tup}")</code></pre>
+</div>
+<p>Also, recall that the value of a <code>enumerate(iterable)</code> is a tuple of the form <code>(i, x)</code> where <code>iterable[i] == x</code>.</p>
+<p>When we use <code>enumerate</code> in a for loop, we can “unpack” both values at the same time as follows:</p>
+<div id="426f3798" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code># revenue by quarter
+company_revenue = [5.12, 5.20, 5.50, 6.50]
+
+for index, value in enumerate(company_revenue):
+    print(f"quarter {index} revenue is ${value} million")</code></pre>
+</div>
+<p>Similarly, the index can be used to access another vector.</p>
+<div id="8bad453d" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>cities = ["Phoenix", "Austin", "San Diego", "New York"]
+states = ["Arizona", "Texas", "California", "New York"]
+for index, city in enumerate(cities):
+    state = states[index]
+    print(f"{city} is in {state}")</code></pre>
+</div>
+</section>
+<section id="exercise-5" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-5">Exercise</h3>
+<p>See exercise 6 in the <a href="#ex2-3">exercise list</a>.</p>
+</section>
+<section id="while-loops" class="level3">
+<h3 class="anchored" data-anchor-id="while-loops"><code>while</code> Loops</h3>
+<p>A related but slightly different form of iteration is to repeat something until some condition is met.</p>
+<p>This is typically achieved using a <code>while</code> loop.</p>
+<p>The structure of a while loop is</p>
+<div id="08893242" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>while True_condition:
+    # repeat these steps</code></pre>
+</div>
+<p>where <code>True_condition</code> is some conditional statement that should evaluate to <code>True</code> when iterations should continue and <code>False</code> when Python should stop iterating.</p>
+<p>For example, suppose we wanted to know the smallest <code>N</code> such that $ _{i=0}^N i &gt; 1000 $.</p>
+<p>We figure this out using a while loop as follows.</p>
+<div id="2994e78c" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>total = 0
+i = 0
+while total &lt;= 1000:
+    i = i + 1
+    total = total + i
+
+print("The answer is", i)</code></pre>
+</div>
+<p>Let’s check our work.</p>
+<div id="24a40bf9" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code># Should be just less than 1000 because range(45) goes from 0 to 44
+sum(range(45))</code></pre>
+</div>
+<div id="5f701e9f" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code># should be between 990 + 45 = 1035
+sum(range(46))</code></pre>
+</div>
+<p>A warning: one common programming error with while loops is to forget to set the variable you use in the condition prior to executing. For example, take the following code which correctly sets a counter</p>
+<div id="f12aa0bf" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>i = 0</code></pre>
+</div>
+<p>And then executes a while loop</p>
+<div id="ef1cbc64" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>while i &lt; 3:
+    print(i)
+    i = i + 1
+print("done")</code></pre>
+</div>
+<p>No problems. But if you were to execute the above cell again, or another cell, the <code>i=3</code> remains, and code is never executed (since <code>i &lt; 3</code> begins as False).</p>
+<div id="55ac2455" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>while i &lt; 3:
+    print(i)
+    i = i + 1
+print("done")</code></pre>
+</div>
+</section>
+<section id="exercise-6" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-6">Exercise</h3>
+<p>See exercise 7 in the <a href="#ex2-3">exercise list</a>.</p>
+</section>
+<section id="break-and-continue" class="level3">
+<h3 class="anchored" data-anchor-id="break-and-continue"><code>break</code> and <code>continue</code></h3>
+<section id="break-out-of-a-loop" class="level4">
+<h4 class="anchored" data-anchor-id="break-out-of-a-loop"><code>break</code> Out of a Loop</h4>
+<p>Sometimes we want to stop a loop early if some condition is met.</p>
+<p>Let’s revisit the example of finding the smallest <code>N</code> such that $ _{i=0}^N i &gt; 1000 $.</p>
+<p>Clearly <code>N</code> must be less than 1000, so we know we will find the answer if we start with a <code>for</code> loop over all items in <code>range(1001)</code>.</p>
+<p>Then, we can keep a running total as we proceed and tell Python to stop iterating through our range once total goes above 1000.</p>
+<div id="ced64ac8" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>total = 0
+for i in range(1001):
+    total = total + i
+    if total &gt; 1000:
+        break
+
+print("The answer is", i)</code></pre>
+</div>
+</section>
+<section id="exercise-7" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-7">Exercise</h4>
+<p>See exercise 8 in the <a href="#ex2-3">exercise list</a>.</p>
+</section>
+<section id="continue-to-the-next-iteration" class="level4">
+<h4 class="anchored" data-anchor-id="continue-to-the-next-iteration"><code>continue</code> to the Next Iteration</h4>
+<p>Sometimes we might want to stop the <em>body of a loop</em> early if a condition is met.</p>
+<p>To do this we can use the <code>continue</code> keyword.</p>
+<p>The basic syntax for doing this is:</p>
+<div id="e3eb3577" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>for item in iterable:
+    # always do these operations
+    if condition:
+        continue
+
+    # only do these operations if condition is False</code></pre>
+</div>
+<p>Inside the loop body, Python will stop that loop iteration of the loop and continue directly to the next iteration when it encounters the <code>continue</code> statement.</p>
+<p>For example, suppose I ask you to loop over the numbers 1 to 10 and print out the message “{i} An odd number!” whenever the number <code>i</code> is odd, and do nothing otherwise.</p>
+<p>You can use continue to do this as follows:</p>
+<div id="38cccbe9" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>for i in range(1, 11):
+    if i % 2 == 0:  # an even number... This is modulus division
+        continue
+
+    print(i, "is an odd number!")</code></pre>
+</div>
+</section>
+<section id="exercise-8" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-8">Exercise</h4>
+<p>See exercise 9 in the <a href="#ex2-3">exercise list</a>.</p>
+</section>
+</section>
+</section>
+<section id="comprehension" class="level2">
+<h2 class="anchored" data-anchor-id="comprehension">Comprehension</h2>
+<p>Often, we will want to perform a very simple operation for every element of some iterable and create a new iterable with these values.</p>
+<p>This could be done by writing a for loop and saving each value, but often using what is called a <em>comprehension</em> is more readable.</p>
+<p>Like many Python concepts, a comprehension is easiest to understand through example.</p>
+<p>Imagine that we have a list <code>x</code> with a list of numbers. We would like to create a list <code>x2</code> which has the squared values of x.</p>
+<div id="3a21ba45" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>x = list(range(4))
+
+# Create squared values with a loop
+x2_loop = []
+for x_val in x:
+    x2_loop.append(x_val**2)
+
+# Create squared values with a comprehension
+x2_comp = [x_val**2 for x_val in x]
+
+print(x2_loop)
+print(x2_comp)</code></pre>
+</div>
+<p>Notice that much of the same text appears when we do the operation in the loop and when we do the operation with the comprehension.</p>
+<ul>
+<li>We need to specify what we are iterating over – in both cases, this is <code>for x_val in x</code>.<br>
+</li>
+<li>We need to square each element <code>x_val**2</code>.<br>
+</li>
+<li>It needs to be stored somewhere – in <code>x2_loop</code>, this is done by appending each element to a list, and in <code>x2_comp</code>, this is done automatically because the operation is enclosed in a list.</li>
+</ul>
+<p>We can do comprehension with many different types of iterables, so we demonstrate a few more below.</p>
+<div id="d6b73e5f" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code># Create a dictionary from lists
+tickers = ["AAPL", "GOOGL", "TVIX"]
+prices = [175.96, 1047.43, 8.38]
+d = {key: value for key, value in zip(tickers, prices)}
+d</code></pre>
+</div>
+<div id="a3bde779" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code># Create a list from a dictionary
+d = {"AMZN": "Seattle", "TVIX": "Zurich", "AAPL": "Cupertino"}
+
+hq_cities = [d[ticker] for ticker in d.keys()]
+hq_cities</code></pre>
+</div>
+<div id="2473aee5" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>import math
+
+# List from list
+x = range(10)
+
+sin_x = [math.sin(x_val) for x_val in x]
+sin_x</code></pre>
+</div>
+</section>
+<section id="exercise-9" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-9">Exercise</h2>
+<p>See exercise 10 in the <a href="#ex2-3">exercise list</a>.</p>
+<p>Finally, we can use this approach to build complicated nested dictionaries.</p>
+<div id="b91dc282" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>gdp_data = [9.607, 10.48, 11.06]
+years = [2013, 2014, 2015]
+exports = [ {"manufacturing": 2.4, "agriculture": 1.5, "services": 0.5},
+            {"manufacturing": 2.5, "agriculture": 1.4, "services": 0.9},
+            {"manufacturing": 2.7, "agriculture": 1.4, "services": 1.5}]
+data = zip(years, gdp_data,exports)
+data_dict = {year : {"gdp" : gdp, "exports": exports} for year, gdp, exports in data}
+print(data_dict)
+
+# total exports by year
+[data_dict[year]["exports"]["services"] for year in data_dict.keys()]</code></pre>
+</div>
+<p><a id="ex2-3"></a></p>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<section id="exercise-1-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1-1">Exercise 1</h3>
+<p>Government bonds are often issued as <em>zero-coupon bonds</em> meaning that they make no payments throughout the entire time that they are held, but, rather make a single payment at the time of maturity.</p>
+<p>How much should you be willing to pay for a zero-coupon bond that paid 100 in 10 years with an interest rate of 5%?</p>
+<div id="b6527c9e" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code># your code here</code></pre>
+</div>
+<p>(<a href="#dir2-3-1">back to text</a>)</p>
+</section>
+<section id="exercise-2-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2-1">Exercise 2</h3>
+<p>Run the following two variations on the code with only a single change in the indentation.</p>
+<p>After, modify the <code>x</code> to print <code>3</code> and then <code>2, 3</code> instead.</p>
+<div id="e1dc89a1" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>x = 1
+
+if x &gt; 0:
+    print("1")
+    print("2")
+print("3")</code></pre>
+</div>
+<div id="4d899fb0" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>x = 1
+
+if x &gt; 0:
+    print("1")
+print("2") # changed the indentation
+print("3")</code></pre>
+</div>
+<p>(<a href="#dir2-3-2">back to text</a>)</p>
+</section>
+<section id="exercise-3-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3-1">Exercise 3</h3>
+<p>Using the code cell below as a start, print <code>"Good afternoon"</code> if the <code>current_time</code> is past noon.</p>
+<p>Otherwise, do nothing.</p>
+<p>Write some conditional based on <code>current_time.hour</code>.</p>
+<div id="d18eec4f" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>import datetime
+current_time = datetime.datetime.now()
+
+## your code here</code></pre>
+</div>
+<p>more text after</p>
+<p>(<a href="#dir2-3-3">back to text</a>)</p>
+</section>
+<section id="exercise-4-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4-1">Exercise 4</h3>
+<p>In this example, you will generate a random number between 0 and 1 and then display “x &gt; 0.5” or “x &lt; 0.5” depending on the value of the number.</p>
+<p>This also introduces a new package <code>numpy.random</code> for drawing random numbers (more in the <a href="https://datascience.quantecon.org/../scientific/randomness.html">randomness</a> lecture).</p>
+<div id="d220b74e" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>import numpy as np
+x = np.random.random()
+print(f"x = {x}")
+
+## your code here</code></pre>
+</div>
+<p>(<a href="#dir2-3-4">back to text</a>)</p>
+</section>
+<section id="exercise-5-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-5-1">Exercise 5</h3>
+<p>In economics, when an individual has some knowledge, skills, or education which provides them with a source of future income, we call it <a href="https://en.wikipedia.org/wiki/Human_capital">human capital</a>.</p>
+<p>When a student graduating from high school is considering whether to continue with post-secondary education, they may consider that it gives them higher paying jobs in the future, but requires that they don’t begin working until after graduation.</p>
+<p>Consider the simplified example where a student has perfectly forecastable employment and is given two choices:</p>
+<ol type="1">
+<li>Begin working immediately and make 40,000 a year until they retire 40 years later.<br>
+</li>
+<li>Pay 5,000 a year for the next 4 years to attend university, then get a job paying 50,000 a year until they retire 40 years after making the college attendance decision.</li>
+</ol>
+<p>Should the student enroll in school if the discount rate is r = 0.05?</p>
+<div id="2f7e732e" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code># Discount rate
+r = 0.05
+
+# High school wage
+w_hs = 40_000
+
+# College wage and cost of college
+c_college = 5_000
+w_college = 50_000
+
+# Compute npv of being a hs worker
+
+# Compute npv of attending college
+
+# Compute npv of being a college worker
+
+# Is npv_collegeworker - npv_collegecost &gt; npv_hsworker</code></pre>
+</div>
+<p>(<a href="#dir2-3-5">back to text</a>)</p>
+</section>
+<section id="exercise-6-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-6-1">Exercise 6</h3>
+<p>Instead of the above, write a for loop that uses the lists of cities and states below to print the same “{city} is in {state}” using a <code>zip</code> instead of an <code>enumerate</code>.</p>
+<p>Try using <code>zip</code></p>
+<div id="cc924ee3" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>cities = ["Phoenix", "Austin", "San Diego", "New York"]
+states = ["Arizona", "Texas", "California", "New York"]
+
+# Your code here</code></pre>
+</div>
+<p>(<a href="#dir2-3-6">back to text</a>)</p>
+</section>
+<section id="exercise-7-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-7-1">Exercise 7</h3>
+<p>Companies often invest in training their employees to raise their productivity. Economists sometimes wonder why companies spend this money when this incentivizes other companies to hire their employees away with higher salaries since employees gain human capital from training?</p>
+<p>Let’s say that it costs a company 25,000 dollars to teach their employees Python, but it raises their output by 2,500 per month. How many months would an employee need to stay for the company to find it profitable to pay for their employees to learn Python if their discount rate is r = 0.01?</p>
+<div id="e3bfef40" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code># Define cost of teaching python
+cost = 25_000
+r = 0.01
+
+# Per month value
+added_value = 2500
+
+n_months = 0
+total_npv = 0.0
+
+# Put condition below here
+while False: # (replace False with your condition here)
+    n_months = n_months + 1  # Increment how many months they've worked
+
+    # Increase total_npv</code></pre>
+</div>
+<p>(<a href="#dir2-3-7">back to text</a>)</p>
+</section>
+<section id="exercise-8-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-8-1">Exercise 8</h3>
+<p>Try to find the index of the first value in <code>x</code> that is greater than 0.999 using a for loop and <code>break</code>.</p>
+<p>try iterating over <code>range(len(x))</code>.</p>
+<div id="0fa7ba5d" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>x = np.random.rand(10_000)
+# Your code here</code></pre>
+</div>
+<p>(<a href="#dir2-3-8">back to text</a>)</p>
+</section>
+<section id="exercise-9-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-9-1">Exercise 9</h3>
+<p>Write a for loop that adds up all values in <code>x</code> that are greater than or equal to 0.5.</p>
+<p>Use the <code>continue</code> word to end the body of the loop early for all values of <code>x</code> that are less than 0.5.</p>
+<p>Try starting your loop with <code>for value in x:</code> instead of iterating over the indices of <code>x</code>.</p>
+<div id="8b698494" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>x = np.random.rand(10_000)
+# Your code here</code></pre>
+</div>
+<p>(<a href="#dir2-3-9">back to text</a>)</p>
+</section>
+<section id="exercise-10" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-10">Exercise 10</h3>
+<p>Returning to our previous example: print “{city} is in {state}” for each combination using a <code>zip</code> and a comprehension.</p>
+<p>Try using <code>zip</code></p>
+<div id="13a24689" class="cell" data-hide-output="false">
+<pre class="python3 cell-code"><code>cities = ["Phoenix", "Austin", "San Diego", "New York"]
+states = ["Arizona", "Texas", "California", "New York"]
+
+# your code here</code></pre>
+</div>
+<p>(<a href="#dir2-3-10">back to text</a>)</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

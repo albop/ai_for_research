@@ -8,7 +8,7 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.487">
+  <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="Pablo Winant">
   <meta name="dcterms.date" content="2023-11-15">
@@ -612,35 +612,35 @@ Or words.</li>
 It is enough for some basic analysis:</li>
 </ul>
 <div class="fragment" data-fragment-index="4">
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> nltk.probability <span class="im">import</span> FreqDist</span>
-<span id="cb1-2"><a href="#cb1-2"></a>fdist <span class="op">=</span> FreqDist(words)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="bu">print</span>(fdist.most_common(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>[('It', 1), ("'s", 1)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">from</span> nltk.probability <span class="im">import</span> FreqDist</span>
+<span id="cb1-2"><a></a>fdist <span class="op">=</span> FreqDist(words)</span>
+<span id="cb1-3"><a></a><span class="bu">print</span>(fdist.most_common(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a></a>[('It', 1), ("'s", 1)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="r-stack">
 <div class="fragment current-visible">
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> sent_tokenize</span>
-<span id="cb3-2"><a href="#cb3-2"></a>txt <span class="op">=</span> <span class="st">"""Animal Farm is a short novel by George Orwell. It was</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="st">written during World War II and published in 1945. It is about </span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="st">a group of farm animals who rebel against their farmer. They </span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="st">hope to create a place where the animals can be equal, free,</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="st"> and happy."""</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>sentences  <span class="op">=</span> sent_tokenize(txt)</span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="bu">print</span>(sentences)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> sent_tokenize</span>
+<span id="cb3-2"><a></a>txt <span class="op">=</span> <span class="st">"""Animal Farm is a short novel by George Orwell. It was</span></span>
+<span id="cb3-3"><a></a><span class="st">written during World War II and published in 1945. It is about </span></span>
+<span id="cb3-4"><a></a><span class="st">a group of farm animals who rebel against their farmer. They </span></span>
+<span id="cb3-5"><a></a><span class="st">hope to create a place where the animals can be equal, free,</span></span>
+<span id="cb3-6"><a></a><span class="st"> and happy."""</span></span>
+<span id="cb3-7"><a></a>sentences  <span class="op">=</span> sent_tokenize(txt)</span>
+<span id="cb3-8"><a></a><span class="bu">print</span>(sentences)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment current-visible">
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>['Animal Farm is a short novel by George Orwell.',</span>
-<span id="cb4-2"><a href="#cb4-2"></a> 'It was\nwritten during World War II and published in 1945.', </span>
-<span id="cb4-3"><a href="#cb4-3"></a> 'It is about \na group of farm animals who rebel against their farmer.', </span>
-<span id="cb4-4"><a href="#cb4-4"></a> 'They \nhope to create a place where the animals can be equal, free,\n and happy.']</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a></a>['Animal Farm is a short novel by George Orwell.',</span>
+<span id="cb4-2"><a></a> 'It was\nwritten during World War II and published in 1945.', </span>
+<span id="cb4-3"><a></a> 'It is about \na group of farm animals who rebel against their farmer.', </span>
+<span id="cb4-4"><a></a> 'They \nhope to create a place where the animals can be equal, free,\n and happy.']</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment current-visible">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize</span>
-<span id="cb5-2"><a href="#cb5-2"></a>txt <span class="op">=</span> <span class="st">"It's a beautiful thing, the destruction of words."</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>words  <span class="op">=</span> word_tokenize(txt)</span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="bu">print</span>(words)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>['It', "'s", 'a', 'beautiful', 'thing', ',', 'the', 'destruction', 'of', 'words', '.']</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize</span>
+<span id="cb5-2"><a></a>txt <span class="op">=</span> <span class="st">"It's a beautiful thing, the destruction of words."</span></span>
+<span id="cb5-3"><a></a>words  <span class="op">=</span> word_tokenize(txt)</span>
+<span id="cb5-4"><a></a><span class="bu">print</span>(words)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a></a>['It', "'s", 'a', 'beautiful', 'thing', ',', 'the', 'destruction', 'of', 'words', '.']</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -664,20 +664,20 @@ This is useful to refine interpretation of some words
 </ul>
 </div><div class="column">
 <div class="fragment">
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize</span>
-<span id="cb7-2"><a href="#cb7-2"></a>tagged <span class="op">=</span> nltk.pos_tag(words)</span>
-<span id="cb7-3"><a href="#cb7-3"></a>tagged</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>[('It', 'PRP'),</span>
-<span id="cb8-2"><a href="#cb8-2"></a> ("'s", 'VBZ'),</span>
-<span id="cb8-3"><a href="#cb8-3"></a> ('a', 'DT'),</span>
-<span id="cb8-4"><a href="#cb8-4"></a> ('beautiful', 'JJ'),</span>
-<span id="cb8-5"><a href="#cb8-5"></a> ('thing', 'NN'),</span>
-<span id="cb8-6"><a href="#cb8-6"></a> (',', ','),</span>
-<span id="cb8-7"><a href="#cb8-7"></a> ('the', 'DT'),</span>
-<span id="cb8-8"><a href="#cb8-8"></a> ('destruction', 'NN'),</span>
-<span id="cb8-9"><a href="#cb8-9"></a> ('of', 'IN'),</span>
-<span id="cb8-10"><a href="#cb8-10"></a> ('words', 'NNS'),</span>
-<span id="cb8-11"><a href="#cb8-11"></a> ('.', '.')]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize</span>
+<span id="cb7-2"><a></a>tagged <span class="op">=</span> nltk.pos_tag(words)</span>
+<span id="cb7-3"><a></a>tagged</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a></a>[('It', 'PRP'),</span>
+<span id="cb8-2"><a></a> ("'s", 'VBZ'),</span>
+<span id="cb8-3"><a></a> ('a', 'DT'),</span>
+<span id="cb8-4"><a></a> ('beautiful', 'JJ'),</span>
+<span id="cb8-5"><a></a> ('thing', 'NN'),</span>
+<span id="cb8-6"><a></a> (',', ','),</span>
+<span id="cb8-7"><a></a> ('the', 'DT'),</span>
+<span id="cb8-8"><a></a> ('destruction', 'NN'),</span>
+<span id="cb8-9"><a></a> ('of', 'IN'),</span>
+<span id="cb8-10"><a></a> ('words', 'NNS'),</span>
+<span id="cb8-11"><a></a> ('.', '.')]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -698,15 +698,15 @@ We typically remove them from our word list</li>
 </div>
 <div class="col">
 <div class="fragment" data-fragment-index="2">
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> stopwords</span>
-<span id="cb9-2"><a href="#cb9-2"></a>stop_words<span class="op">=</span><span class="bu">set</span>(stopwords.words(<span class="st">"english"</span>))</span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="bu">print</span>(stop_words)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="im">from</span> nltk.corpus <span class="im">import</span> stopwords</span>
+<span id="cb9-2"><a></a>stop_words<span class="op">=</span><span class="bu">set</span>(stopwords.words(<span class="st">"english"</span>))</span>
+<span id="cb9-3"><a></a><span class="bu">print</span>(stop_words)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code>{'their', 'then', 'not', 'ma', 'here', ...}
 </code></pre>
 </div>
 <div class="fragment" data-fragment-index="3">
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>filtered_words <span class="op">=</span> [w <span class="cf">for</span> w <span class="kw">in</span> words <span class="cf">if</span> w <span class="kw">not</span> <span class="kw">in</span> stop_words]</span>
-<span id="cb11-2"><a href="#cb11-2"></a>filtered_words</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a>filtered_words <span class="op">=</span> [w <span class="cf">for</span> w <span class="kw">in</span> words <span class="cf">if</span> w <span class="kw">not</span> <span class="kw">in</span> stop_words]</span>
+<span id="cb11-2"><a></a>filtered_words</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code>['beautiful', 'thing' 'destruction', 'words']</code></pre>
 </div>
 </div>
@@ -731,20 +731,20 @@ Lemmatization: keeps the word base
 </ul>
 </div><div class="column">
 <div class="fragment current-visible">
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">from</span> nltk.stem <span class="im">import</span> PorterStemmer</span>
-<span id="cb13-2"><a href="#cb13-2"></a>ps <span class="op">=</span> PorterStemmer()</span>
-<span id="cb13-3"><a href="#cb13-3"></a></span>
-<span id="cb13-4"><a href="#cb13-4"></a>words <span class="op">=</span>  [<span class="st">"tight"</span>, <span class="st">"tightening"</span>, <span class="st">"tighten"</span>]</span>
-<span id="cb13-5"><a href="#cb13-5"></a>stemmed_words<span class="op">=</span>[ps.stem(w) <span class="cf">for</span> w <span class="kw">in</span> words]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb14-1"><a href="#cb14-1"></a>['tight', 'tighten', 'tighten']</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="im">from</span> nltk.stem <span class="im">import</span> PorterStemmer</span>
+<span id="cb13-2"><a></a>ps <span class="op">=</span> PorterStemmer()</span>
+<span id="cb13-3"><a></a></span>
+<span id="cb13-4"><a></a>words <span class="op">=</span>  [<span class="st">"tight"</span>, <span class="st">"tightening"</span>, <span class="st">"tighten"</span>]</span>
+<span id="cb13-5"><a></a>stemmed_words<span class="op">=</span>[ps.stem(w) <span class="cf">for</span> w <span class="kw">in</span> words]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb14-1"><a></a>['tight', 'tighten', 'tighten']</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment current-visible">
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">from</span> nltk.stem.wordnet <span class="im">import</span> WordNetLemmatizer</span>
-<span id="cb15-2"><a href="#cb15-2"></a>lem <span class="op">=</span> WordNetLemmatizer()</span>
-<span id="cb15-3"><a href="#cb15-3"></a></span>
-<span id="cb15-4"><a href="#cb15-4"></a>words <span class="op">=</span>  [<span class="st">"flying"</span>, <span class="st">"flyers"</span>, <span class="st">"fly"</span>]</span>
-<span id="cb15-5"><a href="#cb15-5"></a>stemmed_words<span class="op">=</span>[ps.stem(w) <span class="cf">for</span> w <span class="kw">in</span> words]</span>
-<span id="cb15-6"><a href="#cb15-6"></a>lemmatized_words<span class="op">=</span>[lem.lemmatize(w) <span class="cf">for</span> w <span class="kw">in</span> words]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="im">from</span> nltk.stem.wordnet <span class="im">import</span> WordNetLemmatizer</span>
+<span id="cb15-2"><a></a>lem <span class="op">=</span> WordNetLemmatizer()</span>
+<span id="cb15-3"><a></a></span>
+<span id="cb15-4"><a></a>words <span class="op">=</span>  [<span class="st">"flying"</span>, <span class="st">"flyers"</span>, <span class="st">"fly"</span>]</span>
+<span id="cb15-5"><a></a>stemmed_words<span class="op">=</span>[ps.stem(w) <span class="cf">for</span> w <span class="kw">in</span> words]</span>
+<span id="cb15-6"><a></a>lemmatized_words<span class="op">=</span>[lem.lemmatize(w) <span class="cf">for</span> w <span class="kw">in</span> words]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code># lemmatized
 ['flying', 'flyer', 'fly']
 # stemmed
@@ -946,8 +946,10 @@ Lemmatization: keeps the word base
 <section id="bibliography" class="title-slide slide level1 smaller scrollable">
 <h1>Bibliography</h1>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
+</div>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-shapiro2022" class="csl-entry" role="listitem">
