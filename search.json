@@ -463,67 +463,56 @@
   {
     "objectID": "tutorials/session_2/sentiment_analysis.html",
     "href": "tutorials/session_2/sentiment_analysis.html",
-    "title": "Sentiment analysis",
-    "section": "",
-    "text": "The ultimate goal of this exercise consists performing the same exercise, namely sentiment analysis, using traditional NLP and GPT-3.5.\n\n\n\nWe use the News Sentiment Dataset from Kaggle.\n\ncd tutorials/session_2\n\n/files/tutorials/session_2\n\n\n\npwd\n\n'/files/tutorials/session_2'\n\n\n\nImport Dataset as a pandas dataframe\n\n\nimport pandas\ndf = pandas.read_csv(\"Tweets.csv\")\n\n\ndf\n\n\n\n\n\n\n\n\ntextID\ntext\nselected_text\nsentiment\n\n\n\n\n0\ncb774db0d1\nI`d have responded, if I were going\nI`d have responded, if I were going\nneutral\n\n\n1\n549e992a42\nSooo SAD I will 🦈 miss you here in San Diego!!!\nSooo SAD\nnegative\n\n\n2\n088c60f138\nmy boss is bullying me...\nbullying me\nnegative\n\n\n3\n9642c003ef\nwhat interview! leave me alone\nleave me alone\nnegative\n\n\n4\n358bd9e861\nSons of ****, why couldn`t they put them on t...\nSons of ****,\nnegative\n\n\n...\n...\n...\n...\n...\n\n\n27476\n4eac33d1c0\nwish we could come see u on Denver husband l...\nd lost\nnegative\n\n\n27477\n4f4c4fc327\nI`ve wondered about rake to. The client has ...\n, don`t force\nnegative\n\n\n27478\nf67aae2310\nYay good for both of you. Enjoy the break - y...\nYay good for both of you.\npositive\n\n\n27479\ned167662a5\nBut it was worth it ****.\nBut it was worth it ****.\npositive\n\n\n27480\n6f7127d9d7\nAll this flirting going on - The ATG smiles...\nAll this flirting going on - The ATG smiles. Y...\nneutral\n\n\n\n\n27481 rows × 4 columns\n\n\n\n\ndf.iloc[1200,:]['text']\n\n' hahahah of course  they have such a nasty display picture :`)'\n\n\n\nDescribe Dataset (text and graphs)\nSplit Dataset into training, validation and test set. What is the purpose of the validation set?\n\n\n\n\n\nExtract features from the training dataset. What do you do with non-words / punctuation?\nConvert occurrencies to frequencies. Make another version with tf-idf.\nChoose a classifier to predict the sentiment on the validation set. Compute the confusion matrix.\n\n\n\n\n\nSetup an openai key. Explore openai completion API.\n\n\nimport openai\n\n\n# R\n\n\n# make sure we have the right version\nfrom openai import version\nopenai.version.VERSION\n\n'1.3.5'\n\n\n\napi_key = \"\"\n\n\nDesign a prompt to extract the sentiment from a tweet. Test it on very few tweets from the training dataset. Propose different versions.\nWrite a function which takes in: the prompt template, the tweet text and returns the sentiment as an integer.\n\n\n\n\n\nCompare the various methods on the test set.",
-    "crumbs": [
-      "Tutorials",
-      "Sentiment analysis"
-    ]
-  },
-  {
-    "objectID": "tutorials/session_2/sentiment_analysis.html#ai-for-research-2023",
-    "href": "tutorials/session_2/sentiment_analysis.html#ai-for-research-2023",
-    "title": "Sentiment analysis",
+    "title": "Sentiment Analysis",
     "section": "",
     "text": "The ultimate goal of this exercise consists performing the same exercise, namely sentiment analysis, using traditional NLP and GPT-3.5.",
     "crumbs": [
       "Tutorials",
-      "Sentiment analysis"
+      "Sentiment Analysis"
     ]
   },
   {
     "objectID": "tutorials/session_2/sentiment_analysis.html#the-dataset",
     "href": "tutorials/session_2/sentiment_analysis.html#the-dataset",
-    "title": "Sentiment analysis",
-    "section": "",
-    "text": "We use the News Sentiment Dataset from Kaggle.\n\ncd tutorials/session_2\n\n/files/tutorials/session_2\n\n\n\npwd\n\n'/files/tutorials/session_2'\n\n\n\nImport Dataset as a pandas dataframe\n\n\nimport pandas\ndf = pandas.read_csv(\"Tweets.csv\")\n\n\ndf\n\n\n\n\n\n\n\n\ntextID\ntext\nselected_text\nsentiment\n\n\n\n\n0\ncb774db0d1\nI`d have responded, if I were going\nI`d have responded, if I were going\nneutral\n\n\n1\n549e992a42\nSooo SAD I will 🦈 miss you here in San Diego!!!\nSooo SAD\nnegative\n\n\n2\n088c60f138\nmy boss is bullying me...\nbullying me\nnegative\n\n\n3\n9642c003ef\nwhat interview! leave me alone\nleave me alone\nnegative\n\n\n4\n358bd9e861\nSons of ****, why couldn`t they put them on t...\nSons of ****,\nnegative\n\n\n...\n...\n...\n...\n...\n\n\n27476\n4eac33d1c0\nwish we could come see u on Denver husband l...\nd lost\nnegative\n\n\n27477\n4f4c4fc327\nI`ve wondered about rake to. The client has ...\n, don`t force\nnegative\n\n\n27478\nf67aae2310\nYay good for both of you. Enjoy the break - y...\nYay good for both of you.\npositive\n\n\n27479\ned167662a5\nBut it was worth it ****.\nBut it was worth it ****.\npositive\n\n\n27480\n6f7127d9d7\nAll this flirting going on - The ATG smiles...\nAll this flirting going on - The ATG smiles. Y...\nneutral\n\n\n\n\n27481 rows × 4 columns\n\n\n\n\ndf.iloc[1200,:]['text']\n\n' hahahah of course  they have such a nasty display picture :`)'\n\n\n\nDescribe Dataset (text and graphs)\nSplit Dataset into training, validation and test set. What is the purpose of the validation set?",
+    "title": "Sentiment Analysis",
+    "section": "The Dataset",
+    "text": "The Dataset\nWe use the News Sentiment Dataset from Kaggle.\n\ncd tutorials/session_2\n\n/files/tutorials/session_2\n\n\n\npwd\n\n'/files/tutorials/session_2'\n\n\n\nImport Dataset as a pandas dataframe\n\n\nimport pandas\ndf = pandas.read_csv(\"Tweets.csv\")\n\n\ndf\n\n\n\n\n\n\n\n\ntextID\ntext\nselected_text\nsentiment\n\n\n\n\n0\ncb774db0d1\nI`d have responded, if I were going\nI`d have responded, if I were going\nneutral\n\n\n1\n549e992a42\nSooo SAD I will 🦈 miss you here in San Diego!!!\nSooo SAD\nnegative\n\n\n2\n088c60f138\nmy boss is bullying me...\nbullying me\nnegative\n\n\n3\n9642c003ef\nwhat interview! leave me alone\nleave me alone\nnegative\n\n\n4\n358bd9e861\nSons of ****, why couldn`t they put them on t...\nSons of ****,\nnegative\n\n\n...\n...\n...\n...\n...\n\n\n27476\n4eac33d1c0\nwish we could come see u on Denver husband l...\nd lost\nnegative\n\n\n27477\n4f4c4fc327\nI`ve wondered about rake to. The client has ...\n, don`t force\nnegative\n\n\n27478\nf67aae2310\nYay good for both of you. Enjoy the break - y...\nYay good for both of you.\npositive\n\n\n27479\ned167662a5\nBut it was worth it ****.\nBut it was worth it ****.\npositive\n\n\n27480\n6f7127d9d7\nAll this flirting going on - The ATG smiles...\nAll this flirting going on - The ATG smiles. Y...\nneutral\n\n\n\n\n27481 rows × 4 columns\n\n\n\n\ndf.iloc[1200,:]['text']\n\n' hahahah of course  they have such a nasty display picture :`)'\n\n\n\nDescribe Dataset (text and graphs)\nSplit Dataset into training, validation and test set. What is the purpose of the validation set?",
     "crumbs": [
       "Tutorials",
-      "Sentiment analysis"
+      "Sentiment Analysis"
     ]
   },
   {
     "objectID": "tutorials/session_2/sentiment_analysis.html#text-mining",
     "href": "tutorials/session_2/sentiment_analysis.html#text-mining",
-    "title": "Sentiment analysis",
-    "section": "",
-    "text": "Extract features from the training dataset. What do you do with non-words / punctuation?\nConvert occurrencies to frequencies. Make another version with tf-idf.\nChoose a classifier to predict the sentiment on the validation set. Compute the confusion matrix.",
+    "title": "Sentiment Analysis",
+    "section": "Text Mining",
+    "text": "Text Mining\n\nExtract features from the training dataset. What do you do with non-words / punctuation?\nConvert occurrencies to frequencies. Make another version with tf-idf.\nChoose a classifier to predict the sentiment on the validation set. Compute the confusion matrix.",
     "crumbs": [
       "Tutorials",
-      "Sentiment analysis"
+      "Sentiment Analysis"
     ]
   },
   {
     "objectID": "tutorials/session_2/sentiment_analysis.html#sentiment-analysis-using-gpt-completion",
     "href": "tutorials/session_2/sentiment_analysis.html#sentiment-analysis-using-gpt-completion",
-    "title": "Sentiment analysis",
-    "section": "",
-    "text": "Setup an openai key. Explore openai completion API.\n\n\nimport openai\n\n\n# R\n\n\n# make sure we have the right version\nfrom openai import version\nopenai.version.VERSION\n\n'1.3.5'\n\n\n\napi_key = \"\"\n\n\nDesign a prompt to extract the sentiment from a tweet. Test it on very few tweets from the training dataset. Propose different versions.\nWrite a function which takes in: the prompt template, the tweet text and returns the sentiment as an integer.",
+    "title": "Sentiment Analysis",
+    "section": "Sentiment Analysis using GPT completion",
+    "text": "Sentiment Analysis using GPT completion\n\nSetup an openai key. Explore openai completion API.\n\n\nimport openai\n\n\n# R\n\n\n# make sure we have the right version\nfrom openai import version\nopenai.version.VERSION\n\n'1.3.5'\n\n\n\napi_key = \"\"\n\n\nDesign a prompt to extract the sentiment from a tweet. Test it on very few tweets from the training dataset. Propose different versions.\nWrite a function which takes in: the prompt template, the tweet text and returns the sentiment as an integer.",
     "crumbs": [
       "Tutorials",
-      "Sentiment analysis"
+      "Sentiment Analysis"
     ]
   },
   {
     "objectID": "tutorials/session_2/sentiment_analysis.html#performance-shootout",
     "href": "tutorials/session_2/sentiment_analysis.html#performance-shootout",
-    "title": "Sentiment analysis",
-    "section": "",
-    "text": "Compare the various methods on the test set.",
+    "title": "Sentiment Analysis",
+    "section": "Performance shootout",
+    "text": "Performance shootout\n\nCompare the various methods on the test set.",
     "crumbs": [
       "Tutorials",
-      "Sentiment analysis"
+      "Sentiment Analysis"
     ]
   },
   {

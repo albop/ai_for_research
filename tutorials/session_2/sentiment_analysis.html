@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>AI for Research - Sentiment analysis</title>
+<title>AI for Research - Sentiment Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/session_1/python_syntax.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../../tutorials/session_2/sentiment_analysis.html">Sentiment analysis</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/session_1/python_syntax.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../../tutorials/session_2/sentiment_analysis.html">Sentiment Analysis</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -231,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../tutorials/session_2/sentiment_analysis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Sentiment analysis</span></a>
+ <span class="menu-text">Sentiment Analysis</span></a>
   </div>
 </li>
       </ul>
@@ -269,23 +269,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sentiment-analysis" id="toc-sentiment-analysis" class="nav-link active" data-scroll-target="#sentiment-analysis">Sentiment analysis</a>
-  <ul class="collapse">
-  <li><a href="#ai-for-research-2023" id="toc-ai-for-research-2023" class="nav-link" data-scroll-target="#ai-for-research-2023">AI for research, 2023</a></li>
-  <li><a href="#the-dataset" id="toc-the-dataset" class="nav-link" data-scroll-target="#the-dataset">The Dataset</a></li>
+  <li><a href="#the-dataset" id="toc-the-dataset" class="nav-link active" data-scroll-target="#the-dataset">The Dataset</a></li>
   <li><a href="#text-mining" id="toc-text-mining" class="nav-link" data-scroll-target="#text-mining">Text Mining</a></li>
   <li><a href="#sentiment-analysis-using-gpt-completion" id="toc-sentiment-analysis-using-gpt-completion" class="nav-link" data-scroll-target="#sentiment-analysis-using-gpt-completion">Sentiment Analysis using GPT completion</a></li>
   <li><a href="#performance-shootout" id="toc-performance-shootout" class="nav-link" data-scroll-target="#performance-shootout">Performance shootout</a></li>
-  </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="sentiment_analysis.out.ipynb" download="sentiment_analysis.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/session_1/python_syntax.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../../tutorials/session_2/sentiment_analysis.html">Sentiment analysis</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/session_1/python_syntax.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../../tutorials/session_2/sentiment_analysis.html">Sentiment Analysis</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Sentiment analysis</h1>
+<h1 class="title">Sentiment Analysis</h1>
 </div>
 
 
@@ -302,22 +298,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="sentiment-analysis" class="level1">
-<h1>Sentiment analysis</h1>
-<section id="ai-for-research-2023" class="level2">
-<h2 class="anchored" data-anchor-id="ai-for-research-2023">AI for research, 2023</h2>
 <p>The ultimate goal of this exercise consists performing the same exercise, namely sentiment analysis, using traditional NLP and GPT-3.5.</p>
-</section>
 <section id="the-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="the-dataset">The Dataset</h2>
 <p>We use the <a href="https://www.kaggle.com/datasets/yasserh/twitter-tweets-sentiment-dataset">News Sentiment Dataset</a> from Kaggle.</p>
-<div id="cell-2" class="cell" data-execution_count="2">
+<div id="cell-3" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cd tutorials<span class="op">/</span>session_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>/files/tutorials/session_2</code></pre>
 </div>
 </div>
-<div id="cell-3" class="cell" data-execution_count="3">
+<div id="cell-4" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pwd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>'/files/tutorials/session_2'</code></pre>
@@ -326,11 +317,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><strong>Import Dataset as a pandas dataframe</strong></li>
 </ol>
-<div id="cell-5" class="cell" data-execution_count="4">
+<div id="cell-6" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pandas.read_csv(<span class="st">"Tweets.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="5">
+<div id="cell-7" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
@@ -431,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="12">
+<div id="cell-8" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">1200</span>,:][<span class="st">'text'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>' hahahah of course  they have such a nasty display picture :`)'</code></pre>
@@ -455,13 +446,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><strong>Setup an openai key. Explore openai <em>completion</em> API.</strong></li>
 </ol>
-<div id="cell-21" class="cell" data-execution_count="6">
+<div id="cell-22" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-22" class="cell">
+<div id="cell-23" class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-23" class="cell">
+<div id="cell-24" class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure we have the right version</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> version</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>openai.version.VERSION</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -469,7 +460,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>'1.3.5'</code></pre>
 </div>
 </div>
-<div id="cell-24" class="cell">
+<div id="cell-25" class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>api_key <span class="op">=</span> <span class="st">""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
@@ -484,7 +475,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
