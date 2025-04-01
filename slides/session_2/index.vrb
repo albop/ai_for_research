@@ -1,0 +1,21 @@
+\frametitle{GPT Playground}
+\phantomsection\label{gpt-playground}
+To use GPT-4 profficiently, you have to experiment with the prompt.
+
+\begin{itemize}
+\tightlist
+\item
+  try the \href{https://platform.openai.com/playground}{Playground mode}
+\end{itemize}
+
+It is the same as learning how to do google queries
+
+\begin{itemize}
+\tightlist
+\item
+  altavista: \texttt{+noir\ +film\ -"pinot\ noir"}
+\item
+  nowadays: ???
+\end{itemize}
+
+``Prompting'' is becoming a discipline in itself\ldots{} (or is it?)
