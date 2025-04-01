@@ -2,12 +2,13 @@
 title: AI for Research
 listing:
   id: sample-listings
-  contents: 
-    - session_1
-    - session_2
-    - session_3
-    - session_4
-    - session_5
+  contents:
+    - slides/session_0
+    - slides/session_1
+    - slides/session_2
+    - slides/session_3
+    - slides/session_4
+    - slides/session_5
   sort: "date"
   fields: [date, title]
   type: table
