@@ -1,6 +1,6 @@
 ---
-title: Introduction to Machine Learning (1/2)
-subtitle: AI for Research, ESCP, 2024-2025
+title: 👻 Introduction to Machine Learning (1/2)
+subtitle: AI for Research, ESCP, 2025-2026
 author: Pablo Winant
 format:
   revealjs:

@@ -10,11 +10,11 @@ website:
         - section: Slides
           contents:
           - slides/session_0/index.qmd
+          - slides/session_1_2/index.qmd
+          - slides/session_1_3/index.qmd
           - slides/session_1/index.qmd
           - slides/session_2/index.qmd
           - slides/session_3/index.qmd
-          - slides/session_4/index.qmd
-          - slides/session_5/index.qmd
         - section: Tutorials
           contents:
           - tutorials/session_1/python_syntax.qmd

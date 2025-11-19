@@ -1,6 +1,6 @@
 ---
-title: "…to Large Language Models"
-date: 2024/11/29
+title: "…to Large Language Models 🚧"
+date: 2025/11/26
 subtitle: AI for Research, ESCP, 2024-2025
 author: Pablo Winant
 format:
