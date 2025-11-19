@@ -3,8 +3,12 @@
     "listing": "/index.html",
     "items": [
       "/slides/session_1/index.html",
-      "/slides/session_2/index.html",
-      "/slides/session_3/index.html"
+      "/slides/session_3/index.html",
+      "/slides/session_2/index.html"
     ]
+  },
+  {
+    "listing": "/tutorials/session_2/sentiment_analysis.html",
+    "items": []
   }
 ]

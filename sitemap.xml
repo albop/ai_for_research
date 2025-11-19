@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://albop.github.io/ai_for_research/pushups/pushups_1_correction.html</loc>
+    <lastmod>2025-11-19T06:45:11.564Z</lastmod>
+  </url>
+  <url>
+    <loc>https://albop.github.io/ai_for_research/pushups/pushups_1.html</loc>
+    <lastmod>2025-11-19T06:45:11.564Z</lastmod>
+  </url>
+  <url>
     <loc>https://albop.github.io/ai_for_research/exercises/pushups_1_correction.html</loc>
     <lastmod>2023-11-15T01:12:10.000Z</lastmod>
   </url>
@@ -13,24 +21,40 @@
     <lastmod>2024-11-14T08:08:01.972Z</lastmod>
   </url>
   <url>
-    <loc>https://albop.github.io/ai_for_research/tutorials/session_1/python_fundamentals/collections.html</loc>
+    <loc>https://albop.github.io/ai_for_research/tutorials/session_1/collections.html</loc>
+    <lastmod>2025-11-19T06:45:11.567Z</lastmod>
+  </url>
+  <url>
+    <loc>https://albop.github.io/ai_for_research/tutorials/session_1/python_fundamentals/functions.html</loc>
     <lastmod>2023-11-15T01:50:52.000Z</lastmod>
   </url>
   <url>
-    <loc>https://albop.github.io/ai_for_research/tutorials/session_1/python_fundamentals/basics.html</loc>
-    <lastmod>2023-11-15T13:29:16.000Z</lastmod>
+    <loc>https://albop.github.io/ai_for_research/tutorials/session_1/python_fundamentals/control_flow.html</loc>
+    <lastmod>2023-11-15T01:50:52.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://albop.github.io/ai_for_research/tutorials/session_1/python_fundamentals/index.html</loc>
+    <lastmod>2023-11-15T01:50:52.000Z</lastmod>
   </url>
   <url>
     <loc>https://albop.github.io/ai_for_research/tutorials/session_1/python_syntax.html</loc>
     <lastmod>2024-11-14T08:07:47.562Z</lastmod>
   </url>
   <url>
-    <loc>https://albop.github.io/ai_for_research/tutorials/session_2/sentiment_analysis.html</loc>
-    <lastmod>2024-12-11T08:05:27.880Z</lastmod>
+    <loc>https://albop.github.io/ai_for_research/tutorials/session_3/open_ai_api.html</loc>
+    <lastmod>2024-12-11T08:23:45.136Z</lastmod>
+  </url>
+  <url>
+    <loc>https://albop.github.io/ai_for_research/tutorials/session_2/sentiment_analysis_correction.html</loc>
+    <lastmod>2023-11-28T14:10:36.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://albop.github.io/ai_for_research/tutorials/session_2/open_ai_api_correction.html</loc>
+    <lastmod>2025-11-19T06:45:11.571Z</lastmod>
   </url>
   <url>
     <loc>https://albop.github.io/ai_for_research/index.html</loc>
-    <lastmod>2024-11-29T07:27:33.694Z</lastmod>
+    <lastmod>2025-04-01T00:00:31.295Z</lastmod>
   </url>
   <url>
     <loc>https://albop.github.io/ai_for_research/slides/session_1_3/ml_graphs/plan.html</loc>
@@ -50,11 +74,11 @@
   </url>
   <url>
     <loc>https://albop.github.io/ai_for_research/slides/session_3/index.html</loc>
-    <lastmod>2024-12-11T08:27:42.152Z</lastmod>
+    <lastmod>2025-11-19T07:29:37.775Z</lastmod>
   </url>
   <url>
     <loc>https://albop.github.io/ai_for_research/slides/session_0/index.html</loc>
-    <lastmod>2024-11-29T08:18:41.147Z</lastmod>
+    <lastmod>2025-11-19T08:25:48.194Z</lastmod>
   </url>
   <url>
     <loc>https://albop.github.io/ai_for_research/slides/session_2/exercise.html</loc>
@@ -66,7 +90,7 @@
   </url>
   <url>
     <loc>https://albop.github.io/ai_for_research/slides/session_2/index.html</loc>
-    <lastmod>2024-11-29T08:24:34.630Z</lastmod>
+    <lastmod>2025-11-19T08:12:02.986Z</lastmod>
   </url>
   <url>
     <loc>https://albop.github.io/ai_for_research/slides/session_3/plan.html</loc>
@@ -78,7 +102,7 @@
   </url>
   <url>
     <loc>https://albop.github.io/ai_for_research/slides/session_1_2/index.html</loc>
-    <lastmod>2024-11-29T08:18:02.498Z</lastmod>
+    <lastmod>2025-11-19T08:12:27.554Z</lastmod>
   </url>
   <url>
     <loc>https://albop.github.io/ai_for_research/slides/session_1_3/graphs/Untitled1.html</loc>
@@ -86,31 +110,47 @@
   </url>
   <url>
     <loc>https://albop.github.io/ai_for_research/slides/session_1_3/index.html</loc>
-    <lastmod>2024-11-14T08:25:40.853Z</lastmod>
+    <lastmod>2025-11-19T07:31:41.483Z</lastmod>
   </url>
   <url>
     <loc>https://albop.github.io/ai_for_research/slides/session_1/index.html</loc>
-    <lastmod>2024-11-29T08:18:10.095Z</lastmod>
+    <lastmod>2025-11-19T08:27:09.925Z</lastmod>
   </url>
   <url>
-    <loc>https://albop.github.io/ai_for_research/tutorials/session_2/sentiment_analysis_correction.html</loc>
-    <lastmod>2023-11-28T14:10:36.000Z</lastmod>
+    <loc>https://albop.github.io/ai_for_research/tutorials/session_2/Untitled.html</loc>
+    <lastmod>2025-11-19T06:45:11.570Z</lastmod>
   </url>
   <url>
-    <loc>https://albop.github.io/ai_for_research/tutorials/session_3/open_ai_api.html</loc>
-    <lastmod>2024-12-11T08:23:45.136Z</lastmod>
+    <loc>https://albop.github.io/ai_for_research/tutorials/session_2/open_ai_api.html</loc>
+    <lastmod>2025-11-19T06:45:11.571Z</lastmod>
   </url>
   <url>
-    <loc>https://albop.github.io/ai_for_research/tutorials/session_1/python_fundamentals/index.html</loc>
+    <loc>https://albop.github.io/ai_for_research/tutorials/session_2/sentiment_analysis.html</loc>
+    <lastmod>2025-11-19T08:24:32.021Z</lastmod>
+  </url>
+  <url>
+    <loc>https://albop.github.io/ai_for_research/tutorials/session_1/index.html</loc>
+    <lastmod>2025-11-19T06:45:11.570Z</lastmod>
+  </url>
+  <url>
+    <loc>https://albop.github.io/ai_for_research/tutorials/session_1/basics.html</loc>
+    <lastmod>2025-11-19T06:45:11.566Z</lastmod>
+  </url>
+  <url>
+    <loc>https://albop.github.io/ai_for_research/tutorials/session_1/python_fundamentals/basics.html</loc>
+    <lastmod>2023-11-15T13:29:16.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://albop.github.io/ai_for_research/tutorials/session_1/python_fundamentals/collections.html</loc>
     <lastmod>2023-11-15T01:50:52.000Z</lastmod>
   </url>
   <url>
-    <loc>https://albop.github.io/ai_for_research/tutorials/session_1/python_fundamentals/control_flow.html</loc>
-    <lastmod>2023-11-15T01:50:52.000Z</lastmod>
+    <loc>https://albop.github.io/ai_for_research/tutorials/session_1/control_flow.html</loc>
+    <lastmod>2025-11-19T06:45:11.569Z</lastmod>
   </url>
   <url>
-    <loc>https://albop.github.io/ai_for_research/tutorials/session_1/python_fundamentals/functions.html</loc>
-    <lastmod>2023-11-15T01:50:52.000Z</lastmod>
+    <loc>https://albop.github.io/ai_for_research/tutorials/session_1/functions.html</loc>
+    <lastmod>2025-11-19T06:45:11.570Z</lastmod>
   </url>
   <url>
     <loc>https://albop.github.io/ai_for_research/exercises/pushups_2_correction.html</loc>
@@ -119,5 +159,13 @@
   <url>
     <loc>https://albop.github.io/ai_for_research/exercises/pushups_2.html</loc>
     <lastmod>2024-11-14T08:21:58.460Z</lastmod>
+  </url>
+  <url>
+    <loc>https://albop.github.io/ai_for_research/pushups/pushups_2_correction.html</loc>
+    <lastmod>2025-11-19T06:45:11.565Z</lastmod>
+  </url>
+  <url>
+    <loc>https://albop.github.io/ai_for_research/pushups/pushups_2.html</loc>
+    <lastmod>2025-11-19T06:45:11.564Z</lastmod>
   </url>
 </urlset>

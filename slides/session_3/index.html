@@ -6,12 +6,12 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.37">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.40">
 
   <meta name="author" content="Pablo Winant">
-  <meta name="dcterms.date" content="2024-12-18">
-  <title>AI for Research – Large Language Models in the Wild</title>
+  <meta name="dcterms.date" content="2024-12-05">
+  <title>AI for Research – Large Language Models in the Wild 🚧</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -128,8 +128,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Large Language Models in the Wild</h1>
-  <p class="subtitle">AI for Research, ESCP, 2024-2025</p>
+  <h1 class="title">Large Language Models in the Wild 🚧</h1>
+  <p class="subtitle">AI for Research, ESCP, 2025-2026</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -139,72 +139,16 @@ Pablo Winant
 </div>
 </div>
 
-  <p class="date">2024-12-18</p>
+  <p class="date">2024-12-05</p>
 </section><section id="TOC">
 <nav role="doc-toc"> 
 <h2 id="toc-title">Table of contents</h2>
 <ul>
-<li><a href="#/some-tips-for-reproducible-research" id="/toc-some-tips-for-reproducible-research">Some tips for reproducible research</a></li>
 <li><a href="#/variants-of-gpt" id="/toc-variants-of-gpt">Variants of GPT</a></li>
 <li><a href="#/conclusion" id="/toc-conclusion">Conclusion</a></li>
 </ul>
 </nav>
 </section>
-<section>
-<section id="some-tips-for-reproducible-research" class="title-slide slide level1 center">
-<h1>Some tips for reproducible research</h1>
-
-</section>
-<section id="what-went-wrong-last-time" class="slide level2">
-<h2>What went wrong last time?</h2>
-<ul>
-<li><p>Two bugs prevented flawless execution:</p>
-<ol type="1">
-<li>pandas datetime</li>
-<li>openai completion</li>
-</ol></li>
-<li><p>In both cases, the problem was a recent change in Application Programming Interface.</p></li>
-</ul>
-</section>
-<section id="what-is-an-api" class="slide level2">
-<h2>What is an API?</h2>
-<p>Definition of an API</p>
-<ul>
-<li>how you call a function from a library</li>
-<li>example: python function <code>pandas.to_datetime(df)</code></li>
-<li>example2: REST calls, info from a website (like <code>https://opentdb.com/api.php?amount=1&amp;category=18</code>)</li>
-</ul>
-<p>APIs are:</p>
-<ul>
-<li>documented online</li>
-<li>specific to a given version of the libary</li>
-</ul>
-<p>Example: where is the doc for the python API of OpenAI? for the REST API?</p>
-</section>
-<section id="advice-for-writing-code" class="slide level2">
-<h2>Advice for writing code</h2>
-<ol type="1">
-<li><p>Code Hygiene</p>
-<ul>
-<li>comments: in python anything after</li>
-<li>docstrings: specify the API of your own functions</li>
-<li>version your code (git, git, git, …) <sup>1</sup></li>
-</ul></li>
-<li><p>Replicability</p>
-<ul>
-<li><p>distribute and version data (<a href="https://data.sciencespo.fr/dataset.xhtml?persistentId=doi:10.21410/7E4/RDAG3O">example</a>)</p>
-<ul>
-<li>as raw as possible</li>
-</ul></li>
-<li><p>specify running environment</p>
-<ul>
-<li>lists the version of the system / all libraries</li>
-<li>conda: conda environment (<code>environment.yml</code>)</li>
-</ul></li>
-</ul></li>
-<li><p>(Bonus: provide a website with <a href="https://mybinder.org/">mybinder</a>/<a href="https://shiny.posit.co/py/">shinypython</a> )</p></li>
-</ol>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>this applies to all writing steps, especially latex documents</p></li></ol></aside></section></section>
 <section>
 <section id="variants-of-gpt" class="title-slide slide level1 center">
 <h1>Variants of GPT</h1>
@@ -263,7 +207,7 @@ Pablo Winant
 </div><div class="column">
 <p><img data-src="assets/matrix.gif"></p>
 </div></div>
-<aside><ol class="aside-footnotes"><li id="fn2"><p>Detailed information about gpt-4 is harder to find.</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Detailed information about gpt-4 is harder to find.</p></li></ol></aside></section>
 <section id="how-is-the-model-trained" class="slide level2">
 <h2>How is the model trained?</h2>
 <p>Several concepts are relevant here:</p>
@@ -369,7 +313,7 @@ Pablo Winant
 <li>not just a context on top of GPT</li>
 </ul></li>
 </ul>
-<aside><ol class="aside-footnotes"><li id="fn3"><p>Coming next: assistants.</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>Coming next: assistants.</p></li></ol></aside></section>
 <section id="section" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"></h2>
 <p>There is information about how GPT-3 was trained (check technical <a href="https://arxiv.org/pdf/2203.02155.pdf">paper</a> or <a href="https://openai.com/research/instruction-following">summary</a>)</p>
