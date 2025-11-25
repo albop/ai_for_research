@@ -466,6 +466,7 @@ $$c = f(x_1, ..., x_n;
 
 :::
 
+
 # Homework
 
 - Check the technical report for [GPT-4](https://openai.com/research/gpt-4)? Compare with [GPT-5](https://openai.com/research/gpt-5)
