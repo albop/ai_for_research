@@ -11,7 +11,7 @@
 
   <meta name="author" content="Pablo Winant">
   <meta name="dcterms.date" content="2025-11-26">
-  <title>AI for Research – …to Large Language Models 🚧</title>
+  <title>AI for Research – …to Large Language Models</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -128,8 +128,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">…to Large Language Models 🚧</h1>
-  <p class="subtitle">AI for Research, ESCP, 2024-2025</p>
+  <h1 class="title">…to Large Language Models</h1>
+  <p class="subtitle">AI for Research, ESCP, 2025-2026</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -186,30 +186,39 @@ Pablo Winant
 <blockquote>
 <p>There is an easy way for the government to end the strike without withdrawing the pension reform,</p>
 </blockquote>
+<div class="fragment">
+<p>Plausibly ending a sentence can plausibly approximate human thinking…</p>
+</div>
 </section>
 <section id="complete-text" class="slide level2">
 <h2>Complete Text</h2>
 <p>Generative language models perform <em>text completion</em></p>
-<p>They generate plausible<sup>1</sup> text following a prompt.</p>
+<p>They generate plausible<sup>1</sup> text following a <em>prompt</em>.</p>
 <p>The type of answer, will depend on the kind of prompt.</p>
 <aside><ol class="aside-footnotes"><li id="fn1"><p>here, plausible, means that it is more likely to be a correct text written by a human, rather than otherwise</p></li></ol></aside></section>
 <section id="gpt-playground" class="slide level2">
 <h2>GPT Playground</h2>
-<p>To use GPT-4 profficiently, you have to experiment with the prompt.</p>
+<p>You gain knowledge about how LLMs operate, by interacting with the prompt.</p>
+<div class="fragment">
 <ul>
 <li>try the <a href="https://platform.openai.com/playground">Playground mode</a></li>
+<li>or LM-Studio</li>
 </ul>
+</div>
+<div class="fragment">
 <p>It is the same as learning how to do google queries</p>
 <ul>
 <li>altavista: <code>+noir +film -"pinot noir"</code></li>
 <li>nowadays: ???</li>
 </ul>
-<p>“Prompting” is becoming a discipline in itself… (or is it?)</p>
-</section>
-<section id="some-examples" class="slide level2">
-<h2>Some Examples</h2>
-<p>By providing enough <em>context</em>, it is possible to perform amazing tasks</p>
-<p><a href="https://gpt4demo.com/">Look at the demos</a></p>
+</div>
+<div class="fragment">
+<p>“Prompting” is the key concept to understand today</p>
+<ul>
+<li>it is useful to make LLM do what you want: prividing them context</li>
+<li>… and LLMs currently use internal prompts … but things might change (more on that later)</li>
+</ul>
+</div>
 </section></section>
 <section>
 <section id="what-is-a-language-model" class="title-slide slide level1 center">
@@ -335,7 +344,7 @@ Figure&nbsp;1: Solved in a week by Bettye and Donald Harden using frequency tabl
 <p><span class="math display">\[\forall X, P(x_n=X| x_{n-1}, ..., x_{n-k}) = \varphi^{NL}( x_{n-1}, ..., x_{n-k}; \theta )\]</span></p>
 <p>with a smaller vector of parameters <span class="math inline">\(\theta\)</span></p>
 <ul>
-<li>Neural netowrks reduce endogenously the dimensionality.</li>
+<li>Neural networks reduce endogenously the dimensionality.</li>
 </ul>
 </section>
 <section id="recurrent-neural-networks" class="slide level2">
@@ -349,7 +358,7 @@ Figure&nbsp;1: Solved in a week by Bettye and Donald Harden using frequency tabl
 <p><img data-src="assets/Recurrent_neural_network_unfold.svg.png"></p>
 <ul>
 <li><strong>Neural Network</strong> reduce dimensionality of data discovering structure</li>
-<li>hidden state encodes meaning of the model so far</li>
+<li>hidden state encodes information in the text up to a given letter</li>
 </ul>
 </div></div>
 </section>
@@ -403,13 +412,10 @@ Figure&nbsp;1: Solved in a week by Bettye and Donald Harden using frequency tabl
 <h2>Encoders / Decoders (2/2)</h2>
 <p>The relation <span class="math inline">\(\varphi^D( \varphi^E(x_n; \theta^E), \theta^D) ~ x_n\)</span> can be rewritten as</p>
 <p><span class="math display">\[x_n \xrightarrow{\varphi^E(; \theta^E)} h \xrightarrow{\varphi^D(; \theta^D)} x_n \]</span></p>
-<p>When that relation is (mostly) satisfied and <span class="math inline">\(\mathbb{R}^h &lt;&lt; \mathbb{R}^x\)</span>, <span class="math inline">\(h\)</span> can be viewed as a lower dimension representation of <span class="math inline">\(x\)</span>. It encodes the information as a lower dimension vector <span class="math inline">\(h\)</span> and is called <strong>learned embeddings</strong>.</p>
+<p>When that relation is satisfied and <span class="math inline">\(\mathbb{R}^h &lt;&lt; \mathbb{R}^x\)</span>, <span class="math inline">\(h\)</span> can be viewed as a lower dimension representation of <span class="math inline">\(x\)</span>. It encodes the information as a lower dimension vector <span class="math inline">\(h\)</span> called <strong>learned embeddings</strong>. <span class="math inline">\(\mathbb{R}^h\)</span> is the latent space.</p>
 <ul>
 <li>instead of <span class="math inline">\(\underbrace{x_n}_{\text{prompt}} \rightarrow \underbrace{y_n}_{\text{text completion}}\)</span></li>
-<li>one can learn <span class="math inline">\(\underbrace{h_n}_{\text{prompt (low dim)}} \xrightarrow{\varphi^C( ; \theta^C)} \underbrace{h_n^c}_{\text{text completion (low dim)}}\)</span>
-<ul>
-<li>it is easier to learn</li>
-</ul></li>
+<li>one can learn (easier) <span class="math inline">\(\underbrace{h_n}_{\text{prompt (low dim)}} \xrightarrow{\varphi^C( ; \theta^C)} \underbrace{h_n^c}_{\text{text completion (low dim)}}\)</span></li>
 <li>and perform the original task as <span class="math display">\[\underbrace{x_n}_{\text{prompt}} \xrightarrow{\varphi^E}  h_n \xrightarrow{\varphi^C} h_n^C \xrightarrow{\varphi^D} \underbrace{y_n}_{\text{text completion}}\]</span></li>
 </ul>
 <p>This very powerful approach can be applied to combine encoders/decoders from different contexts (ex <a href="https://openai.com/dall-e-2">Dall-E</a>)</p>
