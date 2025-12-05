@@ -11,7 +11,7 @@
 
   <meta name="author" content="Pablo Winant">
   <meta name="dcterms.date" content="2025-12-05">
-  <title>AI for Research – Large Language Models: state of the union 🚧</title>
+  <title>AI for Research – Large Language Models: GPT Variants</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -128,7 +128,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Large Language Models: state of the union 🚧</h1>
+  <h1 class="title">Large Language Models: GPT Variants</h1>
   <p class="subtitle">AI for Research, ESCP, 2025-2026</p>
 
 <div class="quarto-title-authors">
@@ -183,6 +183,11 @@ Pablo Winant
 <li class="fragment">even bigger: 1000 billions parameters ???</li>
 <li class="fragment">on your harddrive: 1Tb</li>
 </ul></li>
+<li class="fragment">GPT5
+<ul>
+<li class="fragment">unkwown: 1.7/1.8 trillions</li>
+<li class="fragment">multimodal</li>
+</ul></li>
 </ul>
 </div>
 </div>
@@ -207,7 +212,7 @@ Pablo Winant
 </div><div class="column">
 <p><img data-src="assets/matrix.gif"></p>
 </div></div>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>Detailed information about gpt-4 is harder to find.</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Detailed information about gpt-4 and gpt-5 is harder to find.</p></li></ol></aside></section>
 <section id="how-is-the-model-trained" class="slide level2">
 <h2>How is the model trained?</h2>
 <p>Several concepts are relevant here:</p>
@@ -313,7 +318,8 @@ Pablo Winant
 <li>not just a context on top of GPT</li>
 </ul></li>
 </ul>
-<aside><ol class="aside-footnotes"><li id="fn2"><p>Coming next: assistants.</p></li></ol></aside></section>
+<p>-&gt; They are now merged in the same products</p>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>Coming next: assistants, agents</p></li></ol></aside></section>
 <section id="section" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"></h2>
 <p>There is information about how GPT-3 was trained (check technical <a href="https://arxiv.org/pdf/2203.02155.pdf">paper</a> or <a href="https://openai.com/research/instruction-following">summary</a>)</p>
@@ -329,7 +335,7 @@ Pablo Winant
 <li class="fragment"><code>text-davinci-003</code></li>
 <li class="fragment"><code>text-babbage-001</code></li>
 <li class="fragment"><code>text-ada-001</code></li>
-<li class="fragment">…</li>
+<li class="fragment">… there is an epxlosion in the number of models (see https://platform.openai.com/docs/models)</li>
 </ul>
 </div>
 <p>What are the differences between the various engines?</p>
@@ -338,10 +344,7 @@ Pablo Winant
 <li>training set of foundation model (GPT Base)</li>
 <li>type of fine-tuning (instruct/chat/code)</li>
 </ul>
-<p>It is not clear whether GPT Base will still be accessible in the future or whether it will be fine-tuned for alignement or not.</p>
-<ul>
-<li>consequences?</li>
-</ul>
+<p>We mostly lost access to GPT base: only aligned models are available now.</p>
 </section>
 <section id="section-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"></h2>
@@ -359,10 +362,18 @@ Pablo Winant
 <li><p>many foundation Models</p>
 <ul>
 <li>move from opensource to closedsource</li>
-<li><strong>but</strong>: opensource is still very alive</li>
+<li><strong>but</strong>: opensource is still very alive
+<ul>
+<li>llama 3</li>
+<li>mistral</li>
+<li>qwen</li>
+<li>deepseek</li>
+<li>…</li>
+</ul></li>
 </ul></li>
 <li><p>research to reduce size of models / training time</p></li>
-<li><p>many more versions specialized (fine-tuned) to specific tasks</p></li>
+<li><p>many versions specialized (fine-tuned) to specific tasks (e.g.&nbsp;code)</p></li>
+<li><p>commercial products blur the line between llm and chat agents</p></li>
 </ul>
 </div></div>
 </section></section>
@@ -381,30 +392,14 @@ Pablo Winant
 <li>There are possible workarounds
 <ul>
 <li>avoid tasks where hallucinations occur (like ask for paper citations)</li>
-<li>more structure in the prompting (like “detail your reasoning”)</li>
+<li>more structure in the prompting (like “detail your reasoning” -&gt; thinking models)</li>
 </ul></li>
 <li>And research being done…
 <ul>
 <li>on using fine-tuning for more correctness (e.g.&nbsp;instructGPT)</li>
-<li>on developing mixed systems</li>
+<li>on developing mixed systems -&gt; next week</li>
 </ul></li>
 </ul>
-<p>Check out <a href="https://platform.openai.com/docs/assistants/overview">GPT Assistants</a> and <a href="https://scite.ai/">Scite</a></p>
-</section>
-<section id="how-much-should-we-trust-ai" class="slide level2">
-<h2>How much should we trust AI?</h2>
-<p>AI safety and AI alignment is a very active field right now.</p>
-<p>For economists, AI behaviour can be characterized in terms of biases:</p>
-<ol type="1">
-<li>statistical bias</li>
-<li>preference misspecification
-<ul>
-<li>explicit</li>
-<li>implicit</li>
-</ul></li>
-<li>behavioural biases</li>
-</ol>
-<p>For now we don’t know much.</p>
 
 
 </section></section>
