@@ -1,16 +1,18 @@
 ---
 title: "Tools Using LLM Models"
-subtitle: "From Multimodal to Agentic Systems"
+date: 2025/12/18
+subtitle: AI for Research, ESCP, 2025-2026
+author: Pablo Winant
+# subtitle: "From Multimodal to Agentic Systems"
 format:
   revealjs:
     theme: simple
     slide-number: true
     code-copy: true
     transition: fade
-editor: visual
 ---
 
-## Overview
+## Overview: From Multimodal to Agentic System
 
 We will explore the evolution of LLM-based tools:
 
@@ -165,9 +167,7 @@ tools = [{
 ```
 *The runtime executes `get_weather("Paris", "celsius")` and feeds the result back.*
 
-# Model Context Protocol (MCP) {background-color="#e76f51"}
-
-## The Connective Tissue
+## Model Context Protocol (MCP)
 
 **MCP** is an open standard connecting AI Assistants to your world.
 
