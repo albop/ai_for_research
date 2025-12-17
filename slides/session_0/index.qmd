@@ -1,0 +1,202 @@
+---
+title: "Introduction"
+date: 2025/11/19
+subtitle: AI for Research, ESCP, 2025-2026
+author: Pablo Winant
+format:
+  revealjs:
+    width: 1920
+    height: 1080
+    menu:
+      side: left
+      width: normal
+listing:
+  id: sample-listings
+  contents: 
+    - ../session_1/index.qmd
+    - ../session_2/index.qmd
+    - ../session_3/index.qmd
+  sort: "date"
+  filter-ui: false
+  sort-ui: false
+  fields: [date, title]
+  type: table
+---
+
+
+## Introduction
+
+
+Have you heard of [ChatGPT](https://openai.com/gpt-5) ?
+
+## Questions?
+
+::: {.incremental}
+- What is a large language model?
+  - are there different kinds thereof? (gpt/chatgpt/gptcode)
+  - what about competitors? (gemini/anthropic/huggingface...)
+- How is it related to other AI fields
+  - like machine learning? more precisely Natural Language Processing (aka NLP)?
+  - What are some other applications of generative AI?
+- Can it be used for (quantitative) research?
+  - For which tasks?[^footnote]
+  - What should you pay attention to?
+- What are the latest/future evolutions (reasoning, agents, )
+:::
+
+[^footnote]: This is not a course on how to use user-facing products.
+
+## Roadmap
+
+::: {#sample-listings}
+
+:::
+
+Sessions will consist in:
+
+- a short(ish) lecture
+- your presentation(s)
+- hands on tutorials
+
+
+<!-- why to I get "No matching item ? -->
+
+## Logistics
+
+1. Homework
+    a) read papers for next session (if any)
+    b) do the pushups / send to me
+
+2. Projects
+    a) small research project using AI/text analysis
+      - replicate a paper
+      - a research prototype 
+    b) prepare a 20 min presentation
+
+. . .
+
+Grading?
+
+-  Fully discretionary
+
+## Practicalities
+
+- [Nuvolos](https://nuvolos.cloud/):
+  - online computational platform with full python stack
+  - full access during the course
+  - _login with your (escp) gmail account_
+  - send the homework through nuvolos
+
+- Local setup:
+  - Conda / Python
+  - VSCode + Python extension
+
+- LLM access:
+  - OpenAI needs a paid subscription for API access
+  - we'll try HuggingFaces
+
+
+## Random Remarks
+
+::: {.incremental}
+
+How do Phd learn?
+
+- by reading
+- by doing
+- by sitting/listening to a course
+- by ~~pestering~~ asking ~~their PhD adviser~~ any professor
+
+We are here to *exchange*
+
+- you have a cool/useful application of AI?
+  - show and share
+- specific research ideas you would like to discuss?
+- speak up
+
+:::
+
+
+## Why Should you learn programming ? {auto-animate="true"}
+
+::: {.incremental}
+
+- Researchers (econometricians or data scientists) spend 80% of their time writing code.
+- Presentation (plots, interactive apps) is key and relies on
+
+    - ... programming
+
+-  Interaction with code becomes unavoidable in business environment
+
+    - fixing the website
+    - querying the database
+    - ...
+
+- Worth investing a  bit of time to learn it
+
+  - you can easily become an __expert__
+
+- Plus it's fun
+
+:::
+
+---
+
+
+
+## Why Should you learn programming ? {auto-animate="true"}
+
+::: columns
+
+:::: {.column width="40%"}
+
+- Researchers (econometricians or data scientists) spend 80% of their time writing code.
+- Presentation (plots, interactive apps) is key and relies on
+
+    - ... programming
+
+-  Interaction with code becomes unavoidable in business environment
+
+    - fixing the website
+    - querying the database
+    - ...
+
+- Worth investing a  bit of time to learn it
+
+  - you can easily become an __expert__
+
+- Plus it's fun
+
+::::
+
+:::: {.column width="10%"}
+
+::::
+
+:::: {.column width="40%"}
+
+![](cool_ai)
+
+Python is pretty much the language of choice for coding AIs!
+
+::::
+
+:::
+
+---
+
+
+
+## Programming resources
+
+Plenty of online resources to learn python/econometrics/machine learning
+
+- [learnpython](learnpython.org) sponsored by [datacamp](https://www.datacamp.com/)
+- [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/): by Jake Van der Plas, very complete. Online free version.
+
+![](qe-logo-large.png)
+
+- __Quantecon__: free online [lectures](https://quantecon.org/lectures/) to learn python programming and (advanced) economics
+  - now with a section on [datascience](https://datascience.quantecon.org/)
+  - it is excellent!
+  - we will use some of it

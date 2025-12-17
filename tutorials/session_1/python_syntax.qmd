@@ -1,0 +1,1290 @@
+---
+title: "Python: syntax review"
+format:
+    html: default
+    ipynb: default
+execute:
+  eval: false
+jupyter: python3
+---
+
+
+
+## Basic Types
+
+### numbers
+
+```{python}
+# integers and floats
+```
+
+```{python}
+1
+```
+
+```{python}
+1.0
+```
+
+```{python}
+# conversion with int() and float()
+float( 1 )
+```
+
+```{python}
+int(2.9) # floor
+```
+
+```{python}
+# no difference between various types of floats (16 bits, 32 bits, 64 bits, ...)
+```
+
+```{python}
+type( 2.2**50 ) # this doesn't fit in 32 bits
+```
+
+```{python}
+# usual operations + - *
+print( 2 + 3 )
+print( 9 -6 )
+print( 3 / 2 )
+print(2304310958*41324)
+```
+
+```{python}
+# divisions / and //
+print(3/4)
+print(13//4)
+```
+
+```{python}
+# exponentiation ** (not ^!)
+# (1.04)^10
+(1.04)**10
+```
+
+```{python}
+# comparison operators: >, <, >=, <=, ==
+
+print((1.0453432)*(0.96)  > 1.001 )
+
+print(1.001 >= 1.001)
+```
+
+```{python}
+# comparison operators can be chained:
+print(0.2<0.4<0.5)
+print(0.5<=0.4<=0.5) # equivalent to ((0.5<=0.4) and(0.4<=0.5))
+```
+
+### special types: boolean and None
+
+There are only two booleans: `True` and `False` (note uppercase). `None` is a dummy type, which is used when no other type fits.
+
+```{python}
+print( False )
+True
+```
+
+```{python}
+(True, False, None)
+```
+
+Double equal sign tests for equality. Result should always be a boolean.
+
+```{python}
+True==False
+```
+
+Logical operators are `not`, `and` and `or`:
+
+```{python}
+(True or False)
+```
+
+```{python}
+not (True or False)
+```
+
+```{python}
+(1.3**1.04 > 1.9) | (1000**1143>1001**1142)
+```
+
+Operators `or` and `and` can be replaced by `|` and `&` respectively. They are *non-greedy*, that is terms are not evaluated if the result of the comparison is already known.
+
+```{python}
+False and (print("Hello"))
+```
+
+```{python}
+print( (print("Hello")) and False )
+```
+
+### strings
+
+#### definition
+
+Strings are defined by enclosing characters either by `'` (single quotes) or `"` (double quote). Single quotes strings can contain double quotes strings and vice-versa.
+
+```{python}
+"name"
+```
+
+```{python}
+'name'
+```
+
+```{python}
+'I say "hello"'
+```
+
+```{python}
+"You can 'quote' me"
+```
+
+Strings spanning over sever lines can be defined with triple quotes (single or double).
+
+```{python}
+s = """¿Qué es la vida? Un frenesí.
+¿Qué es la vida? Una ilusión,
+una sombra, una ficción,
+y el mayor bien es pequeño;
+que toda la vida es sueño,
+y los sueños, sueños son.
+"""
+```
+
+It is also possible to use the newline character `\n`.
+
+```{python}
+"La vida es sueño,\ny los sueños, sueños son."
+```
+
+```{python}
+print("La vida es sueño,\ny los sueños, sueños son.")
+```
+
+#### character sets
+
+Strings can contain any unicode character:
+
+```{python}
+s = "🎻⽻༽"
+```
+
+*Refresher*: ASCII vs unicode
+
+ASCII (or ASCII-US) is an old standard which codes a character with 7 bits (or 8 bits for extended ASCII). This allows to code 128 different characters (256 for ex-ASCII).
+
+
+Only a subset of these characters can be printed regularly.
+
+```{python}
+chr(44)
+```
+
+```{python}
+# ASCII: 
+for i in range(32,127):
+    print( chr(i), end=' ')
+```
+
+The other characters include *delete*, *newline* and *carriage return* among others.
+
+```{python}
+s = 'This is\na\nmultiline string.' # note the newline character '\n'
+```
+
+```{python}
+# print(s)
+len(s)
+```
+
+Some antiquated platforms still use newline + carriage return at the end of each line. This is absolutely not required and causes incompatibilities.
+
+```{python}
+s2 = 'This is\n\ra\n\rmultiline string.' # note the newline character '\n' and carriager return '\r'
+```
+
+```{python}
+print(s2)
+print(len(s2))
+```
+
+Unicode contains a repertoire of over 137,000 characters with all ASCII characters as subcases
+
+To type: copy/paste, ctrl+shift+hexadecimal, latex + tab
+
+
+Variable names aka identifiers can contain unicode characters with some restrictions:
+- they cannot start with a digit
+- they can't contain special variables ('!,#,@,%,$' and other unicode specials ???)
+- they can contain underscore
+
+#### operations
+
+concatenation
+
+```{python}
+'abc' + 'def'
+```
+
+```{python}
+'abc'*3
+```
+
+```{python}
+'abc' + 'abc' + 'abc'
+```
+
+#### substrings
+
+```{python}
+# strings can be accessed as arrays (0 based indexing)
+s = "a b c"
+s[0]
+```
+
+```{python}
+# slice notation (  [min,max[ )
+s = "a b c d"
+s[2:5] # 0-based; 2 included, 5 excluded
+```
+
+```{python}
+# substrings are easy to check
+"a" in s
+```
+
+```{python}
+"b c" in "a b c d"
+```
+
+It is impossible to modify a substring.
+
+```{python}
+# but are immutable
+s = "a b c"
+#s[1] = 0 error
+```
+
+Instead, one can replace a substring:
+
+```{python}
+s
+```
+
+```{python}
+s.replace(' ', '🎻')
+```
+
+Or use string interpolation
+
+```{python}
+# string interpolation (old school)
+"ny name is {name}".format(name="nobody")
+```
+
+```{python}
+"calculation took {time}s".format(time=10000)
+```
+
+```{python}
+# number format can be tweaked
+"I am {age:.0f} years old".format(age=5.65)
+```
+
+```{python}
+# formatted strings
+elapsed = 15914884.300292
+
+f"computations took {elapsed/3600:.2f} hours"
+```
+
+```{python}
+name = "arnaldur"
+```
+
+```{python}
+"dasnfnaksujhn {name}".format(name="whatever")
+```
+
+```{python}
+# basic string operations: str.split, str.join, etc...
+# fast regular expressions
+# more on it, with text processing lesson
+```
+
+```{python}
+str.split("me,you,others,them",',')
+```
+
+```{python}
+str.join( " | ",
+    str.split("me,you,others,them",','),
+)
+```
+
+#### Escaping characters
+
+The example above used several special characters: `\n` which corresponds to only one ascii character and `{`/`}` which disappears after the string formatting. If one desires to print these characters precisely one needs to escape them using `\` and `{` `}`.
+
+```{python}
+print("This is a one \\nline string")
+print("This string keeps some {{curly}} brackets{}".format('.'))
+```
+
+#### Other operations on strings
+
+(check help(str) or help?)
+
+- len() : length
+- strip() : removes characters at the ends
+- split() : split strings into several substrings separated by separator
+- join() : opposite of split
+
+```{python}
+'others,'
+```
+
+```{python}
+',me,others,'.strip(',')
+```
+
+```{python}
+s.count(',')
+```
+
+```{python}
+help(str)
+```
+
+## Assignment
+
+Any object can be reused by assigning an identifier to it. This is done with assignment operator `=`.
+
+```{python}
+a = 3
+a
+```
+
+Note that assignment operator `=` is different from comparison operator `==`.
+Comparison operator is always True or False, while assignment operator has no value.
+
+```{python}
+(2==2) == True
+```
+
+
+## Containers
+
+Any object created in Python is identified by a unique `id`. One can think of it approximately as its reference. 
+Object collections, contain arbitrary other python objects, that is they contain references to them.
+
+```{python}
+id(s)
+```
+
+### tuples
+
+#### construction
+
+```{python}
+(1,2,"a" )
+```
+
+Since tuples are immutable, two identical tuples, will always contain the same data. 
+
+```{python}
+t1  = (2,23)
+t2  = (2,23)
+```
+
+```{python}
+# can contain any data
+t = (1,2,3,4,5,6)
+t1 = (t, "a", (1,2))
+t2 = (0,)  # note trailing coma for one element tuple
+t3 = (t, "a", (1,2))
+```
+
+```{python}
+t[0] = 78
+```
+
+Since tuples never change, they can be compared by hash values (if the data they hold can be hashed). Two tuples are identical if they contain the same data.
+
+Remark:  hash function is any function that can be used to map data of arbitrary size to data of a fixed size. It is such that the probability of two data points of having the same hash is very small even if they are close to each other.
+
+```{python}
+t3 == t1
+```
+
+```{python}
+print(hash(t3))
+print(hash(t1))
+```
+
+```{python}
+id(t3), id(t1)
+```
+
+#### access elements
+
+```{python}
+# elements are accessed with brackets (0-based)
+t[0]
+```
+
+```{python}
+# slice notation works too (  [min,max[ )
+t[1:3]
+```
+
+```{python}
+# repeat with *
+(3,2)*5
+```
+
+```{python}
+(0)*5
+```
+
+```{python}
+(0,)*5
+```
+
+```{python}
+t2*5
+```
+
+```{python}
+# concatenate with +
+t+t1+t2
+```
+
+```{python}
+# test for membership
+
+(1 in t)
+```
+
+### lists
+
+lists are enclosed by brackets are  _mutable ordered collections of elements_
+
+```{python}
+l = [1,"a",4,5]
+```
+
+```{python}
+l[1]
+```
+
+```{python}
+l[1:] # if we omit the upper-bound it goes until the last element
+```
+
+```{python}
+l[:2]
+```
+
+```{python}
+# lists are concatenated with +
+l[:2] + l[2:] == l
+```
+
+```{python}
+# test for membership
+(5 in l)
+```
+
+```{python}
+# lists can be extended inplace
+ll = [1,2,3]
+ll.extend([4,5]) # several elements
+ll.append(6)
+ll
+```
+
+Since lists are mutable, it makes no sense to compute them by hash value (or the hash needs to be recomputed every time the values change).
+
+```{python}
+hash(ll)
+```
+
+Sorted lists can be created with sorted (if elements can be ranked)
+
+```{python}
+ll = [4,3,5]
+```
+
+```{python}
+sorted(ll)
+```
+
+```{python}
+ll
+```
+
+It is also possible to sort in place.
+
+```{python}
+ll.sort()
+ll
+```
+
+```{python}
+sorted(ll) # creates a new list
+ll.sort()  # does it in place
+```
+
+```{python}
+# in python internals:    ll.sort() equivalent sort(ll)
+```
+
+### set
+
+Sets are unordered collections of unique elements.
+
+
+```{python}
+s1 = set([1,2,3,3,4,3,4])
+s2 = set([3,4,4,6,8])
+print(s1, s2)
+print(s1.intersection(s2))
+```
+
+```{python}
+{3,4} == {4,3}
+```
+
+### dictionaries
+
+Dictionaries are ordered associative collections of elements. They store values associated to keys.
+
+```{python}
+# construction with curly brackets
+d = {'a':0, 'b':1}
+```
+
+```{python}
+d
+```
+
+```{python}
+# values can be recovered by indexing the dict with a key
+d['b']
+```
+
+```{python}
+d = dict()
+# d['a'] = 42
+# d['b'] = 78
+d
+```
+
+```{python}
+d['a'] = 42
+```
+
+```{python}
+d['b']
+```
+
+Keys can be any hashable value:
+
+```{python}
+d[('a','b')] = 100
+```
+
+```{python}
+d[ ['a','b'] ] = 100 # that won't work
+```
+
+Note: until python 3.5 dictionaries were not ordered. Now the are guaranteed to keep the insertion order
+
+## Control flows
+
+### Conditional blocks
+
+Conditional blocks are preceeded by `if` and followed by an indented block. Note that it is advised to indent a block by a fixed set of space (usually 4) rather than use tabs.
+
+```{python}
+if 'sun'>'moon':
+    print('warm')
+```
+
+They can also be followed by elif and else statements:
+
+```{python}
+x = 0.5
+if (x<0):
+    y = 0.0
+elif (x<1.0):
+    y = x
+else:
+    y = 1+(x-1)*0.5
+```
+
+Remark that in the conditions, any variable can be used. The following evaluate to False:
+ - 0
+ - empty collection
+
+```{python}
+if 0: print("I won't print this.")
+if 1: print("Maybe I will.")
+if {}: print("Sir, your dictionary is empty")
+if "": print("Sir, there is no string to speak of.")
+```
+
+###  While 
+
+The content of the while loop is repeated as long as a certain condition is met. Don't forget to change that condition or the loop might run forever.
+
+```{python}
+point_made = False
+i = 0
+while not point_made:
+    print("A fanatic is one who can't change his mind and won't change the subject.")
+    i += 1 # this is a quasi-synonym of i = i + 1
+    if i>=20:
+          point_made = True
+```
+
+### Loops
+
+```{python}
+# while loops
+i = 0
+while i<=10:
+    print(str(i)+" ",  end='')
+    i+=1
+```
+
+```{python}
+# for loop
+for i in [0,1,2,3,4,5,6,7,8,9,10]:
+    print(str(i)+" ",  end='')
+```
+
+```{python}
+# this works for any kind of iterable
+# for loop
+for i in (0,1,2,3,4,5,6,7,8,9,10):
+    print(str(i)+" ",  end='')
+```
+
+```{python}
+# including range generator (note last value)
+for i in range(11): 
+    print(str(i)+" ",  end='')
+```
+
+```{python}
+range(11)
+```
+
+```{python}
+# one can also enumerate elements
+countries = ("france", "uk", "germany")
+for i,c in enumerate(countries): 
+    print(f"{i}: {c}")
+```
+
+```{python}
+s = set(c)
+```
+
+```{python}
+# conditional blocks are constructed with if, elif, else
+for i,c in enumerate(countries):
+    if len(set(c).intersection(set("brexit"))):
+        print(c)
+    else:
+        print(c + " 😢")
+```
+
+It is possible to iterate over any iterable. This is true for a list or a generator:
+
+```{python}
+for i in range(10): # range(10) is a generator
+    print(i)
+```
+
+```{python}
+for i in [0,1,2,3,4,5,6,7,8,9]:
+    print(i)
+```
+
+We can iterate of dictionary keys or values
+
+```{python}
+d = {1:2, 3:'i'}
+for k in d.keys():
+    print(k, d[k])
+for k in d.values():
+    print(k)
+```
+
+or both at the same time:
+
+```{python}
+for t in d.items():
+    print(t)
+
+# look at automatic unpacking
+for (k,v) in d.items():
+    print(f"key: {k}, value: {v}")
+```
+
+### Comprehension and generators
+
+There is an easy syntax to construct lists/tuples/dicts: comprehension. Syntax is remminiscent of a for loop.
+
+```{python}
+[i**2 for i in range(10)]
+```
+
+```{python}
+set(i-(i//2*2) for i in range(10))
+```
+
+```{python}
+{i: i**2 for i in range(10)}
+```
+
+Comprehension can be combined with conditions:
+
+```{python}
+[i**2 for i in range(10) if i//3>2]
+```
+
+Behind the comprehension syntax, there is a special object called generator. Its role is to supply objects one by one like any other iterable.
+
+```{python}
+# note the bracket
+gen = (i**2 for i in range(10))
+gen # does nothing
+```
+
+```{python}
+gen = (i**2 for i in range(10))
+for e in gen:
+    print(e)
+```
+
+```{python}
+gen = (i**2 for i in range(10))
+print([e for e in gen])
+```
+
+There is a shortcut to converte a generator into a list: it's called unpacking:
+
+```{python}
+gen = (i**2 for i in range(10))
+[*gen]
+```
+
+## Functions
+
+Wrong approach
+
+```{python}
+a1 = 34
+b1 = (1+a1*a1)
+c1 = (a1+b1*b1)
+
+a2 = 36
+b2 = (1+a2*a2)
+c2 = (a2+b2*b2)
+
+print(c1,c2)
+```
+
+Better approach
+
+```{python}
+def calc(a):
+    b = 1+a*a
+    c = a+b*b
+    return c
+
+(calc(34), calc(36))
+```
+
+it is equivalent to replace the content of the function by:
+
+```{python}
+a = 32
+_a = a          # def calc(a):
+_b = 1+_a*_a    #    b = 1+a*a
+_c = _a+_b*_b   #    c = a+b*b
+res = _c        #    return c
+```
+
+Note that variable names within the function have different names. This is to avoid name conflicts as in:
+
+```{python}
+y = 1
+def f(x):
+    y = x**2
+    return y+1
+def g(x):
+    y = x**2+0.1
+    return y+1
+r1 = f(1.4)
+r2 = g(1.4)
+r3 = y
+(r1,r2,r3)
+```
+
+```{python}
+l = ['france', 'germany']
+def fun(i):
+    print(f"Country: {l[i]}")
+fun(0)
+```
+
+```{python}
+l = ['france', 'germany']
+def fun(i):
+    l = ['usa', 'japan']
+    l.append('spain')
+    print(f"Country: {l[i]}")
+fun(0)
+```
+
+```{python}
+l
+```
+
+In the preceding code block, value of `y` has not been changed by calling the two functions. Check [pythontutor](http://pythontutor.com/visualize.html#code=y%20%3D%201%0Adef%20f%28x%29%3A%0A%20%20%20%20y%20%3D%20x**2%0A%20%20%20%20return%20y%2B1%0Adef%20g%28x%29%3A%0A%20%20%20%20y%20%3D%20x**2%0A%20%20%20%20return%20y%2B1%0Ar1%20%3D%20f%281.4%29%0Ar2%20%3D%20g%281.4%29%0Ar3%20%3D%20y%0A%28r1,r2,r3%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false).
+
+
+### Calling conventions
+
+Function definitions start with `def` and a colon indentation. Value are returned by `return` keyword. Otherwise the return value is `None`.
+Functions can have several arguments: `def f(x,y)` but always one return argument. It is however to return a tuple, and "unpack" it.
+
+```{python}
+def f(x,y):
+    z1 = x+y
+    z2 = x-y
+    return (z1,z2)      # here brackets are optional:  `return z1,z2` works too
+
+res = f(0.1, 0.2)
+t1, t2 = f(0.2, 0.2)     # t1,t2=res works too
+```
+
+```{python}
+res
+```
+
+Named arguments can be passed in any order and receive default values.
+
+```{python}
+def problem(why="The moon shines.", what="Curiosity killed the cat.", where="Paris"):
+    print(f"Is it because {why.lower().strip('.')} that {what.lower().strip('.')}, in {where.strip('.')}?")
+```
+
+```{python}
+problem(where='Paris')
+```
+
+```{python}
+problem(where="ESCP", why="Square root of two is irrational", what="Some regressions never work.")
+```
+
+Positional arguments and keyword arguments can be combined
+
+```{python}
+def f(x, y, β=0.9, γ=4.0, δ=0.1):
+    return x*β+y**γ*δ
+```
+
+```{python}
+f(0.1, 0.2)
+```
+
+### Docstrings
+
+Functions are documented with a special string. Documentation It must follow the function signature immediately and explain what arguments are expected and what the function does
+
+```{python}
+def f(x, y, β=0.9, γ=4.0, δ=0.1):   # kjhkugku
+    """Compute the model residuals
+    
+    Parameters
+    ----------
+    x: (float) marginal propensity to do complicated stuff
+    y: (float) inverse of the elasticity of bifractional risk-neutral substitution
+    β: (float) time discount (default 0.9)
+    γ: (float) time discount (default 4.0)
+    δ: (float) time discount (default 0.1)
+    
+    Result
+    ------
+    res: beta-Hadamard measure of cohesiveness
+    
+    """
+    res = x*β+y**γ*δ
+    return res
+```
+
+Remark: Python 3.6 has introduced type indication for functions. They are useful as an element of indication and potentially for type checking. We do not cover them in this tutorial but this is what they look like:
+
+```{python}
+def f(a: int, b:int)->int:
+    if a<=1:
+        return 1
+    else:
+        return f(a-1,b) + f(a-2,b)*b
+```
+
+---
+
+### Packing and unpacking
+
+A common case is when one wants to pass the elements of an iterable as positional argument and/or the elements of a dictionary as keyword arguments.
+This is espacially the case, when one wants to determine functions that act on a given calibration. Without unpacking all arguments would need to be passed separately.
+
+```{python}
+v = (0.1, 0.2)
+p = dict(β=0.9, γ=4.0, δ=0.1)
+
+f(v[0], v[1], β=p['β'], γ=p['γ'], δ=p['δ'])
+```
+
+There is a special syntax for that: `*` unpacks positional arguments and `**` unpacks keyword arguments. Here is an example:
+
+```{python}
+f(*v, **p)
+```
+
+The same characters `*` and `**` can actually be used for the reverse operation, that is packing. This is useful to determine functions of a variable number of arguments.
+
+```{python}
+def fun(**p):
+    β = p['β']
+    return β+1
+fun(β=1.0)
+fun(β=1.0, γ=2.0) # γ is just ignored
+```
+
+Inside the function, unpacked objects are lists and dictionaries respectively.
+
+```{python}
+def fun(*args, **kwargs):
+    print(f"Positional arguments: {len(args)}")
+    for a in args:
+        print(f"- {a}")
+    print(f"Keyword arguments: {len(args)}")
+    for key,value in kwargs.items():
+        print(f"- {key}: {value}")
+```
+
+```{python}
+fun(0.1, 0.2, a=2, b=3, c=4)
+```
+
+### Functions are first class objects
+
+This means they can be assigned and passed around.
+
+```{python}
+def f(x): return 2*x*(1-x)
+g = f # now `g` and `f` point to the same function
+g(0.4)
+```
+
+```{python}
+def sumsfun(l, f):
+    return [f(e) for e in l]
+```
+
+```{python}
+sumsfun([0.0, 0.1, 0.2], f)
+```
+
+```{python}
+def compute_recursive_series(x0, fun, T=50):
+    a = [x0]
+    for t in range(T):
+        x0 = a[-1]
+        x = fun(x0)
+        a.append(x)
+    return a
+
+compute_recursive_series(0.3, f, T=5)
+```
+
+There is another syntax to define a function, without giving it a name first: lambda functions. It is useful when passing a function as argument.
+
+```{python}
+sorted(range(6), key=lambda x: (-2)**x)
+```
+
+Lambda functions are also useful to reduce quickly the number of arguments of a function (aka curryfication)
+
+```{python}
+def logistic(μ,x): return μ*x*(1-x)
+# def chaotic(x): return logistic(3.7, x)
+# def convergent(x): return logistic(2.5, x)
+chaotic = lambda x: logistic(3.7, x)
+convergent = lambda x: logistic(2.5, x)
+```
+
+```{python}
+l = [compute_recursive_series(0.3,fun, T=20) for fun in [convergent, chaotic]]
+[*zip(*l)]
+```
+
+```{python}
+from matplotlib import pyplot as plt
+import numpy as np
+tab = np.array(l)
+plt.plot(tab[0,:-1],tab[0,1:])
+tab = np.array(l)
+plt.plot(tab[1,:-1],tab[1,1:])
+plt.plot(np.linspace(0,1),np.linspace(0,1))
+plt.xlabel("$x_n$")
+plt.ylabel("$x_{n+1}$")
+plt.grid()
+```
+
+### Functions pass arguments by reference
+
+Most of the time, variable affectation just create a reference.
+
+```{python}
+a = [1,2,3]
+b = a
+a[1] = 0
+(a, b)
+```
+
+To get a copy instead, one needs to specify it explicitly.
+
+```{python}
+import copy
+a = [1,2,3]
+b = copy.copy(a)
+a[1] = 0
+(a, b)
+```
+
+Not that copy follows only one level of references. Use deepcopy for more safety.
+
+```{python}
+a0 = ['a','b']
+a = [a0, 1, 2]
+b = copy.copy(a)
+a[0][0] = 'ξ'
+a, b
+```
+
+```{python}
+a0 = ['a','b']
+a = [a0, 1, 2]
+b = copy.deepcopy(a)
+a[0][0] = 'ξ'
+a, b
+```
+
+Arguments in a function are references towards the original object. No data is copied. It is then easy to construct functions with side-effects.
+
+```{python}
+def append_inplace(l1, obs):
+    l1.append(obs)
+    return l1
+l1, obs = ([1,2,3], 1.5)
+l2 = append_inplace(l1,obs)
+print(l2, l1)
+# note that l1 and l2 point to the same object
+l1[0] = 'hey'
+print(l2, l1)
+```
+
+This behaviour might feel unnatural but is very sensible. For instance if the argument is a database of several gigabytes and one wants to write a function which will
+modify a few of its elements, it is not reasonable to copy the db in full.
+
+## Objects
+
+Objects ?
+
+- can be passed around / referred too
+- have properties (data) and methods (functions) attached to them
+- inherit properties/methods from other objects
+
+Objects are defined by a class definition. By convention, classes names start with uppercase . To create an object, one calls the class name, possibly with additional arguments.
+
+```{python}
+class Dog:
+    name = "May" # class property
+
+d1 = Dog()
+d2 = Dog()
+
+print(f"Class: d1->{type(d1)}, d2->{type(d2)}")
+print(f"Instance address: d2->{d1},{d2}")
+```
+
+Now, `d1` and `d2` are two different instances of the same class `Dog`. Since properties are mutable, instances can have different data attached to it.
+
+```{python}
+d1.name = "Boris"
+print([e.name for e in [d1,d2]])
+```
+
+Methods are functions attached to a class / an instance. Their first argument is always an instance. The first argument can be used to acess data held by the instance.
+
+```{python}
+class Dog:
+    name = None # default value
+    def bark(self):
+        print("Wouf")
+    def converse(self):
+        n = self.name
+        print(f"Hi, my name is {n}. I'm committed to a strong and stable government.")
+        
+d = Dog()
+d.bark()   # bark(d)
+d.converse()
+```
+
+### Constructor
+
+There is also a special method `__init__` called the constructor. When an object is created, it is called on the instance. This is useful in order to initialize parameters of the instance.
+
+```{python}
+class Calibration:
+    
+    def __init__(self, x=0.1, y=0.1, β=0.0):
+        if not (β>0) and (β<1):
+            raise Exception("Incorrect calibration"})
+        self.x = x
+        self.y = y
+        self.β = β
+    
+```
+
+```{python}
+c1 = Calibration()
+c2 = Calibration(x=3, y=4)
+```
+
+Two instances of the same class have the same method, but can hold different data. This can change the behaviour of these methods.
+
+```{python}
+# class Dog:
+    
+#     state = 'ok'
+    
+#     def bark(self):
+#         if self.state == 'ok':
+#             print("Wouf!")
+#         else:
+#             print("Ahouuu!")
+        
+# d = Dog()
+# d1 = Dog()
+# d1.state = 'hungry'
+
+# d.bark()
+# d1.bark()
+```
+
+To write a function which will manipulate properties and methods
+of an object, it is not required to know its type in advance.
+The function will succeed as long as the required method exist, fail other wise.
+This is called "Duck Typing": if it walks like a duck, it must be a duck...
+
+```{python}
+class Duck:
+    def walk(self): print("/-\_/-\_/")
+        
+class Dog:
+    def walk(self): print("/-\_/*\_/")
+    def bark(self): print("Wouf")
+```
+
+```{python}
+animals = [C() for C in (Duck,Dog)]
+def go_in_the_park(animal):
+    for i in range(3): animal.walk()
+for a in animals:
+    go_in_the_park(a)
+```
+
+#### Inheritance
+
+The whole point of classes, is that one can construct hierarchies
+of classes to avoid redefining the same methods many times. This is done by using inheritance.
+
+```{python}
+class Animal:
+    
+    def run(self): print("👣"*4)
+
+class Dog(Animal):
+    def bark(self): print("Wouf")
+        
+class Rabbit(Animal):
+    def run(self):
+        super().run() ; print( "🐇" )
+```
+
+```{python}
+Animal().run()
+dog = Dog()
+dog.run()
+dog.bark()
+Rabbit().run()
+```
+
+In the above example, the Dog class inherits from inherits the method `run` from the Animal class: it doesn't need to be redefined again.
+Essentially, when `run(dog)` is called, since the method is not defined for a dog, python looks for the first ancestor of `dog` and applies the method of the ancestor.
+
+#### Special methods
+
+By conventions methods starting with double lowercase `__` are hidden. They don't appear in tab completion. Several special methods can be reimplemented that way.
+
+```{python}
+class Calibration:
+    
+    def __init__(self, x=0.1, y=0.1, β=0.1):
+        if not (β>0) and (β<1):
+            raise Exception("Incorrect calibration")
+        self.x = x
+        self.y = y
+        self.β = β
+    
+    def __str__(self):
+        return f"Calibration(x={self.x},y={self.y}, β={self.β})"
+```
+
+```{python}
+str(Calibration() )
+```
+
+#### complement
+
+Python is not 100% object oriented.
+- some objects cannot be subclassed
+- basic types behave sometimes funny (interning strings)
+
+mindfuck: Something that destabilizes, confuses, or manipulates a person's mind. 
+
+```{python}
+a = 'a'*4192
+b = 'a'*4192
+a is b
+```
+
+```{python}
+a = 'a'*512
+b = 'a'*512
+a is b
+```
+

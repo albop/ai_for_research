@@ -9,26 +9,25 @@ website:
       contents:
         - section: Slides
           contents:
-            - slides/session_0/index.qmd
-            - slides/session_1/index.qmd
-            - slides/session_2/index.qmd
-            - slides/session_3/index.qmd
-            - slides/session_4/index.qmd
-            - slides/session_5/index.qmd
+          - slides/session_0/index.qmd
+          - slides/session_1_2/index.qmd
+          - slides/session_1_3/index.qmd
+          - slides/session_1/index.qmd
+          - slides/session_2/index.qmd
+          - slides/session_3/index.qmd
         - section: Tutorials
           contents:
-            - tutorials/session_1/python_syntax.qmd
-            - section: More python
-              contents:
-              - tutorials/session_1/python_fundamentals/basics.ipynb
-              - tutorials/session_1/python_fundamentals/collections.ipynb
-              - tutorials/session_1/python_fundamentals/control_flow.ipynb
-              - tutorials/session_1/python_fundamentals/functions.ipynb
+          - tutorials/session_1/python_syntax.qmd
+          - tutorials/session_1/python_fundamentals/basics.ipynb
+          - tutorials/session_1/python_fundamentals/collections.ipynb
+          - tutorials/session_1/python_fundamentals/control_flow.ipynb
+          - tutorials/session_1/python_fundamentals/functions.ipynb
+          - tutorials/session_2/sentiment_analysis.ipynb
+          - tutorials/session_3/open_ai_api.ipynb
         - section: Exercises
           contents:
-            - exercises/python.qmd
-            - exercises/pushups_1.ipynb
-            - exercises/pushups_2.ipynb
+          - exercises/pushups_1.ipynb
+          - exercises/pushups_2.ipynb
 
 format:
   html:

@@ -1,0 +1,348 @@
+---
+title: "…to Large Language Models 🚧"
+date: 2025/11/26
+subtitle: AI for Research, ESCP, 2024-2025
+author: Pablo Winant
+format:
+  revealjs:
+    toc: true
+    toc-expand: 2
+    toc-depth: 1
+    width: 1920
+    height: 1080
+    menu:
+      side: left
+      width: normal
+---
+
+# What does GPT do? Text completion.
+
+##  Do you like poetry?
+
+. . .
+
+> A rose is a rose is [a rose]{.fragment}
+
+. . .
+
+    Gertrude Stein
+
+. . .
+
+> Brexit means Brexit means [Brexit]{.fragment}
+
+. . .
+
+    John Crace
+
+. . .
+
+> Elementary my dear [Watson]{.fragment}
+
+. . .
+
+    P.G. Woodehouse
+
+. . .
+
+##
+
+> There is an easy way for the government to end the strike without withdrawing the pension reform, 
+
+. . .
+
+
+## Complete Text
+
+Generative language models perform *text completion*
+
+They generate plausible[^plausible] text following a prompt.
+
+The type of answer, will depend on the kind of prompt.
+
+[^plausible]: here, plausible, means that it is more likely to be a correct text written by a human, rather than otherwise
+
+## GPT Playground
+
+To use GPT-4 profficiently, you have to experiment with the prompt.
+
+- try the [Playground mode](https://platform.openai.com/playground)
+
+It is the same as learning how to do google queries
+
+- altavista: `+noir +film -"pinot noir"`
+- nowadays: ???
+
+"Prompting" is becoming a discipline in itself... (or is it?)
+
+## Some Examples
+
+By providing enough *context*, it is possible to perform amazing tasks
+
+[Look at the demos](https://gpt4demo.com/)
+
+# What is a language model?
+
+## Language Models and Cryptography
+
+![](assets/code-secret.webp)
+
+The Caesar code
+
+## {auto-animate="true"}
+
+![Zodiac 408 Cipher](assets/zodiac_408.png)
+
+
+## {auto-animate="true"}
+
+
+::: {#fig-elephants layout-ncol=2}
+
+![Zodiac 408 Cipher](assets/zodiac_408.png){width=20%}
+
+![Key for Zodiac 408](assets/408_solution.jpg){width=40%}
+
+Solved in a week by Bettye and Donald Harden using frequency tables.
+
+:::
+
+
+##
+
+Later in 2001, in a prison, somewhere in California 
+
+![](assets/prison.png)
+
+. . .
+
+Solved by Stanford's [Persi Diaconis](https://math.uchicago.edu/~shmuel/Network-course-readings/MCMCRev.pdf
+) and his students using Monte Carlo Markov Chains
+
+## Monte Carlo Markov Chains
+
+
+Take a letter $x_n$, what is the probability of the next letter being $x_{n+1}$?
+
+$$\pi_{X,Y} = P(x_{n+1}=Y, x_{n}=X)$$
+
+for $X=\{a, b, .... , z\} , Y=\{a,b,c, ... z\}$
+
+The language model can be trained using dataset of english language.
+
+And used to determine whether a given cipher-key is consistent with english language.
+
+It yields a very efficient algorithm to decode any caesar code (with very small sample)
+
+## MCMC to generate text
+
+MCMCs can also be used to generate text:
+
+- take initial prompt: `I think therefore I`
+    - last letter is `I`
+    - most plausible character afterwards is ` `
+    - most plausible character afterwards is `I`
+- Result: `I think therefore I I I I I I`
+
+Not good but promising (🤷)
+
+##  MCMC to generate text
+
+
+Going further
+
+- augment memory
+    - `fore I`> ???
+- change basic unit (use phonems or words)
+
+An example using [MCMC](https://towardsdatascience.com/text-generation-with-markov-chains-an-introduction-to-using-markovify-742e6680dc33)
+
+- using words and 3 states
+```He ha ‘s kill’d me Mother , Run away I pray you Oh this is Counter you false Danish Dogges .```
+
+## Big MCMC
+
+Can we augment memory?
+
+- if you want to compute the most frequent letter (among `26`) after `50` letters, you need to take into account `5.6061847e+70` combinations !
+    - impossible to store, let alone do the training
+
+- but some combinations are useless:
+    - `wjai dfni`
+    - `Despite the constant negative press covfefe` [🤔]{.fragment}
+
+
+## Neural Networks
+
+
+::: columns
+
+::: column
+
+![](assets/glowing_nn.png){width=60%}
+
+:::
+::: column
+
+![Neural Network](assets/neural_networks.png){width=60%}
+
+:::
+:::
+
+- Neural networks make it possible to increase the state-space to represent
+
+$$\forall X, P(x_n=X| x_{n-1}, ..., x_{n-k}) = \varphi^{NL}( x_{n-1}, ..., x_{n-k}; \theta )$$
+
+with a smaller vector of parameters $\theta$
+
+- Neural netowrks reduce endogenously the dimensionality.
+
+
+## Recurrent Neural Networks
+
+::: columns
+
+:::: column
+
+In 2015
+
+<iframe width="780" height="500" src="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" title="The unreasonable Effectiveness of Recurrent Neural Networks"></iframe>
+
+
+::::
+
+:::: column
+
+![](assets/Recurrent_neural_network_unfold.svg.png)
+
+- __Neural Network__ reduce dimensionality of data discovering structure
+- hidden state encodes meaning of the model so far
+
+::::
+
+:::
+
+## Long Short Term Memory
+
+![](assets/Long_Short-Term_Memory.svg)
+
+- 2000->2019 : Emergence of Long Short Term Memory models
+    - speech recognition
+    
+    - LSTM behind "Google Translate", "Alexa", ...
+
+
+## The Rise of *transformers*
+
+A special kind of __encoder/decoder__ architecture.
+
+::: columns
+
+:::: column
+
+Most successful models since 2017
+
+1. Position Encodings
+    - model is not sequential anymore
+    - tries to learn sequence
+2. __Attention__
+    - [attention is all you need](https://arxiv.org/abs/1706.03762)
+3. Self-Attention
+
+::::
+
+:::: column
+
+![](assets/transformers.png){width=60%}
+
+::::
+
+:::
+
+Explanations [here](https://towardsdatascience.com/transformers-141e32e69591) or [here](https://blogs.nvidia.com/blog/2022/03/25/what-is-a-transformer-model/)
+
+
+## Encoders / Decoders (1/2)
+
+
+Take some data $(x_n)\in R^x$. 
+
+Consider two functions:
+
+- an *encoder*
+    $$\varphi^E(x; \theta^E) = h \in \mathbb{R^h}$$
+- a *decoder*:
+    $$\varphi^D(h; \theta^D) = x' \in \mathbb{R^x}$$
+
+What could possibly the value of training the coefficients with:
+
+$$\min_{\theta^E, \theta^D}  \left( \varphi^D( \varphi^E(x_n; \theta^E), \theta^D) - x_n\right)^2$$?
+
+i.e. train the nets $\varphi^D$ and $\varphi^E$ to predict the "data from the data"? (it is called __autoencoding__)
+
+
+## Encoders / Decoders (2/2)
+
+
+The relation $\varphi^D( \varphi^E(x_n; \theta^E), \theta^D) ~ x_n$ can be rewritten as
+
+$$x_n \xrightarrow{\varphi^E(; \theta^E)} h \xrightarrow{\varphi^D(; \theta^D)} x_n $$
+
+When that relation is (mostly) satisfied and $\mathbb{R}^h << \mathbb{R}^x$, $h$ can be viewed as a lower dimension representation of $x$. It encodes the information as a lower dimension vector $h$ and is called __learned embeddings__.
+
+- instead of $\underbrace{x_n}_{\text{prompt}} \rightarrow \underbrace{y_n}_{\text{text completion}}$
+- one can learn $\underbrace{h_n}_{\text{prompt (low dim)}} \xrightarrow{\varphi^C( ; \theta^C)} \underbrace{h_n^c}_{\text{text completion (low dim)}}$
+    - it is easier to learn
+- and perform the original task as $$\underbrace{x_n}_{\text{prompt}} \xrightarrow{\varphi^E}  h_n \xrightarrow{\varphi^C} h_n^C \xrightarrow{\varphi^D} \underbrace{y_n}_{\text{text completion}}$$
+
+This very powerful approach can be applied to combine encoders/decoders from different contexts (ex [Dall-E](https://openai.com/dall-e-2))
+
+
+## Attention
+
+Main flaw with the recursive approach:
+
+- the context made to predict new words/embeddings puts a lower weight on further words/embeddings
+- this is related to the so-called vanishing gradient problem
+
+. . .
+
+::: columns
+
+:::: column
+
+With the attention mechanism, each predicted word/embedding is determined by all preceding words/embeddings, with different weights that are endogenous.
+
+::::
+
+:::: column
+
+![Attention](assets/attention.webp){width=50%}
+
+::::
+
+:::
+
+. . .
+
+
+
+## Quick summary
+
+- Short History of Language models
+    - frequency tables
+    - monte carlo markov chains
+    - deep learning -> recurrent neural networks
+    - long-short-term memory (>2000)
+    - transformers (>2018)
+        - [attention is all you need](https://arxiv.org/abs/1706.03762)
+. . .
+
+- Since 2010 main breakthrough came through the development of deep-learning techniques (software/hardware)
+- Recently, *models*/algorithms have improved tremendously
+
+. . .
+
+More in the next session...
+
+In the meantime, checkout the video from 3blue1brown on [attention](https://www.youtube.com/watch?v=eMlx5fFNoYc). It's brilliant!

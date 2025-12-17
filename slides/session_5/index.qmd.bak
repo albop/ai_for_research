@@ -1,0 +1,14 @@
+---
+title: "Research Frontiers: What’s Next?"
+date: 2024/12/13
+subtitle: AI for Research, ESCP, 2024-2025
+author: Pablo Winant
+format:
+  revealjs:
+    navigation: grid
+    width: 1920
+    height: 1080
+    menu:
+      side: left
+      width: normal
+---

@@ -1,0 +1,475 @@
+---
+title: "From Text Analysis…"
+date: 2024/11/19
+subtitle: AI for Research, ESCP, 2025-2026
+author: Pablo Winant
+format:
+  revealjs:
+    toc: true
+    toc-expand: 2
+    toc-depth: 1
+    width: 1920
+    height: 1080
+    menu:
+      side: left
+      width: normal
+bibliography: references.bib
+---
+
+# Examples of Text Analysis Applications
+
+---
+
+## How to deal with text?
+
+
+- Recall: big data contains *heterogenous* data
+  - <mark>text</mark> / images / sound
+
+----
+
+## Example 1: FOMC meetings
+
+*Taking the Fed at its Word: A New Approach to Estimating Central Bank Objectives using Text Analysis*, @shapiro2022
+
+- Remember the Taylor rule for central banks?
+- Generalized version: $i_t = \alpha_\pi (\pi_t-\pi^{\star}) + \alpha_y (y_t-y)$
+- Is there a way to measure the preferences of the central bank? (coefficients and inflation target?)
+- Traditional way: look at CB decisions ex post + run a regression
+- Shapiro and Wilson: let's look at the FOMC [meeting transcripts](https://www.federalreserve.gov/monetarypolicy/fomc_historical.htm)
+- Excerpts (there are *tons* of them: 704,499)
+
+
+
+<div class="r-stack">
+
+<div class="fragment current-visible">
+
+> I had several conversations at Jackson Hole with Wall Street economists and journalists, and they said, quite frankly, that they really do not believe that our effective inflation target is 1 to 2 percent. They believe we have morphed into 1+1/2 to 2+1/2 percent, and no one thought that we were really going to do anything over time to bring it down to 1 to 2.
+
+Sep 2006 *St. Louis Federal Reserve President William Poole*
+
+</div>
+
+<div class="fragment current-visible">
+
+> Like most of you, I am not at all alarmist about inflation. I think the worst that is likely to happen would be 20 or 30 basis points over the next year. But even that amount is a little disconcerting for me. I think it is very important for us to maintain our credibility on inflation and it would be somewhat expensive
+to bring that additional inflation back down.
+
+March 2006 *Chairman Ben Bernanke*
+
+</div>
+
+<div class="fragment current-visible">
+
+> With inflation remaining at such rates, we could begin to lose credibility if
+markets mistakenly inferred that our comfort zone had drifted higher. When we stop raising rates, we ought to be reasonably confident that policy is restrictive enough to bring inflation back toward the center of our comfort zone,
+which I believe is 1+1/2 percent...So for today, we should move forward with an
+increase of 25 basis points...
+
+Jan 2006 *Chicago Federal Reserve President Michael Moskow*
+
+</div>
+
+</div>
+
+
+## Example 2
+
+::: columns
+
+:::: column
+
+![](graphs/tweets.jpg)
+
+::::
+
+:::: column
+
+::::: {.incremental}
+
+- Suppose you work in the trading floor of a financial institution
+- These kind of tweets have disturbing impact on the markets. You need to react quickly.
+- You need a machine to assess the risk in real time.
+- More generally, tweeter is a quite unique source of real-time data
+- How do you analyse the content of the tweets?
+- Comment: actually it's not only the content of the tweets, but who reads, who retweets: graph analysis
+
+:::::
+
+::::
+
+:::
+
+## Text-mining: what can we extract from texts
+
+- The main branches of text analysis are:
+  - sentiment analysis (*today*)
+    - associate positivity/negativity score to a text
+    - precise meaning of "sentiment" is context dependent     
+  - topic modeling
+    - classify texts as belonging to known categories (supervised)
+    - finding likely texts (unsupervised)
+  - named-entity recognition
+    - find who gets mentioned in the text
+    - example: [A Cross-verified Database of Notable People, 3500BC-2018AD](https://portal.cepr.org/discussion-paper/17941)
+  - event-extraction
+    - recognize mention of events
+  - ...
+
+## Clarification
+
+![](graphs/processing_text.svg)
+
+- Text analysis / text mining are somewhat used interchangeably
+- In general they consist in quantifying information used in a text...
+- ... so that it can be incorporated in machine learning analysis
+- Recently, *deep learning* (and [GPT-3](https://gpt3examples.com/#examples)) has changed this state of facts:
+  - some models get trained direcly on text (intermediary phases are not explicited)
+
+
+## The even-less glamorous part
+
+- <!-- .element: class="fragment" -->before getting started with text analysis, one needs to get hold of the text in the first place
+- <!-- .element: class="fragment" -->how to extract
+  - webscraping: automate a bot to visit website and download text
+  - document extraction: for instance extract the text from pdf docs, get rid of everything irrelevant
+- <!-- .element: class="fragment" -->how to store it
+  - what kind of database?
+  - important problem when database is big
+
+# Transforming the text
+
+## Processing steps
+
+- Let's briefly see how text gets processed.
+- Goal is to transform the text into a numerical vector of *features*
+  - Stupid approach: "abc"->[1,2,3]
+  - we need to capture some form of language structure
+- All the steps can be done fairly easily with [nltk](https://www.nltk.org/)
+  - nltk is comparable to sklearn in terms of widespread adoption
+
+## Processing steps (2)
+
+- Steps:
+  - tokenization
+  - stopwords
+  - lexicon normalization
+    - stemming
+    - lemmatization
+  - POS tagging
+
+## Tokenization
+
+::: columns
+
+:::: column
+
+- Tokenization: split input into atomic elements.
+- <!-- .element: class="fragment" data-fragment-index="2" --> We can recognize sentences.
+- <!-- .element: class="fragment" data-fragment-index="3" --> Or words.
+- <!-- .element: class="fragment" data-fragment-index="4" --> It is enough for some basic analysis:
+
+<div class="fragment" data-fragment-index=4>
+
+```python
+from nltk.probability import FreqDist
+fdist = FreqDist(words)
+print(fdist.most_common(2))
+```
+
+```text
+[('It', 1), ("'s", 1)]
+```
+
+</div>
+
+::::
+:::: column
+
+::::: r-stack
+
+:::::: {.fragment .current-visible}
+
+```python
+from nltk.tokenize import sent_tokenize
+txt = """Animal Farm is a short novel by George Orwell. It was
+written during World War II and published in 1945. It is about 
+a group of farm animals who rebel against their farmer. They 
+hope to create a place where the animals can be equal, free,
+ and happy."""
+sentences  = sent_tokenize(txt)
+print(sentences)
+```
+::::::
+:::::: {.fragment .current-visible}
+
+
+```text
+['Animal Farm is a short novel by George Orwell.',
+ 'It was\nwritten during World War II and published in 1945.', 
+ 'It is about \na group of farm animals who rebel against their farmer.', 
+ 'They \nhope to create a place where the animals can be equal, free,\n and happy.']
+```
+
+::::::
+:::::: {.fragment .current-visible}
+
+```python
+from nltk.tokenize import word_tokenize
+txt = "It's a beautiful thing, the destruction of words."
+words  = word_tokenize(txt)
+print(words)
+```
+
+```text
+['It', "'s", 'a', 'beautiful', 'thing', ',', 'the', 'destruction', 'of', 'words', '.']
+```
+
+::::::
+
+:::::
+
+
+::::
+
+:::
+
+## Part-of speech tagging
+
+::: columns
+
+:::: column
+
+- Sometimes we need information about the kind of tokens that we have
+- <!-- .element: class="fragment" data-fragment-index="2" -->We can perform part-of-speech tagging (aka grammatical tagging)
+- <!-- .element: class="fragment" data-fragment-index="3" -->This is useful to refine interpretation of some words
+    - "it's not a beautiful thing"
+    - vs "it's a beautiful thing"
+    - *connotation* of beautiful changes
+
+::::
+:::: column
+
+::::: fragment
+
+```python
+from nltk.tokenize import word_tokenize
+tagged = nltk.pos_tag(words)
+tagged
+```
+
+```text
+[('It', 'PRP'),
+ ("'s", 'VBZ'),
+ ('a', 'DT'),
+ ('beautiful', 'JJ'),
+ ('thing', 'NN'),
+ (',', ','),
+ ('the', 'DT'),
+ ('destruction', 'NN'),
+ ('of', 'IN'),
+ ('words', 'NNS'),
+ ('.', '.')]
+```
+
+:::::
+::::
+:::
+
+
+## Simplifying the text (1): stopwords
+
+<div class="container">
+
+<div class="col">
+
+- Some words are very frequent and carry no useful meaning
+  - <!-- .element: class="fragment" data-fragment-index="2" -->They are called *stopwords*
+- <!-- .element: class="fragment" data-fragment-index="3" -->We typically remove them from our word list
+
+</div>
+
+
+<div class="col">
+
+<div class="fragment"  data-fragment-index=2>
+
+```python
+from nltk.corpus import stopwords
+stop_words=set(stopwords.words("english"))
+print(stop_words)
+```
+
+```
+{'their', 'then', 'not', 'ma', 'here', ...}
+
+```
+
+</div>
+
+<div class="fragment"  data-fragment-index=3>
+
+```python
+filtered_words = [w for w in words if w not in stop_words]
+filtered_words
+```
+
+```
+['beautiful', 'thing' 'destruction', 'words']
+```
+
+</div>
+
+</div>
+</div>
+
+## Simplifying the text (2): lexicon normalization
+
+::: columns
+:::: column
+
+- Sometimes, there are several variants of a given word
+  - tight, tightening, tighten
+- <!-- .element: class="fragment" data-fragment-index="2" --> Stemming: keeping the word root
+- <!-- .element: class="fragment" data-fragment-index="3" -->Lemmatization: keeps the word base
+  - linguistically correct contrary to stemming
+
+::::
+:::: column
+
+::::: {.fragment .current-visible}
+
+```python
+from nltk.stem import PorterStemmer
+ps = PorterStemmer()
+
+words =  ["tight", "tightening", "tighten"]
+stemmed_words=[ps.stem(w) for w in words]
+
+```
+
+```text
+['tight', 'tighten', 'tighten']
+```
+
+:::::
+::::: {.fragment .current-visible}
+
+
+```python
+from nltk.stem.wordnet import WordNetLemmatizer
+lem = WordNetLemmatizer()
+
+words =  ["flying", "flyers", "fly"]
+stemmed_words=[ps.stem(w) for w in words]
+lemmatized_words=[lem.lemmatize(w) for w in words]
+```
+
+```
+# lemmatized
+['flying', 'flyer', 'fly']
+# stemmed
+['fli', 'flyer', 'fli']
+```
+
+:::::
+
+::::
+:::
+
+# Sentiment analysis
+
+## Sentiment analysis
+
+- What do we do now that we have reduced a text to a series of word occurrences?
+- Two main approaches:
+  1. lexical analysis
+  2. machine learning
+
+## Lexical analysis
+
+- Use a "sentiment dictionary" to provide a value (positive or negative) for each word
+  - sum the weights to get positive or negative sentiment
+
+- <!-- .element: class="fragment" -->Example:
+$$\underbrace{\text{Sadly}}_{-}\text{, there wasn't a glimpse of }\underbrace{\text{light}}_{+} \text{ in his } \text{world } \text{ of intense }\underbrace{\text{suffering.}}_{-}$$
+
+- <!-- .element: class="fragment" -->Total:
+  - -1+1-1. Sentiment is negative.
+
+- <!-- .element: class="fragment" -->Problems:
+    - here, taking grammar into account would change everything
+    - doesn't capture irony
+    - our dictionary doesn't have weights for what matters to us
+$$ \text{the central bank forecasts increased }\underbrace{\text{inflation}}_{?}$$
+
+## Machine learning
+
+- Idea: we would like the weights to be endogenously determined
+$$ \underbrace{\text{the}}_{x_1} \underbrace{\text{ central}}_{x_2} \underbrace{\text{ bank}}_{x_3} \underbrace{\text{ forecasts}}_{x_4} \underbrace{\text{ increased} }_{x_5} \underbrace{\text{ inflation}}_{x_6}$$
+
+- Suppose we had several texts: we can generate features by counting words in each of them
+
+|       | the | central | bank | forecasts | increased | inflation | economy | exchange rate | crisis | <mark>sentiment</mark> |
+| ----- | --- | ------- | ---- | --------- | --------- | --------- | ------- | ------------- | ------ | ---------------------- |
+| text1 | 1   | 1       | 2    | 1         | 1         | 2         |         |               |        | -1                     |  |
+| text2 | 3   |         |      |           |           | 1         | 1       | 2             |        | +1                     |  |
+| text3 | 4   |         | 1    |           |           | 1         |         | 1             | 1      | -1                     |
+|       |
+
+- We can the train the model:  $y = x_1 f(w_1) + \cdots x_K f(w_K)$ where $y$ is the sentiment and $w_i$ is wordcount of word $w_i$
+  - of course, we need a similar procedure as before (split the training set and evaluation set, ...)
+  - we can use any model (like naive bayesian updating)
+
+- This approach is called *Bag of Words* (BOW)
+
+## Some issues
+
+- Bag of words has a few pitfalls:
+    - it requires a big training set with labels
+    - it overweights long documents
+    - there is noise due to the very frequent words that don't affect sentiment
+    - ordering of words / grammar plays no role
+- Improvement: TF-IDF 
+  - stands for Term-Frequency*Inverse-Distribution-Frequency
+  - replace word frequency $f(w)$ by $$\text{tf-idf} = f(w)\frac{\text{number of documents}}{\text{number of documents containing $w$}}$$
+
+## Deep learning
+
+::: columns
+
+:::: column
+
+![](graphs/nn.webp){width=70%}
+
+::::
+
+:::: column
+
+::::: {.incremental}
+
+- Neural networks have become very popular. 
+- A classification problem would look like:
+$$c = f(x_1, ..., x_n; 
+\theta)$$ where $f$ is a nonlinear function and $\theta$ is an unknown vector of parameters
+- Or even $$c = f(\text{full_text};\theta)$$
+  - which could potentially capture meaning embedded in syntax
+  - many possible versions of $f$ (network topologies)
+- Problem?
+  - deep parameters require a bigger dataset
+- Possible remedy: learn from a wider, more general dataset => transfer learning
+
+:::::
+
+::::
+
+:::
+
+
+# Homework
+
+- Check the technical report for [GPT-4](https://openai.com/research/gpt-4)? Compare with [GPT-5](https://openai.com/research/gpt-5)
+- Do *some* push-ups exercises
+  - start learning python if you haven't already
+- Start to think about interesting research project (involving text analysis and presentations)

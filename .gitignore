@@ -2,3 +2,6 @@
 _site
 .ipynb_checkpoints
 **/*.quarto_ipynb
+# pixi environments
+.pixi/*
+!.pixi/config.toml
