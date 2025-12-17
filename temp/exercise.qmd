@@ -1,0 +1,125 @@
+---
+title: Methods
+format: 
+    html: default
+    ipynb: default
+---
+
+## Optimization and root finding
+
+:::{#exr-optimization}
+Consider the function $f(x,y)=1-(x-x_0)^2-0.5(y-y_0)^2$ with $x_0=0.5$ and $y_0=1.0$.
+Check the documentatin for `scipy.optimize`. Use it to maximze function $f$.
+:::
+
+```{python}
+# one needs to define $f$ as a function of a vector
+# f(v)=1-(v[0]-x_0)^2-0.5*(v[1]-y_0)^2$ 
+```
+
+:::{#expr-1d-root}
+Consider the function $g(x)=0.1+exp(-x)x(1-x)$ over [0,2]. Choose the scipy function and find the root of $g$.
+:::
+
+```{python}
+#
+```
+
+:::{#expr-2d-root}
+Consider the function $h(x,y)=0.1+exp(-x)x(1-x)$ over [0,2]. Choose the scipy function and find the root of $g$.
+to find the root of $g$?
+:::
+
+```{python}
+#
+```
+
+
+
+
+## Interpolation
+
+We consider the function $f(x) = sinc(\lambda x) = \frac{sin(\lambda x)}{x}$.
+Let $I=(x_i)_{i=[1,10]}$ be a regularly spaced interval between -2 and +2, containing 10 points. Call $Y=(y_i)=f(x_i)$ the values of $f$ on this interval.
+Let $T$ be a test set with 1000 regularly spaced points between -2.5 and 2.5. 
+
+The goal is to compare several ways interpolate function f on $T$.
+
+:::{#exr-interpolation}
+Define `f`, `I`, `Y`, `T` with numpy.
+:::
+
+```{python}
+# 
+```
+:::{#exr-interpolation}
+Construct a stepwise approximation using numpy indexing
+:::
+
+```{python}
+# 
+```
+:::{#exr-interpolation}
+Plot it
+:::
+
+```{python}
+# 
+```
+:::{#exr-interpolation}
+Construct a linear approximation using numpy
+:::
+
+```{python}
+#
+```
+:::{#exr-interpolation}
+Use scipy.interpolate to interpolate the data linearly. Compare the various extrapolation options.
+:::
+
+```{python}
+#
+```
+
+:::{#exr-interpolation}
+Use scipy.interpolate to interolate the data with cubic splines. Compare the various extrapolation options.
+:::
+
+```{python}
+#
+```
+
+:::{#exr-interpolation}
+Plot the results
+:::
+
+```{python}
+#
+```
+
+
+## Discretization
+
+:::{#exr-markov-chain}
+
+Consider the AR1 process $y_t = \rho y_{t-1} + \epsilon_t$ where $\rho=0.9$ and $\epsilon_t=0.01$.
+Use the `quantecon` library to discretize $(y_t)$ as a discrete markov chain.
+
+:::
+
+```{python}
+#
+```
+
+
+:::{#exr-mu}
+
+Suppose $\epsilon$ follows a normal law with standard deviation $σ = 0.05$. Take γ = 40  and define $U(x)=(x^{-γ})/(-γ)$
+We want to compute $C(\epsilon) = \mathbb{E} [U(exp(\epsilon)) ]$.
+
+- Choose $N>0$ and construct a 1d vector with $N$ realizations of $\epsilon$. Use it to compute the expectation.
+- Estimate the standard deviation of this expectation.
+- Use gauss-hermite method from numpy to compute the same expectation.
+- Compare both methods.
+
+:::

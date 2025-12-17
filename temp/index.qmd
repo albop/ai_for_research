@@ -1,0 +1,405 @@
+---
+title: "Tools Using LLM Models"
+subtitle: "From Multimodal to Agentic Systems"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    code-copy: true
+    transition: fade
+editor: visual
+---
+
+## Overview
+
+We will explore the evolution of LLM-based tools:
+
+1.  **Multimodal AI**: Seeing and hearing.
+2.  **RAG Systems**: Knowing your data.
+3.  **Assistants**: Acting on your behalf (Context + Tools).
+4.  **Agentic Systems**: Autonomous reasoning loops.
+
+# Multimodal AI {background-color="#40666e"}
+
+## Beyond Text
+
+Traditional LLMs process text tokens. **Multimodal** models process diverse inputs mapped to a shared embedding space.
+
+::: {.incremental}
+
+-   **Vision**: Image captioning, VQA, Object Detection.
+-   **Audio**: Speech-to-Text (ASR) + Text-to-Speech (TTS).
+-   **Video**: Temporal understanding of frame sequences.
+:::
+
+## Example: Vision-Language Model
+
+Using a model like GPT-4o or Gemini 1.5 to understand an image.
+
+```python
+# Pseudo-code for a VLM call
+import llm_library
+
+image_path = "chart.png"
+prompt = "Analyze the trend in this chart and predict the next value."
+
+response = llm_library.chat(
+    model="gemini-1.5-pro",
+    messages=[
+        {"role": "user", "content": [prompt, image_path]}
+    ]
+)
+
+print(response.text)
+```
+*The model "sees" the image tokens effectively as it sees text tokens.*
+
+# RAG Systems {background-color="#d64933"}
+
+## Beyond Simple Search
+
+**RAG** solves the "frozen knowledge" problem.
+
+::: {.incremental}
+
+-   **Standard Loop**: Retrieve $\rightarrow$ Augment Context $\rightarrow$ Generate.
+-   **Limitations**:
+    -   *Context Window*: Can't feed 10k documents.
+    -   *Fragmentation*: Missing the "big picture" across chunks.
+:::
+
+## Embeddings: The Translation Layer
+
+**Converting Meaning to Math (and back).**
+
+1.  **To Embedding (Encode)**:
+    -   Input: *"The cat sat on the mat"*
+    -   Output: `v1 = [0.12, -0.98, 0.45, ...]` (Vector)
+
+2.  **From Embedding (Retrieve)**:
+    -   Query: *"Feline resting place"* (`v2`)
+    -   Operation: `Cosine_Similarity(v1, v2) ≈ 0.85` (High Match)
+    -   Result: The system finds the "cat" chunk because the *vectors* are close, even if words differ.
+
+## Advanced RAG Techniques
+
+Moving beyond "Top-K retrieval".
+
+1.  **Re-ranking**:
+    -   Use a cheap model to fetch 50 docs, then a BERT-based re-ranker to pick the best 5.
+2.  **Hybrid Search**:
+    -   Combine **Keyword** (BM25 for exact match) + **Semantic** (Vectors for concept match).
+3.  **Self-RAG**:
+    -   The model critiques retrieved documents: *"Is this relevant?"* $\rightarrow$ *Retry if bad*.
+
+## Next-Gen: GraphRAG
+
+**Problem**: Vectors capture *similarity*, not *structure*.
+
+**Solution**: **Knowledge Graphs** + **LLMs**.
+
+**Workflow** (Ref: *Microsoft Research, 2024*):
+
+1.  **Extract**: Identify Entities (Nodes) and Relationships (Edges) from text.
+2.  **Cluster**: Group communities of related topics.
+3.  **Query**: "How do these two distinct policies interact?"
+
+    -   *Graph Traversal* finds the path between them.
+
+# RAG in Research {background-color="#9d0208"}
+
+## Management: Systematic Literature Review
+
+**Goal**: Automate the PRISMA workflow.
+
+**Application**:
+
+-   **Ingest**: 5,000 PDFs from a keyword search.
+-   **Screen**: RAG agent checks inclusion criteria against Abstracts.
+-   **Synthesize**: Recursive summarization of the selected 50 papers.
+-   **Impact**: Reduces screening time by ~90% while maintaining rigor.
+
+## Economic Forecasting
+
+**Goal**: Predict market reactions using historical precedents.
+
+**Method**: "Analogical Retrieval".
+
+-   **Query**: "Inflation shock + Rate hike in emerging market."
+-   **Retrieve**: Find similar historical 10-K filings or news from 1990-2020.
+-   **Generate**: Forecast likely outcomes based on *retrieved historical ground truth* rather than generic training data.
+
+# Assistants {background-color="#e9c46a"}
+
+## More Than Just Chat
+
+Assistants enhance basic chat with **State**, **Persona**, and **Tools**.
+
+-   **State/Context**: Remembering previous turns and user preferences.
+-   **Persona**: Tailored system instructions (e.g., "You are a coding tutor").
+-   **Tools**: Capability to execute code or call external APIs.
+
+## Tool Use / Function Calling
+
+The model outputs structured data (JSON) to call a function instead of text.
+
+
+```python
+# Definition of a tool
+tools = [{
+    "name": "get_weather",
+    "description": "Get current temperature",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "location": {"type": "string"},
+            "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]}
+        }
+    }
+}]
+
+# LLM Decides to call it
+# User: "What's the weather in Paris?"
+# Model Output: 
+# { "tool": "get_weather", "args": { "location": "Paris", "unit": "celsius" } }
+```
+*The runtime executes `get_weather("Paris", "celsius")` and feeds the result back.*
+
+# Model Context Protocol (MCP) {background-color="#e76f51"}
+
+## The Connective Tissue
+
+**MCP** is an open standard connecting AI Assistants to your world.
+
+::: {.incremental}
+
+-   **Analogy**: "USB-C for AI Applications".
+-   **Architecture**: Client (LLM) $\leftrightarrow$ Host (App) $\leftrightarrow$ Server (Data).
+-   **Key Benefit**: Write a server *once*, use it in Claude, IDEs, or any Agent.
+:::
+
+## Anatomy of an MCP Server
+
+Three primitives drive the interaction:
+
+1.  **Resources**: Passive data reading.
+    -   *Example*: Reading a file, fetching a database row.
+2.  **Tools**: Active execution.
+    -   *Example*: `run_simulation()`, `post_slack_message()`.
+3.  **Prompts**: Reusable context templates.
+    -   *Example*: "Analyze this balance sheet" template.
+
+# Research Applications {background-color="#264653"}
+
+## Finance: Automated Spreading
+
+**Goal**: Extract data from 10-K filings for risk analysis.
+
+**MCP Server Capabilities**:
+
+1.  `fetch_filing(ticker, year)`: Pulls from EDGAR.
+2.  `vectorize_text(section)`: Embeds "Risk Factors".
+3.  `extract_ratios(text)`: Computes custom liquidity ratios.
+
+**Research Impact**:
+Scales analysis from 10 firms to 10,000 firms. See *Finance Agent Benchmark (2024)*.
+
+## Economics: Simulation Agents
+
+**Goal**: Model complex macroeconomic behaviors ("Homo Silicus").
+
+**Example**: *The AI Economist* (Salesforce Research).
+
+-   **Setup**: Multi-agent reinforcement learning.
+-   **Agents**: Taxpayers and a Social Planner (Government).
+-   **MCP Role**: The "Environment" is an MCP server exposing state (wealth, labor) and actions (tax rates, work hours).
+-   **Result**: Agents discover optimal tax policies that humans missed.
+
+<!-- ## Management: The Hidden Organization
+
+**Goal**: Organizational Network Analysis (ONA).
+
+**Problem**: Organizational charts don't show how work gets done.
+**Solution**: An Agent analyzing communication metadata (Slack/Email).
+
+**Workflow**:
+
+1.  **Ingest**: Server allows safe reading of anonymized logs.
+2.  **Map**: Agent builds a graph of informal influence.
+3.  **Insight**: "identify 'bridges' between siloed teams."
+    -   *Ref*: *CandorIQ (2024)* - "The Silent Organization". -->
+
+# Agentic Systems {background-color="#2a9d8f"}
+
+## Autonomy and Reasoning
+
+Agents are systems that use an LLM as a "brain" to drive a feedback loop.
+
+**The Loop (ReAct paradigm[^footnote]):**
+
+1.  **Thought**: Analyze the current state/goal.
+2.  **Plan**: Decide on the next action.
+3.  **Action**: Execute a tool.
+4.  **Observation**: Read the tool output.
+5.  **Repeat**: Until the goal is met.
+
+[^footnote]: ReAct is Reasoning and Action.
+
+## Agent Loop Example
+
+```python
+# Simplified Agent Loop
+history = ["Task: Find the size of 'data.txt' and delete it if > 1MB."]
+
+while True:
+    decision = llm.decide_next_step(history)
+    
+    if decision.action == "STOP":
+        break
+        
+    print(f"Thinking: {decision.thought}")
+    print(f"Acting: {decision.action}")
+    
+    result = execute_tool(decision.action)
+    history.append(f"Observation: {result}")
+
+# Output:
+# Thinking: I need to check the file size first.
+# Acting: os.stat('data.txt')
+# Observation: Size is 2048000 bytes.
+# Thinking: It is larger than 1MB. I must delete it.
+# Acting: os.remove('data.txt')
+```
+
+
+
+## Summary
+
+::: {.incremental}
+
+-   **LLMs** are the engine.
+-   **Multimodal** adds senses.
+-   **RAG** adds memory/knowledge.
+-   **Assistants** add specific capabilities.
+-   **Agents** add autonomy and loop-based problem solving.
+:::
+
+---
+
+# Hands-on Tutorial {background-color="#457b9d"}
+
+## Choose Your Track
+
+Two paths to practice your skills:
+
+1.  **The Digital Archivist** (Economics/History)
+    -   *Mission*: digitize 1950s data & simulate growth models.
+2.  **The Market Analyst** (Finance)
+    -   *Mission*: interpret technical charts & price options.
+
+---
+
+# Track 1: Digital Archivist {background-color="#e9c46a"}
+
+## Ex 1: Multimodal Extraction
+
+**Task**: You found this dusty yearbook page in the archives.
+**Goal**: Convert it to a clean CSV.
+
+![](yearbook.png){height=400}
+
+**Prompt Challenge**: Write a prompt that ensures the "Year" column is an integer and numbers like "3,131" are parsed as `3131`.
+
+## Ex 2: The Solow Simulator
+
+**Context**: You have a Python function:
+
+```python
+def run_solow(savings_rate: float, pop_growth: float):
+    """Simulates GDP per capita for 50 years."""
+    pass
+```
+
+**Task**: Map this user query to a standard Tool Call (JSON).
+
+> *User*: "Simulate the economy if savings double to 40% and population grows at 2%."
+
+**Expected JSON**:
+```json
+{
+  "tool": "run_solow",
+  "arguments": { "savings_rate": 0.40, "pop_growth": 0.02 }
+}
+```
+
+---
+
+# Track 2: Market Analyst {background-color="#e76f51"}
+
+## Ex 1: Technical Analysis
+
+**Task**: Your hedge fund needs an automated sentiment tagger.
+**Goal**: Analyze this chart.
+
+::: columns
+
+:::: column
+
+![](stock_chart.png){height=400}
+
+::::
+:::: column
+
+**Prompt Challenge**:
+
+1.  Identify the **Trend** (Bullish/Bearish).
+2.  Locate the **Support Level** (Visual estimation).
+3.  Output as `{ "sentiment": "...", "support": 1000 }`.
+
+::::
+
+:::
+
+## Ex 2: Option Pricing
+
+**Context**: You have a Python function:
+
+```python
+def black_scholes(ticker: str, strike: float, expiry_days: int):
+    """Calculates call option price."""
+    pass
+```
+
+**Task**: Map this user query to a Tool Call.
+
+> *User*: "Price a call option for Apple. Strike is 250, expiring in 30 days."
+
+**Expected JSON**:
+```json
+{
+  "tool": "black_scholes",
+  "arguments": { "ticker": "AAPL", "strike": 250.0, "expiry_days": 30 }
+}
+```
+
+## Thank You!
+
+Questions?
+
+. . .
+
+::: {.callout-note}
+
+## A Question from Yann LeCun
+"This is all very impressive, but aren't we just scaling statistical correlations?
+LLMs lack a **World Model**—they don't understand the underlying physical reality or cause-and-effect.
+Because they are auto-regressive, they cannot truly *plan* or *reason* hierarchically; they just predict the next likely token.
+How does this 'Agentic' approach solve the fundamental limitations of the architecture?"
+
+...
+
+There is no such thing as general intelligence
+
+Human intelligence is super-specialized for the physical world, and our feeling of generality is an illusion
+
+:::
