@@ -25,6 +25,7 @@ website:
           - tutorials/session_1/python_fundamentals/functions.ipynb
           - tutorials/session_2/sentiment_analysis.ipynb
           - tutorials/session_3/open_ai_api.ipynb
+          - tutorials/session_6/exercises.qmd
         - section: Exercises
           contents:
           - exercises/pushups_1.ipynb
