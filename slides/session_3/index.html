@@ -6,12 +6,12 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.40">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.26">
 
   <meta name="author" content="Pablo Winant">
-  <meta name="dcterms.date" content="2025-12-05">
-  <title>AI for Research – Large Language Models: GPT Variants</title>
+  <meta name="dcterms.date" content="2024-12-05">
+  <title>AI for Research – Large Language Models in the Wild 🚧</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -30,7 +30,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -128,7 +128,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Large Language Models: GPT Variants</h1>
+  <h1 class="title">Large Language Models in the Wild 🚧</h1>
   <p class="subtitle">AI for Research, ESCP, 2025-2026</p>
 
 <div class="quarto-title-authors">
@@ -139,7 +139,7 @@ Pablo Winant
 </div>
 </div>
 
-  <p class="date">2025-12-05</p>
+  <p class="date">2024-12-05</p>
 </section><section id="TOC">
 <nav role="doc-toc"> 
 <h2 id="toc-title">Table of contents</h2>
@@ -161,7 +161,6 @@ Pablo Winant
 <p>Most famous engine developped by OpenAI: <strong>Generative Pre-trained Transformer</strong> (aka GPT)</p>
 </div>
 <div class="fragment">
-<div>
 <ul>
 <li class="fragment">GPT1 (1018)
 <ul>
@@ -183,13 +182,7 @@ Pablo Winant
 <li class="fragment">even bigger: 1000 billions parameters ???</li>
 <li class="fragment">on your harddrive: 1Tb</li>
 </ul></li>
-<li class="fragment">GPT5
-<ul>
-<li class="fragment">unkwown: 1.7/1.8 trillions</li>
-<li class="fragment">multimodal</li>
-</ul></li>
 </ul>
-</div>
 </div>
 </section>
 <section id="corpus" class="slide level2">
@@ -212,11 +205,10 @@ Pablo Winant
 </div><div class="column">
 <p><img data-src="assets/matrix.gif"></p>
 </div></div>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>Detailed information about gpt-4 and gpt-5 is harder to find.</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Detailed information about gpt-4 is harder to find.</p></li></ol></aside></section>
 <section id="how-is-the-model-trained" class="slide level2">
 <h2>How is the model trained?</h2>
 <p>Several concepts are relevant here:</p>
-<div>
 <ul>
 <li class="fragment"><p>unsupervised learning</p>
 <ul>
@@ -226,7 +218,6 @@ Pablo Winant
 <li class="fragment"><p>fine tuning</p></li>
 <li class="fragment"><p>reinforcement learning</p></li>
 </ul>
-</div>
 </section>
 <section id="what-is-learning" class="slide level2">
 <h2>What is learning?</h2>
@@ -266,7 +257,6 @@ Pablo Winant
 </section>
 <section id="transfer-learning" class="slide level2">
 <h2>Transfer learning</h2>
-<div>
 <ul>
 <li class="fragment">GPT is inherently a <em>transfer learning</em> machine
 <ul>
@@ -282,7 +272,6 @@ Pablo Winant
 <li class="fragment">there is still a fine-tuning API</li>
 </ul></li>
 </ul>
-</div>
 </section>
 <section id="reinforcement-learning" class="slide level2">
 <h2>Reinforcement Learning</h2>
@@ -318,8 +307,7 @@ Pablo Winant
 <li>not just a context on top of GPT</li>
 </ul></li>
 </ul>
-<p>-&gt; They are now merged in the same products</p>
-<aside><ol class="aside-footnotes"><li id="fn2"><p>Coming next: assistants, agents</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>Coming next: assistants.</p></li></ol></aside></section>
 <section id="section" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"></h2>
 <p>There is information about how GPT-3 was trained (check technical <a href="https://arxiv.org/pdf/2203.02155.pdf">paper</a> or <a href="https://openai.com/research/instruction-following">summary</a>)</p>
@@ -329,22 +317,23 @@ Pablo Winant
 <h2>The different variants of GPT</h2>
 <p>Which of the following model should you use?</p>
 <p>Lots of options:</p>
-<div>
 <ul>
 <li class="fragment"><code>text-curie-001</code></li>
 <li class="fragment"><code>text-davinci-003</code></li>
 <li class="fragment"><code>text-babbage-001</code></li>
 <li class="fragment"><code>text-ada-001</code></li>
-<li class="fragment">… there is an epxlosion in the number of models (see https://platform.openai.com/docs/models)</li>
+<li class="fragment">…</li>
 </ul>
-</div>
 <p>What are the differences between the various engines?</p>
 <ul>
 <li>architecture / model size</li>
 <li>training set of foundation model (GPT Base)</li>
 <li>type of fine-tuning (instruct/chat/code)</li>
 </ul>
-<p>We mostly lost access to GPT base: only aligned models are available now.</p>
+<p>It is not clear whether GPT Base will still be accessible in the future or whether it will be fine-tuned for alignement or not.</p>
+<ul>
+<li>consequences?</li>
+</ul>
 </section>
 <section id="section-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"></h2>
@@ -362,18 +351,10 @@ Pablo Winant
 <li><p>many foundation Models</p>
 <ul>
 <li>move from opensource to closedsource</li>
-<li><strong>but</strong>: opensource is still very alive
-<ul>
-<li>llama 3</li>
-<li>mistral</li>
-<li>qwen</li>
-<li>deepseek</li>
-<li>…</li>
-</ul></li>
+<li><strong>but</strong>: opensource is still very alive</li>
 </ul></li>
 <li><p>research to reduce size of models / training time</p></li>
-<li><p>many versions specialized (fine-tuned) to specific tasks (e.g.&nbsp;code)</p></li>
-<li><p>commercial products blur the line between llm and chat agents</p></li>
+<li><p>many more versions specialized (fine-tuned) to specific tasks</p></li>
 </ul>
 </div></div>
 </section></section>
@@ -392,14 +373,30 @@ Pablo Winant
 <li>There are possible workarounds
 <ul>
 <li>avoid tasks where hallucinations occur (like ask for paper citations)</li>
-<li>more structure in the prompting (like “detail your reasoning” -&gt; thinking models)</li>
+<li>more structure in the prompting (like “detail your reasoning”)</li>
 </ul></li>
 <li>And research being done…
 <ul>
 <li>on using fine-tuning for more correctness (e.g.&nbsp;instructGPT)</li>
-<li>on developing mixed systems -&gt; next week</li>
+<li>on developing mixed systems</li>
 </ul></li>
 </ul>
+<p>Check out <a href="https://platform.openai.com/docs/assistants/overview">GPT Assistants</a> and <a href="https://scite.ai/">Scite</a></p>
+</section>
+<section id="how-much-should-we-trust-ai" class="slide level2">
+<h2>How much should we trust AI?</h2>
+<p>AI safety and AI alignment is a very active field right now.</p>
+<p>For economists, AI behaviour can be characterized in terms of biases:</p>
+<ol type="1">
+<li>statistical bias</li>
+<li>preference misspecification
+<ul>
+<li>explicit</li>
+<li>implicit</li>
+</ul></li>
+<li>behavioural biases</li>
+</ol>
+<p>For now we don’t know much.</p>
 
 
 </section></section>
@@ -593,7 +590,7 @@ Pablo Winant
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -620,190 +617,173 @@ Pablo Winant
       });
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
           }
+          return false;
         }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
           }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
           for (const childEl of codeEl.children) {
             if (isCodeAnnotation(childEl)) {
               childEl.remove();
             }
           }
           return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/albop\.github\.io\/ai_for_research\/");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/albop\.github\.io\/ai_for_research\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
             }
           }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
           }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
           }
-        } else {
-          return undefined;
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
         }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
-              }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>
